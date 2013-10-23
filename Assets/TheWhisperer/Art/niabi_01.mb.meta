@@ -1,0 +1,245 @@
+fileFormatVersion: 2
+guid: dda9e1de107c64c248edb3c503335d10
+ModelImporter:
+  serializedVersion: 15
+  fileIDToRecycleName:
+    100000: arrow1
+    100002: bow
+    100004: Case
+    100006: chest
+    100008: chest 1
+    100010: eyes
+    100012: feather1
+    100014: feather1 1
+    100016: feather2
+    100018: feather2 1
+    100020: feather3
+    100022: feather3 1
+    100024: ikHandle1
+    100026: ikHandle2
+    100028: ikHandle3
+    100030: ikHandle4
+    100032: jaw
+    100034: L_ankle
+    100036: L_braid1
+    100038: L_braid1 1
+    100040: L_braid2
+    100042: L_braid2 1
+    100044: L_braid3
+    100046: L_braid3 1
+    100048: L_braid4
+    100050: L_braid4 1
+    100052: L_elbow
+    100054: L_elbow 1
+    100056: L_eye
+    100058: L_eye 1
+    100060: L_eye_mesh
+    100062: L_fingers1
+    100064: L_fingers1 1
+    100066: L_fingers2
+    100068: L_fingers2 1
+    100070: L_foot
+    100072: L_foot 1
+    100074: L_knee
+    100076: L_knee 1
+    100078: L_knee1
+    100080: L_Leg
+    100082: L_shoulder
+    100084: L_shoulder 1
+    100086: L_thumb
+    100088: L_thumb 1
+    100090: L_wrist
+    100092: L_wrist 1
+    100094: master
+    100096: Mesh
+    100098: neck
+    100100: neck 1
+    100102: neck1
+    100104: //RootNode
+    100106: niabiFeather
+    100108: niabiMesh
+    100110: R_ankle
+    100112: R_braid1
+    100114: R_braid1 1
+    100116: R_braid2
+    100118: R_braid2 1
+    100120: R_braid3
+    100122: R_braid3 1
+    100124: R_braid4
+    100126: R_braid4 1
+    100128: R_elbow
+    100130: R_elbow 1
+    100132: R_eye
+    100134: R_eye 1
+    100136: R_eye_mesh
+    100138: R_fingers1
+    100140: R_fingers1 1
+    100142: R_fingers2
+    100144: R_fingers2 1
+    100146: R_foot
+    100148: R_foot 1
+    100150: R_knee
+    100152: R_Leg
+    100154: R_shoulder
+    100156: R_shoulder1
+    100158: R_thumb
+    100160: R_thumb 1
+    100162: R_wrist
+    100164: R_wrist 1
+    100166: root
+    100168: root1
+    400000: arrow1
+    400002: bow
+    400004: Case
+    400006: chest
+    400008: chest 1
+    400010: eyes
+    400012: feather1
+    400014: feather1 1
+    400016: feather2
+    400018: feather2 1
+    400020: feather3
+    400022: feather3 1
+    400024: ikHandle1
+    400026: ikHandle2
+    400028: ikHandle3
+    400030: ikHandle4
+    400032: jaw
+    400034: L_ankle
+    400036: L_braid1
+    400038: L_braid1 1
+    400040: L_braid2
+    400042: L_braid2 1
+    400044: L_braid3
+    400046: L_braid3 1
+    400048: L_braid4
+    400050: L_braid4 1
+    400052: L_elbow
+    400054: L_elbow 1
+    400056: L_eye
+    400058: L_eye 1
+    400060: L_eye_mesh
+    400062: L_fingers1
+    400064: L_fingers1 1
+    400066: L_fingers2
+    400068: L_fingers2 1
+    400070: L_foot
+    400072: L_foot 1
+    400074: L_knee
+    400076: L_knee 1
+    400078: L_knee1
+    400080: L_Leg
+    400082: L_shoulder
+    400084: L_shoulder 1
+    400086: L_thumb
+    400088: L_thumb 1
+    400090: L_wrist
+    400092: L_wrist 1
+    400094: master
+    400096: Mesh
+    400098: neck
+    400100: neck 1
+    400102: neck1
+    400104: //RootNode
+    400106: niabiFeather
+    400108: niabiMesh
+    400110: R_ankle
+    400112: R_braid1
+    400114: R_braid1 1
+    400116: R_braid2
+    400118: R_braid2 1
+    400120: R_braid3
+    400122: R_braid3 1
+    400124: R_braid4
+    400126: R_braid4 1
+    400128: R_elbow
+    400130: R_elbow 1
+    400132: R_eye
+    400134: R_eye 1
+    400136: R_eye_mesh
+    400138: R_fingers1
+    400140: R_fingers1 1
+    400142: R_fingers2
+    400144: R_fingers2 1
+    400146: R_foot
+    400148: R_foot 1
+    400150: R_knee
+    400152: R_Leg
+    400154: R_shoulder
+    400156: R_shoulder1
+    400158: R_thumb
+    400160: R_thumb 1
+    400162: R_wrist
+    400164: R_wrist 1
+    400166: root
+    400168: root1
+    2300000: arrow1
+    2300002: bow
+    2300004: Case
+    3300000: arrow1
+    3300002: bow
+    3300004: Case
+    4300000: niabiMesh
+    4300002: niabiFeather
+    4300004: R_eye_mesh
+    4300006: L_eye_mesh
+    4300008: Case
+    4300010: arrow1
+    4300012: bow
+    9500000: //RootNode
+    13700000: L_eye_mesh
+    13700002: niabiFeather
+    13700004: niabiMesh
+    13700006: R_eye_mesh
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    animationCompression: 1
+    animationRotationError: .5
+    animationPositionError: .5
+    animationScaleError: .5
+    animationWrapMode: 0
+    clipAnimations: []
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: .0399999991
+    meshCompression: 0
+    addColliders: 0
+    importBlendShapes: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    weldVertices: 1
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+  tangentSpace:
+    normalSmoothAngle: 60
+    splitTangentsAcrossUV: 1
+    normalImportMode: 0
+    tangentImportMode: 1
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    human: []
+    skeleton: []
+    handles: []
+    armTwist: .5
+    foreArmTwist: .5
+    upperLegTwist: .5
+    legTwist: .5
+    armStretch: .0500000007
+    legStretch: .0500000007
+    feetSpacing: 0
+    rootMotionBoneName: 
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  additionalBone: 1
+  animationType: 2
+  userData: 
