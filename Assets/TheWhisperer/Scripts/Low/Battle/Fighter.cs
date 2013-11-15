@@ -34,6 +34,9 @@ public abstract class Fighter : MonoBehaviour
 	private int maxHp = 10;
 	
 	
+	public delegate void OnDeathDelegate(Fighter deadFighter);
+	public event OnDeathDelegate FighterDied = null;
+	
 	
 	//Properties
 	public bool IsAttacking { get { return attacking; } }
@@ -48,6 +51,10 @@ public abstract class Fighter : MonoBehaviour
 	//Functions
 	
 	protected void Awake()
+	{
+	}
+	
+	protected void Start()
 	{
 		initPos = transform.localPosition;
 		moveToPos = initPos;
@@ -222,6 +229,11 @@ public abstract class Fighter : MonoBehaviour
 	protected void Die()
 	{
 		animation.CrossFade(DeathAnimString,0.15f);
+		
+		if(FighterDied!=null)
+		{
+			FighterDied(this);
+		}
 	}
 	
 	

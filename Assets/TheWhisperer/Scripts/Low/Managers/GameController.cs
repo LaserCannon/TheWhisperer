@@ -38,9 +38,6 @@ public class GameController : MonoBehaviour
 	}
 	
 	
-	private GameStateMachine gameStateMachine = new GameStateMachine();
-	
-	
 	public PlayerAgent PlayerPrefab;
 	
 	private PlayerAgent player = null;
@@ -49,53 +46,24 @@ public class GameController : MonoBehaviour
 		get { return player; }
 	}
 	
-	
-	//TODO: Move to a battle management system
-	public string BattleScene = "";
-	
-	
-	
-	public delegate void CallbackDelegate();
-	
-	private event CallbackDelegate onEnterBattle;
-	private event CallbackDelegate onExitBattle;
-	private event CallbackDelegate onEnterField;
-	private event CallbackDelegate onExitField;
+	private static PlayerProfile profile = null;
+	public static PlayerProfile Profile
+	{
+		get { return profile; }
+	}
 	
 	
 	private Vector3 savedPlayerPosition = Vector3.zero;
 	
 	
 	
-	public void RegisterForOnStateChange(CallbackDelegate dlg, System.Type stateType, TriggerEventType enterOrExit)
+	void Awake()
 	{
-		if(dlg==null)	return;
-		
-		if(stateType == typeof(GameStateBattle))
+		if(profile==null)
 		{
-			if(enterOrExit==TriggerEventType.Enter)	onEnterBattle += dlg;
-			else 									onExitBattle += dlg;
-		}
-		else if(stateType == typeof(GameStateExplore))
-		{
-			if(enterOrExit==TriggerEventType.Enter)	onEnterField += dlg;
-			else 									onExitField += dlg;
-		}
-	}
-	
-	public void UnregisterForOnStateChange(CallbackDelegate dlg, System.Type stateType, TriggerEventType enterOrExit)
-	{
-		if(dlg==null)	return;
-		
-		if(stateType == typeof(GameStateBattle))
-		{
-			if(enterOrExit==TriggerEventType.Enter)	onEnterBattle -= dlg;
-			else 									onExitBattle -= dlg;
-		}
-		else if(stateType == typeof(GameStateExplore))
-		{
-			if(enterOrExit==TriggerEventType.Enter)	onEnterField -= dlg;
-			else 									onExitField -= dlg;
+			profile = new PlayerProfile();
+			
+			profile.AddPartyMember(FighterManager.main.Players[0].name);
 		}
 	}
 	
@@ -104,26 +72,7 @@ public class GameController : MonoBehaviour
 	
 	
 	
-	public IEnumerator EnterBattleScene()
-	{
-		gameStateMachine.PushState(new GameStateBattle());
-		
-		savedPlayerPosition = Player.transform.position;
-		
-		yield break;
-	}
-	
-	
-	public IEnumerator ReturnFromBattleScene()
-	{
-		gameStateMachine.PopState();
-		
-		Player.transform.position = savedPlayerPosition;
-		
-		
-		
-		yield break;
-	}
+
 	
 	
 	

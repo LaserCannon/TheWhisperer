@@ -6,7 +6,7 @@ using System.IO;
 
 
 
-public class ManagedAssets
+public static class ManagedAssets
 {
 	
 #if UNITY_EDITOR

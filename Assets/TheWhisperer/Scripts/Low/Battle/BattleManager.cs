@@ -33,22 +33,42 @@ public class BattleManager : ScriptableObject
 	{
 	}
 	
+	private static string savedPlayer = "";
+	private static string savedEnemy = "";
+	
 	//static version
-	public static BattleManager BeginBattle(Fighter a, Fighter b, Battlefield battlefield)
+	public static void LoadBattle(string player, string enemy, BattleScene scene)
 	{
+		GameController.Profile.RecordPlayerLocation(PlayerAgent.main);
+		
+		savedPlayer = player;
+		savedEnemy = enemy;
+		
+		LevelLoader.LoadBattleLevel(scene.sceneName);
+		
+		LevelLoader.LevelLoaded += OnBattleLevelLoaded;
+	}
+		
+	private static void  OnBattleLevelLoaded()
+	{
+		//NEW SCENE//
+		LevelLoader.LevelLoaded -= OnBattleLevelLoaded;
+		
 		BattleManager bm = ScriptableObject.CreateInstance<BattleManager>();
-		//BattleManager bm = new BattleManager();
 		current = bm;
 		
-		bm.FighterA = a;
-		bm.FighterB = b;
-		bm.Field = battlefield;
+		bm.Field = (Battlefield)GameObject.FindObjectOfType(typeof(Battlefield));
 		
-		return bm;
+		bm.FighterA = FighterManager.main.SpawnPlayer(savedPlayer);
+		bm.FighterB = FighterManager.main.SpawnEnemy(savedEnemy);
+		
+		bm.Prepare();
+		
+		bm.Begin();
 	}
 	
 	//non-static version
-	public BattleManager BeginBattle()
+	public BattleManager LoadBattle()
 	{
 		current = this;
 		
@@ -56,6 +76,33 @@ public class BattleManager : ScriptableObject
 	}
 	
 	
+	
+	public void Prepare()
+	{
+		FighterA.transform.position = Field.PlayerMount.transform.position;
+		FighterA.transform.rotation = Field.PlayerMount.transform.rotation;
+		
+		FighterB.transform.position = Field.EnemyMount.transform.position;
+		FighterB.transform.rotation = Field.EnemyMount.transform.rotation;
+		
+		FighterA.FighterDied += OnFighterDied;
+		FighterB.FighterDied += OnFighterDied;
+	}
+	
+	
+	public void OnFighterDied(Fighter deadFighter)
+	{
+		End ();
+	}
+	
+	public void Begin()
+	{
+	}
+	
+	public void End()
+	{
+		GameController.Profile.RestorePlayerLocation();
+	}
 	
 	
 	

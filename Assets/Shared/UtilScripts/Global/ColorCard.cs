@@ -16,10 +16,10 @@ public class ColorCard : MonoBehaviour {
 				
 				GUITexture guiTex = obj.AddComponent<GUITexture>();
 				Texture2D tex = new Texture2D(1,1,TextureFormat.RGBA32,false);
-				tex.SetPixel(0,0,new Color(0,0,0,1));
+				tex.SetPixel(0,0,new Color(1,1,1,1));
 				tex.Apply();
 				guiTex.texture = tex;
-				guiTex.color = new Color(0,0,0,0);
+				guiTex.color = new Color(1,1,1,1);
 				
 				_main = obj.AddComponent<ColorCard>();
 				

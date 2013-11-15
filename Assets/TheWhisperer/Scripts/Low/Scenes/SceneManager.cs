@@ -13,8 +13,7 @@ using UnityEditor;
 public class ScenePackage
 {
 	public string PackageName = "";
-	//TODO: Make this a list of SCENES instead of strings. Scenes are the only objects that are exactly of type "Object" (capital O), so we can use this to our advantage.
-	//public List<string> Scenes = new List<string>();
+	
 	public List<Object> Scenes = new List<Object>();
 }
 
@@ -56,33 +55,19 @@ public class BuildScheme
 
 
 
-public class SceneManager : ScriptableObject
+public class SceneManager : SingletonAsset
 {
-	private static SceneManager _main; 
+	private static SceneManager _main;
 	public static SceneManager main
 	{ 
 		get
-		{ 
+		{
 			if(_main==null)
-			{
-				Object obj = ManagedAssets.Load("SceneManager",typeof(SceneManager));
-				_main = (SceneManager)obj;
-				
-#if UNITY_EDITOR
-				if(_main==null) {
-					
-					SceneManager manager = ScriptableObject.CreateInstance<SceneManager>();
-					ManagedAssets.CreateAsset(manager, "SceneManager.asset");
-					_main = manager;
-					
-					AssetDatabase.Refresh();
-				}
-#endif
-				
-			}
+				_main = getmain<SceneManager>();
 			return _main;
 		}
 	}
+	
 	
 	
 	public List<ScenePackage> Packages = new List<ScenePackage>();

@@ -44,6 +44,12 @@ public class SpawnLocator : MonoBehaviour
 	}
 	
 	
+	public static void SpawnCharacterAtPosition(PathCharacter pc, Vector3 position)
+	{
+		pc.WarpTo(position);
+	}
+	
+	
 #if UNITY_EDITOR
 	void OnDrawGizmos()
 	{

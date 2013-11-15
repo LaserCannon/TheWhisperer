@@ -129,7 +129,7 @@ public class PlayerFighter : Fighter
 			animation.CrossFade(BlockAnimString,0.1f);
 		}
 		
-		BlockMeter.Hide();
+	//	BlockMeter.Hide();
 	}
 	
 	public void EndBlock(Vector2 pos)
@@ -149,8 +149,8 @@ public class PlayerFighter : Fighter
 		if(distFromPlayer < Screen.width/5f)
 		{
 			blockingDelayProgress += Time.deltaTime;
-			BlockMeter.Show();
-			BlockMeter.SetFill(blockingDelayProgress/0.25f);
+	//		BlockMeter.Show();
+	//		BlockMeter.SetFill(blockingDelayProgress/0.25f);
 		}
 		else
 		{
@@ -161,7 +161,7 @@ public class PlayerFighter : Fighter
 	public void DisableBlockMeter()
 	{
 		blockingDelayProgress = 0f;
-		BlockMeter.Hide();
+	//	BlockMeter.Hide();
 	}
 	
 	
@@ -229,7 +229,7 @@ public class PlayerFighter : Fighter
 			int code = Gestures[i].OnTouchUp(data.Current);
 			if(code==0)continue;
 		}
-		BlockMeter.Hide();
+	//	BlockMeter.Hide();
 		blockingDelayProgress = 0;
 	}
 	

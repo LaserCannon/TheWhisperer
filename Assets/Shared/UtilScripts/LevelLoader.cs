@@ -22,6 +22,11 @@ public class LevelLoader : MonoBehaviour {
 		}
 	}
 	
+	
+	public delegate void MessageDelegate();
+	public static event MessageDelegate LevelLoaded = null;
+	
+	
 	public void Awake()
 	{
 		_main = this;
@@ -33,9 +38,19 @@ public class LevelLoader : MonoBehaviour {
 		main.StartCoroutine(main.LoadLevelInternal(level,spawnLocation));
 	}
 	
+	public static void LoadLevel(string level, Vector3 spawnLocation)
+	{
+		main.StartCoroutine(main.LoadLevelInternal(level,spawnLocation));
+	}
+	
 	public static void LoadLevel(int level, string spawnLocation = "")
 	{
 		main.StartCoroutine(main.LoadLevelInternal(level,spawnLocation));
+	}
+	
+	public static void LoadBattleLevel(string level)
+	{
+		main.StartCoroutine(main.LoadBattleLevelInternal(level));
 	}
 	
 	/*public static void LoadNext()
@@ -69,12 +84,52 @@ public class LevelLoader : MonoBehaviour {
 			
 			yield return null;
 			
+			if(LevelLoaded!=null)
+			{
+				LevelLoaded();
+			}
+			
 			if(PlayerAgent.main!=null)
 			{
 				if(spawnLocation!="")
 					SpawnLocator.SpawnCharacterAtLocator(PlayerAgent.main,spawnLocation);
 				
 				PlayerAgent.main.Enabled = true;
+			}
+			
+			yield return ColorCard.FadeToPicture(0.5f);
+			
+			Destroy(this,1.0f);
+		}
+	}
+	
+	
+	IEnumerator LoadLevelInternal(string level, Vector3 spawnLocation)
+	{
+		if(Time.time-timeLastLoaded>1f)
+		{
+			timeLastLoaded = Time.time;
+			DontDestroyOnLoad(gameObject);
+			
+			if(PlayerAgent.main!=null)
+				PlayerAgent.main.Enabled = false;
+			
+			yield return ColorCard.FadeToBlack(0.5f);
+			
+			Application.LoadLevel(level);
+			
+			yield return null;
+			
+			if(PlayerAgent.main!=null)
+			{
+				SpawnLocator.SpawnCharacterAtPosition(PlayerAgent.main,spawnLocation);
+				
+				PlayerAgent.main.Enabled = true;
+			}
+			
+			if(LevelLoaded!=null)
+			{
+				LevelLoaded();
 			}
 			
 			yield return ColorCard.FadeToPicture(0.5f);
@@ -107,9 +162,47 @@ public class LevelLoader : MonoBehaviour {
 				PlayerAgent.main.Enabled = true;
 			}
 			
+			if(LevelLoaded!=null)
+			{
+				LevelLoaded();
+			}
+			
 			yield return ColorCard.FadeToPicture(0.5f);
 			
 			Destroy(this,1.0f);
+		}
+	}
+	
+	IEnumerator LoadBattleLevelInternal(string level)
+	{
+		if(Time.time-timeLastLoaded>1f)
+		{
+			timeLastLoaded = Time.time;
+			DontDestroyOnLoad(gameObject);
+			
+			if(PlayerAgent.main!=null)
+				PlayerAgent.main.Enabled = false;
+			
+			yield return ColorCard.FadeToColor(Color.white,0.1f);
+			
+			yield return new WaitForSeconds(0.25f);
+			
+			yield return ColorCard.FadeToBlack(0.5f);
+			
+			Application.LoadLevel(level);
+			
+			yield return null;
+			
+			if(LevelLoaded!=null)
+			{
+				LevelLoaded();
+			}
+			
+			yield return new WaitForSeconds(0.25f);
+			
+			yield return ColorCard.FadeToPicture(0.5f);
+			
+			Destroy (this,1.0f);
 		}
 	}
 }

@@ -14,7 +14,7 @@ using UnityEditor;
 
 
 [InitializeOnLoad]
-public class SpawnLocatorManager : ScriptableObject
+public class SpawnLocatorManager : SingletonAsset
 {
 	
 	[System.Serializable]
@@ -42,34 +42,13 @@ public class SpawnLocatorManager : ScriptableObject
 #endif
 	
 	
-	private static SpawnLocatorManager _main; 
+	private static SpawnLocatorManager _main;
 	public static SpawnLocatorManager main
 	{ 
 		get
-		{ 
+		{
 			if(_main==null)
-			{
-				Object obj = Resources.Load("ManagedAssets/SpawnLocatorManager",typeof(SpawnLocatorManager));
-				_main = (SpawnLocatorManager)obj;
-				
-#if UNITY_EDITOR
-				//In the editor, create the .asset file if we don't have one.
-				if(_main==null) {
-					string assetsPath = "Assets/"+PlayerSettings.productName+"/Resources/ManagedAssets";
-					string absBuildPath = Application.dataPath + "/" + assetsPath;
-					if(!Directory.Exists(absBuildPath)) {
-						Directory.CreateDirectory(assetsPath);
-					}
-					
-					SpawnLocatorManager manager = ScriptableObject.CreateInstance<SpawnLocatorManager>();
-					AssetDatabase.CreateAsset(manager, assetsPath + "/SpawnLocatorManager.asset");
-					_main = manager;
-					
-					AssetDatabase.Refresh();
-				}
-#endif
-				
-			}
+				_main = getmain<SpawnLocatorManager>();
 			return _main;
 		}
 	}
@@ -89,8 +68,7 @@ public class SpawnLocatorManager : ScriptableObject
 	{
 		if(EditorApplication.timeSinceStartup - LastTimeUpdated > 1f)
 		{
-			_main = main;
-			LastTimeUpdated = EditorApplication.timeSinceStartup;
+			LastTimeUpdated = EditorApplication.timeSinceStartup; 
 			
 			string curScene = EditorApplication.currentScene;
 			

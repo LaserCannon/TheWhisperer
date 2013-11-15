@@ -9,6 +9,6 @@ public class TEMP_BattleStarter : MonoBehaviour
 	
 	void Start()
 	{
-		BattleManager.BeginBattle(Player,Enemy,Field);
+	//	BattleManager.LoadBattle(Player,Enemy,new BattleScene("temp_battlescene"));
 	}
 }
