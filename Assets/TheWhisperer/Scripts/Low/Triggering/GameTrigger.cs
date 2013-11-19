@@ -34,7 +34,7 @@ public class BaseTrigger : MonoBehaviour
 
 
 //Generic trigger that triggers on enter/exit
-public class Trigger : BaseTrigger
+public class GameTrigger : BaseTrigger
 {
 	public TriggeringObjectType TriggeringType = TriggeringObjectType.PlayerOnly;
 	

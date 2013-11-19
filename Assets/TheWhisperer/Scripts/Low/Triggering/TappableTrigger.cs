@@ -7,7 +7,7 @@ public interface ITappable
 	void OnTouched();
 }
 
-public class TappableTrigger : Trigger, ITappable
+public class TappableTrigger : GameTrigger, ITappable
 {
 	public void OnTapped()
 	{
