@@ -55,12 +55,12 @@ public class LevelLoader : MonoBehaviour {
 	
 	/*public static void LoadNext()
 	{
-		LoadLevel(SceneManager.NextLevel);
+		LoadLevel(BuildManager.NextLevel);
 	}
 	
 	public static void LoadLast()
 	{
-		LoadLevel(SceneManager.LastLevel);
+		LoadLevel(BuildManager.LastLevel);
 	}*/
 	
 	public static void Replay()
@@ -88,18 +88,15 @@ public class LevelLoader : MonoBehaviour {
 			{
 				LevelLoaded();
 			}
+
+			if(spawnLocation!="")
+				SpawnLocator.SpawnCharacterAtLocator(PlayerAgent.main,spawnLocation);
 			
-			if(PlayerAgent.main!=null)
-			{
-				if(spawnLocation!="")
-					SpawnLocator.SpawnCharacterAtLocator(PlayerAgent.main,spawnLocation);
-				
-				PlayerAgent.main.Enabled = true;
-			}
+			PlayerAgent.main.Enabled = true;
 			
 			yield return ColorCard.FadeToPicture(0.5f);
 			
-			Destroy(this,1.0f);
+			Destroy(gameObject,1.0f);
 		}
 	}
 	
@@ -119,13 +116,10 @@ public class LevelLoader : MonoBehaviour {
 			Application.LoadLevel(level);
 			
 			yield return null;
+
+			SpawnLocator.SpawnCharacterAtPosition(PlayerAgent.main,spawnLocation);
 			
-			if(PlayerAgent.main!=null)
-			{
-				SpawnLocator.SpawnCharacterAtPosition(PlayerAgent.main,spawnLocation);
-				
-				PlayerAgent.main.Enabled = true;
-			}
+			PlayerAgent.main.Enabled = true;
 			
 			if(LevelLoaded!=null)
 			{
@@ -134,7 +128,7 @@ public class LevelLoader : MonoBehaviour {
 			
 			yield return ColorCard.FadeToPicture(0.5f);
 			
-			Destroy(this,1.0f);
+			Destroy(gameObject,1.0f);
 		}
 	}
 	
@@ -153,14 +147,11 @@ public class LevelLoader : MonoBehaviour {
 			Application.LoadLevel(levelnum);
 			
 			yield return null;
+
+			if(spawnLocation!="")
+				SpawnLocator.SpawnCharacterAtLocator(PlayerAgent.main,spawnLocation);
 			
-			if(PlayerAgent.main!=null)
-			{
-				if(spawnLocation!="")
-					SpawnLocator.SpawnCharacterAtLocator(PlayerAgent.main,spawnLocation);
-				
-				PlayerAgent.main.Enabled = true;
-			}
+			PlayerAgent.main.Enabled = true;
 			
 			if(LevelLoaded!=null)
 			{
@@ -169,7 +160,7 @@ public class LevelLoader : MonoBehaviour {
 			
 			yield return ColorCard.FadeToPicture(0.5f);
 			
-			Destroy(this,1.0f);
+			Destroy(gameObject,1.0f);
 		}
 	}
 	
@@ -202,7 +193,7 @@ public class LevelLoader : MonoBehaviour {
 			
 			yield return ColorCard.FadeToPicture(0.5f);
 			
-			Destroy (this,1.0f);
+			Destroy (gameObject,1.0f);
 		}
 	}
 }

@@ -19,7 +19,7 @@ public class ColorCard : MonoBehaviour {
 				tex.SetPixel(0,0,new Color(1,1,1,1));
 				tex.Apply();
 				guiTex.texture = tex;
-				guiTex.color = new Color(1,1,1,1);
+				guiTex.color = new Color(0,0,0,0);
 				
 				_main = obj.AddComponent<ColorCard>();
 				

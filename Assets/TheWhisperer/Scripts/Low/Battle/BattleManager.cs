@@ -51,6 +51,9 @@ public class BattleManager : ScriptableObject
 		
 	private static void  OnBattleLevelLoaded()
 	{
+		if (current!= null)
+			return;
+
 		//NEW SCENE//
 		LevelLoader.LevelLoaded -= OnBattleLevelLoaded;
 		
@@ -97,11 +100,23 @@ public class BattleManager : ScriptableObject
 	
 	public void Begin()
 	{
+
 	}
 	
 	public void End()
 	{
+		
+		LevelLoader.LevelLoaded -= OnBattleLevelLoaded;
+
 		GameController.Profile.RestorePlayerLocation();
+
+		((PlayerFighter)FighterA).Disconnect();
+
+		FighterA.FighterDied -= OnFighterDied;
+		FighterB.FighterDied -= OnFighterDied;
+
+		current = null;
+		ScriptableObject.DestroyObject(this);
 	}
 	
 	

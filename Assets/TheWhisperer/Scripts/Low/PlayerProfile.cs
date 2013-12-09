@@ -44,7 +44,6 @@ public class PlayerProfile
 	
 	public void RestorePlayerLocation()
 	{
-		Debug.Log ("restore");
 		LevelLoader.LoadLevel(area,location);
 	}
 	

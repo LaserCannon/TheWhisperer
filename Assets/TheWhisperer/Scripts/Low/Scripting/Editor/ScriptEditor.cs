@@ -128,7 +128,24 @@ public class ScriptEditor : Editor
 		for(int i=0;i<Target.Commands.Count;i++)
 		{
 			Command cmd = Target.Commands[i];
-			cmd.Refresh(); 
+
+			try{
+				cmd.Refresh(); 
+			}
+			catch (System.Exception e)
+			{
+				EditorGUILayout.BeginHorizontal();
+				GUILayout.Label ("[missing method - " + cmd.MethodName + "] Replace with:");
+				Command newCommand = NewCommandDropDown();
+				if(newCommand!=null)
+				{
+					Target.Commands[i] = newCommand;
+					EditorUtility.SetDirty(Target);
+				}
+				EditorGUILayout.EndHorizontal();
+				return;
+			}
+
 			
 			Rect dragRect = new Rect(0,0,0,0);
 			
@@ -360,7 +377,7 @@ public class ScriptEditor : Editor
 			}
 			else
 			{
-				GUILayout.Label ("[missing method]");
+				GUILayout.Label ("[missing method - " + cmd.MethodName + "]");
 			}
 			// -- -- -- -- //
 		}

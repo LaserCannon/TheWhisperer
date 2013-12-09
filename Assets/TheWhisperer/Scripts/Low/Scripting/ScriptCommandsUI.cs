@@ -29,7 +29,7 @@ public partial class ScriptCommandsUI
 			
 			input = locations[locationIndex];
 		}
-		else if(sceneName!="" && sceneName!=null)
+		else if(sceneName!="" && sceneName!=null && !sceneName.Contains("--"))
 		{
 			GUILayout.Label("No spawn points in scene '" + sceneName + "' found in SpawnPointManager database. Try opening up that scene to add them.");
 			input = "";

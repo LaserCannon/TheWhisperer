@@ -100,6 +100,29 @@ public class PlayerFighter : Fighter
 		Multitouch.OnTouchEnd += EndGestureCull;
 	}
 	
+	void OnDestroy ()
+	{
+		Disconnect();
+	}
+
+	public void Disconnect()
+	{
+		Multitouch.OnPinchEnd -= PinchEnded;
+		Multitouch.OnTap -= Tapped;
+		Multitouch.OnDoubleTap -= DoubleTapped;
+		Multitouch.OnDoubleTapHold -= DoubleTapHeld;
+		Multitouch.OnSwipeEnd -= Swiped;
+		
+		Multitouch.OnTouchHoldAttempt -= AddToBlockMeter;
+		Multitouch.OnTouchHoldStart -= Block;
+		Multitouch.OnTouchHoldEnd -= EndBlock;
+		Multitouch.OnTouchHoldAbandonded -= DisableBlockMeter;
+		
+		Multitouch.OnTouchStart -= BeginGestureCull;
+		Multitouch.OnTouch -= GestureCull;
+		Multitouch.OnTouchEnd -= EndGestureCull;
+	}
+	
 	
 	public List<Attack> GetAttacksForGesture(GestureType type)
 	{

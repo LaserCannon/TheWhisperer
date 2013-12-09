@@ -45,7 +45,11 @@ public abstract class Fighter : MonoBehaviour
 	
 	public Fighter Opponent
 	{
-		get { return BattleManager.Current.GetOpponentFor(this); }
+		get { 
+			if(BattleManager.Current==null)
+				return null;
+			return BattleManager.Current.GetOpponentFor(this);
+		}
 	}
 	
 	//Functions
@@ -168,13 +172,18 @@ public abstract class Fighter : MonoBehaviour
 	
 	protected void DoHit(DamageInfo damage)
 	{
+		Fighter opp = Opponent;
+
+		if(opp == null)
+			return;
+
 		attacking = true;
 		
 		Collider[] hits = Physics.OverlapSphere(transform.TransformPoint(damage.Position),damage.Radius);
 		for(int i=0;i<hits.Length;i++)
 		{
-			if(hits[i]==Opponent.collider)
-				Opponent.OnWasHit(damage);
+			if(hits[i]==opp.collider)
+				opp.OnWasHit(damage);
 		}
 	}
 	

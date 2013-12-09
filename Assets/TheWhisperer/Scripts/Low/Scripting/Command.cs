@@ -262,6 +262,9 @@ public class Command
 		{
 			if(methodInfo==null)
 				methodInfo = (typeof(ScriptCommands)).GetMethod(methodName);
+
+			if(methodInfo==null)
+				throw new Exception("Could not find method '"+methodName+"' in class ScriptCommands!");
 			
 			return methodInfo;
 		}
@@ -300,7 +303,16 @@ public class Command
 		//Execute the method!!	Yield if this command returns an IEnumerator.
 		if(Method.ReturnType==typeof(IEnumerator))
 		{
-			yield return AsyncServices.RunCoroutine((IEnumerator)Method.Invoke(null,ParamsAsObjects));
+			IEnumerator coroutine = null;
+			try
+			{
+				coroutine = (IEnumerator)Method.Invoke(null,ParamsAsObjects);
+			}
+			catch (Exception e)
+			{
+				Debug.LogError("Could not call function: " + Method.Name + "(" + ParamsAsObjects.ToString() + ")\nError: " + e.Message);
+			}
+			yield return AsyncServices.RunCoroutine(coroutine);
 		}
 		else
 		{

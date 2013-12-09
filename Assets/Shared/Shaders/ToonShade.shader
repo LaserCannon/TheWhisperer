@@ -19,12 +19,12 @@
 		{
 			half NdotL = dot(s.Normal,lightDir);
 			//half toonNdotL = clamp(round(NdotL*3),0,2)/2;//ceil(NdotL*3)/3;
-			half toonNdotL = round(NdotL);
-			half light = (toonNdotL * atten * 2);
+			half toonNdotL = round((NdotL+1)*atten/2);
+		//	half light = (toonNdotL * atten * 2);
 			//light = ceil(light*2)/2;
 			half4 c;
-			c.rgb = light * s.Albedo;
-			c.rgb = lerp(s.Albedo/2,s.Albedo,toonNdotL);
+		//	c.rgb = light * s.Albedo;
+			c.rgb = lerp(3*s.Albedo/4,s.Albedo,toonNdotL);
 			c.a = s.Alpha;
 			return c;
 		}

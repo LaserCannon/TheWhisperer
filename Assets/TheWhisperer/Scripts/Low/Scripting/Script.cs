@@ -61,6 +61,11 @@ public class Script : Triggerable
 		isRunning = false;
 		isCooling = false;
 	}
+
+	void OnDestroy()
+	{
+		StopAllCoroutines();
+	}
 	
 	
 	
@@ -121,15 +126,6 @@ public class Script : Triggerable
 			yield return StartCoroutine(command.Execute());
 		else
 			StartCoroutine(command.Execute());
-	/*	MethodInfo method = command.Method;
-		
-		if(method==null)	yield break;
-		
-		//Execute the method!!	Yield if the command returns an IEnumerator.
-		if(method.ReturnType==typeof(IEnumerator))
-			yield return StartCoroutine((IEnumerator)method.Invoke(null,command.ParamsAsObjects));
-		else
-			method.Invoke(null,command.ParamsAsObjects);*/
 	}
 	
 	

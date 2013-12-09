@@ -33,11 +33,11 @@ public class SpawnLocatorManager : SingletonAsset
 #if UNITY_EDITOR
 	static SpawnLocatorManager()
 	{
-		EditorApplication.update += updateLocatorsForCurrentScene;
+		EditorApplication.update += Update;
 	}
 	~SpawnLocatorManager()
 	{
-		EditorApplication.update -= updateLocatorsForCurrentScene;
+		EditorApplication.update -= Update;
 	}
 #endif
 	
@@ -57,57 +57,78 @@ public class SpawnLocatorManager : SingletonAsset
 	
 	
 	[SerializeField]
-	private List<SpawnLocatorInfo> locators = new List<SpawnLocatorInfo>();
+	private List<SpawnLocatorInfo> locatorSets = new List<SpawnLocatorInfo>();
 	
 	
 #if UNITY_EDITOR
 	
 	private static double LastTimeUpdated = 0f;
-	
-	static void updateLocatorsForCurrentScene()
+	static void Update()
 	{
 		if(EditorApplication.timeSinceStartup - LastTimeUpdated > 1f)
 		{
 			LastTimeUpdated = EditorApplication.timeSinceStartup; 
-			
-			string curScene = EditorApplication.currentScene;
-			
-			//Make sure this scene has been saved before and has a filename
-			if(!curScene.Contains(".unity"))
-				return;
-			
-			//Find the acual NAME of the scene in the filename
-			int begInd = curScene.LastIndexOf("/")+1;
-			int endInd = curScene.LastIndexOf(".unity");
-			curScene = curScene.Substring(begInd,endInd-begInd);
-			
-			SpawnLocatorInfo info = FindSceneInfo(curScene);
-			
-			if(info==null) {
-				info = new SpawnLocatorInfo(curScene);
-				main.locators.Add(info);
-			}
-			
-			info.Ids.Clear();
-			
-			SpawnLocator[] locators = (SpawnLocator[])GameObject.FindObjectsOfType(typeof(SpawnLocator));
-			
-			for(int i=0;i<locators.Length;i++)
-			{
-				info.Ids.Add(locators[i].Name);
-			}
-			
-			EditorUtility.SetDirty(main);
+
+			UpdateLocatorsForCurrentScene();
 		}
 	}
 	
-	
+	static void UpdateLocatorsForCurrentScene()
+	{
+		string curScene = EditorApplication.currentScene;
+		
+		//Make sure this scene has been saved before and has a filename
+		if(!curScene.Contains(".unity"))
+			return;
+
+		//Find the acual NAME of the scene in the filename
+		int begInd = curScene.LastIndexOf("/")+1;
+		int endInd = curScene.LastIndexOf(".unity");
+		curScene = curScene.Substring(begInd,endInd-begInd);
+		
+		SpawnLocatorInfo info = FindSceneInfo(curScene);
+		
+		SpawnLocator[] locators = (SpawnLocator[])GameObject.FindObjectsOfType(typeof(SpawnLocator));
+
+		if(info==null)
+		{
+			//Create a new SpawnLocatorInfo if we dont have one
+			if(locators.Length > 0)
+			{
+				info = new SpawnLocatorInfo(curScene);
+				main.locatorSets.Add(info);
+			}
+			else
+			{
+				return;
+			}
+		}
+		else
+		{
+			//Remove the SpawnLocatorInfo if there are no locators in this scene
+			if(locators.Length == 0)
+			{
+				main.locatorSets.Remove(info);
+				return;
+			}
+		}
+		
+		info.Ids.Clear();
+		
+		for(int i=0;i<locators.Length;i++)
+		{
+			info.Ids.Add(locators[i].Name);
+		}
+		
+		EditorUtility.SetDirty(main);
+	}
+
 	
 	private static SpawnLocatorInfo FindSceneInfo(string scene)
 	{
-		for(int i=0;i<main.locators.Count;i++) {
-			if(main.locators[i].Scene == scene) {
-				return main.locators[i];
+		for(int i=0;i<main.locatorSets.Count;i++) {
+			if(main.locatorSets[i].Scene == scene) {
+				return main.locatorSets[i];
 			}
 		}
 		return null;
@@ -133,7 +154,7 @@ public class SpawnLocatorManager : SingletonAsset
 	{
 		List<string> names = new List<string>();
 		
-		foreach(SpawnLocatorInfo info in main.locators)
+		foreach(SpawnLocatorInfo info in main.locatorSets)
 		{
 			names.Add(info.Scene);
 		}

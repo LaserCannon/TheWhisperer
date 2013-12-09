@@ -10,7 +10,7 @@ public class GameStateBattle : GameState
 	
 	public override void Enter()
 	{
-		
+
 	}
 	
 }

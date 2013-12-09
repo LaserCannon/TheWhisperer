@@ -28,14 +28,23 @@ public class SpawnLocator : MonoBehaviour
 	
 	public static void SpawnCharacterAtLocator(PathCharacter pc, string name)
 	{
+
 		//TODO: Cache these instead, make this faster
 		SpawnLocator[] locs = (SpawnLocator[])GameObject.FindObjectsOfType(typeof(SpawnLocator));
 		
 		for(int i=0;i<locs.Length;i++)
 		{
 			if(locs[i].Name==name) {
-				pc.WarpTo(locs[i].transform.position);
-				pc.LookInDirection(locs[i].transform.forward);
+
+				if(pc==null)
+				{
+					Instantiate(AgentManager.main.GetCharacter("TestPlayer"),locs[i].transform.position,Quaternion.LookRotation(locs[i].transform.forward));
+				}
+				else
+				{
+					pc.WarpTo(locs[i].transform.position);
+					pc.LookInDirection(locs[i].transform.forward);
+				}
 				return;
 			}
 		}

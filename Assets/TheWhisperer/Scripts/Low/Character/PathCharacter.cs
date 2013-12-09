@@ -50,7 +50,6 @@ public class PathCharacter : MonoBehaviour
 	}
 	
 	
-	
 	public void SetDestination(Vector3 pos)
 	{
 		destinationWasSet = true;
@@ -74,6 +73,7 @@ public class PathCharacter : MonoBehaviour
 		transform.position = position;
 		SetDestination(position);
 		Halt ();
+		Debug.LogError("!");
 	}
 	
 	public IEnumerator WaitForDestinationOrChanged()
@@ -99,7 +99,7 @@ public class PathCharacter : MonoBehaviour
 	
 	public IEnumerator WaitForDestination()
 	{
-		while(agentRef.hasPath || agentRef.pathPending)
+		while(agentRef!=null && (agentRef.hasPath || agentRef.pathPending))
 		{
 			yield return null;
 		}

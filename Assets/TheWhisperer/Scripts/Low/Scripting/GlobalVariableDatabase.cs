@@ -51,7 +51,7 @@ public class GlobalVariableDatabase
 	{
 		if(!main.database.ContainsKey(key))
 		{
-			Debug.LogError ("Global variable '"+key+"' not found!");
+			Debug.LogWarning ("Global variable '"+key+"' not found!");
 			return default(T);
 		}
 		
@@ -59,7 +59,7 @@ public class GlobalVariableDatabase
 		
 		if(obj.Value.GetType()!=typeof(T))
 		{
-			Debug.LogError ("Global variable '"+key+"' is not of the given type!");
+			Debug.LogWarning ("Global variable '"+key+"' is not of the given type!");
 			return default(T);
 		}
 		

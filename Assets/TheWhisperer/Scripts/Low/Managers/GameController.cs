@@ -51,11 +51,7 @@ public class GameController : MonoBehaviour
 	{
 		get { return profile; }
 	}
-	
-	
-	private Vector3 savedPlayerPosition = Vector3.zero;
-	
-	
+
 	
 	void Awake()
 	{

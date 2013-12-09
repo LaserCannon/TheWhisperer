@@ -76,14 +76,20 @@ public class PlayerAgent : PathCharacter
 	
 	private IEnumerator _Interact(GameObject obj)
 	{
-		Vector3 pos = obj.transform.position;
-		
-		SetDestination(pos);
-		
-		yield return WaitForDestinationOrChanged();
-		
-		if(agentRef.destination==pos && obj!=null)	//TODO: This is crude; we should keep an ID of this movement rather than comparing positions
-			obj.SendMessage("OnInteract",SendMessageOptions.DontRequireReceiver);
+		if(Enabled)
+		{
+			Vector3 pos = obj.transform.position;
+			
+			SetDestination(pos);
+			
+			yield return WaitForDestinationOrChanged();
+
+			if(!Enabled)
+				yield break;
+			
+			if(agentRef.destination==pos && obj!=null)	//TODO: This is crude; we should keep an ID of this movement rather than comparing positions
+				obj.SendMessage("OnInteract",SendMessageOptions.DontRequireReceiver);
+		}
 	}
 	
 	void MoveTowardScreenPosition(GestureTouchData data)	//Callback from Multitouch event
@@ -135,7 +141,10 @@ public class PlayerAgent : PathCharacter
 	
 	void Halt(GestureTouchData data)
 	{
-		Halt ();
+		if(Enabled)
+		{
+			Halt ();
+		}
 	}
 	
 	

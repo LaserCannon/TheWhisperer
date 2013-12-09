@@ -21,19 +21,19 @@ class BuildMaker : EditorWindow
 	
 	void OnGUI()
 	{
-		if(SceneManager.main==null)
+		if(BuildManager.main==null)
 		{
-			Debug.LogError("SceneManager initialization failed!");
+			Debug.LogError("BuildManager initialization failed!");
 			Close();
 		}
 		
 		buildTarget = (BuildTarget)EditorGUILayout.EnumPopup("Build Target",buildTarget);
 		
-		schemeID = EditorGUILayout.Popup("Scheme",schemeID,SceneManager.main.SchemesAsStrings.ToArray());
+		schemeID = EditorGUILayout.Popup("Scheme",schemeID,BuildManager.main.SchemesAsStrings.ToArray());
 		
 		if(GUILayout.Button ("Build!"))
 		{
-			BuildFor(buildTarget,SceneManager.main.Schemes[schemeID]);
+			BuildFor(buildTarget,BuildManager.main.Schemes[schemeID]);
 		}
 	}
 		
@@ -60,7 +60,7 @@ class BuildMaker : EditorWindow
 		//TODO: cull the list of scenes to make sure all of them exist, and warn/remove them if they dont.
 		
 		//Build! If our prefab doesnt exist, though, throw an error.
-		if(SceneManager.main==null)	Debug.LogError("'Resources/General/SceneManager' does not exist!");
+		if(BuildManager.main==null)	Debug.LogError("'Resources/General/BuildManager' does not exist!");
 		else 						BuildPipeline.BuildPlayer(scheme.SerializedLevelPaths.ToArray(),buildPath,platform,opts);
 	}
 	
