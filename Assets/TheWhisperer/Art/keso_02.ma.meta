@@ -1,0 +1,187 @@
+fileFormatVersion: 2
+guid: 800cca2d94bc74b2eb1359f5a3c96dca
+ModelImporter:
+  serializedVersion: 15
+  fileIDToRecycleName:
+    100000: chest
+    100002: chest 1
+    100004: feather1
+    100006: feather1 1
+    100008: feather2
+    100010: feather2 1
+    100012: feather3
+    100014: feather3 1
+    100016: ikHandle1
+    100018: ikHandle2
+    100020: ikHandle3
+    100022: ikHandle4
+    100024: jaw
+    100026: //RootNode
+    100028: KesoFeather
+    100030: kesoMesh
+    100032: knife
+    100034: L_ankle
+    100036: L_elbow
+    100038: L_elbow 1
+    100040: L_eye
+    100042: L_fingers1
+    100044: L_fingers1 1
+    100046: L_fingers2
+    100048: L_fingers2 1
+    100050: L_foot
+    100052: L_foot 1
+    100054: L_knee
+    100056: L_knee 1
+    100058: L_knee1
+    100060: L_Leg
+    100062: L_shoulder
+    100064: L_shoulder 1
+    100066: L_thumb
+    100068: L_thumb 1
+    100070: L_wrist
+    100072: L_wrist 1
+    100074: master
+    100076: Mesh
+    100078: neck
+    100080: neck 1
+    100082: R_ankle
+    100084: R_elbow
+    100086: R_elbow 1
+    100088: R_eye
+    100090: R_fingers1
+    100092: R_fingers1 1
+    100094: R_fingers2
+    100096: R_fingers2 1
+    100098: R_foot
+    100100: R_foot 1
+    100102: R_knee
+    100104: R_Leg
+    100106: R_shoulder
+    100108: R_shoulder 1
+    100110: R_thumb
+    100112: R_thumb 1
+    100114: R_wrist
+    100116: R_wrist 1
+    100118: root
+    100120: root1
+    400000: chest
+    400002: chest 1
+    400004: feather1
+    400006: feather1 1
+    400008: feather2
+    400010: feather2 1
+    400012: feather3
+    400014: feather3 1
+    400016: ikHandle1
+    400018: ikHandle2
+    400020: ikHandle3
+    400022: ikHandle4
+    400024: jaw
+    400026: //RootNode
+    400028: KesoFeather
+    400030: kesoMesh
+    400032: knife
+    400034: L_ankle
+    400036: L_elbow
+    400038: L_elbow 1
+    400040: L_eye
+    400042: L_fingers1
+    400044: L_fingers1 1
+    400046: L_fingers2
+    400048: L_fingers2 1
+    400050: L_foot
+    400052: L_foot 1
+    400054: L_knee
+    400056: L_knee 1
+    400058: L_knee1
+    400060: L_Leg
+    400062: L_shoulder
+    400064: L_shoulder 1
+    400066: L_thumb
+    400068: L_thumb 1
+    400070: L_wrist
+    400072: L_wrist 1
+    400074: master
+    400076: Mesh
+    400078: neck
+    400080: neck 1
+    400082: R_ankle
+    400084: R_elbow
+    400086: R_elbow 1
+    400088: R_eye
+    400090: R_fingers1
+    400092: R_fingers1 1
+    400094: R_fingers2
+    400096: R_fingers2 1
+    400098: R_foot
+    400100: R_foot 1
+    400102: R_knee
+    400104: R_Leg
+    400106: R_shoulder
+    400108: R_shoulder 1
+    400110: R_thumb
+    400112: R_thumb 1
+    400114: R_wrist
+    400116: R_wrist 1
+    400118: root
+    400120: root1
+    2300000: knife
+    3300000: knife
+    4300000: kesoMesh
+    4300002: KesoFeather
+    4300004: knife
+    9500000: //RootNode
+    13700000: KesoFeather
+    13700002: kesoMesh
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    optimizeGameObjects: 0
+    animationCompression: 1
+    animationRotationError: .5
+    animationPositionError: .5
+    animationScaleError: .5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    clipAnimations: []
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 0
+    importBlendShapes: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    weldVertices: 1
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+  tangentSpace:
+    normalSmoothAngle: 60
+    splitTangentsAcrossUV: 1
+    normalImportMode: 0
+    tangentImportMode: 1
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    human: []
+    skeleton: []
+    armTwist: .5
+    foreArmTwist: .5
+    upperLegTwist: .5
+    legTwist: .5
+    armStretch: .0500000007
+    legStretch: .0500000007
+    feetSpacing: 0
+    rootMotionBoneName: 
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 2
+  userData: 

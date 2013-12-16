@@ -1,6 +1,7 @@
 ﻿Shader "Custom/ToonShade" {
 	Properties {
 		_MainTex ("Base (RGB)", 2D) = "white" {}
+		_ShadowBrightness ("Shadow Brightness", float) = 0.8
 	}
 	SubShader {
 		Tags { "RenderType"="Opaque" }
@@ -10,6 +11,7 @@
 		#pragma surface surf Toon
 
 		sampler2D _MainTex;
+		float _ShadowBrightness;
 
 		struct Input {
 			float2 uv_MainTex;
@@ -24,7 +26,7 @@
 			//light = ceil(light*2)/2;
 			half4 c;
 		//	c.rgb = light * s.Albedo;
-			c.rgb = lerp(3*s.Albedo/4,s.Albedo,toonNdotL);
+			c.rgb = lerp(_ShadowBrightness*s.Albedo,s.Albedo,toonNdotL);
 			c.a = s.Alpha;
 			return c;
 		}

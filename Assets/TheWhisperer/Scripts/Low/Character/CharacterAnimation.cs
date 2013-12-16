@@ -12,12 +12,18 @@ public class CharacterAnimation : MonoBehaviour
 	
 	public void PlayIdle()
 	{
-		animation.CrossFade(IdleAnimation,0.2f);
+		if(animation[IdleAnimation]!=null)
+		{
+			animation.CrossFade(IdleAnimation,0.2f);
+		}
 	}
 	
 	public void PlayRun()
 	{
-		animation.CrossFade(RunAnimation,0.2f);
+		if(animation[RunAnimation]!=null)
+		{
+			animation.CrossFade(RunAnimation,0.2f);
+		}
 	}
 	
 	
