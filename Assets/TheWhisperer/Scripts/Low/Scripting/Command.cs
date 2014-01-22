@@ -12,7 +12,8 @@ public class Param
 {
 	[SerializeField][HideInInspector]
 	public ParamType Type;
-	
+
+	//TODO: In-between class for types?
 	[SerializeField][HideInInspector]
 	private UnityEngine.Object obj = null;
 	[SerializeField][HideInInspector]
@@ -269,6 +270,29 @@ public class Command
 			return methodInfo;
 		}
 	}
+
+	public ParamType ReturnType
+	{
+		get
+		{
+			System.Type t = methodInfo.ReturnType;
+
+			if(( (typeof(double))==t || typeof(float)==t || typeof(System.Single)==t ) )
+			{	return ParamType.Number; }
+			else if(typeof(int)==t)
+			{	return ParamType.Int;	}
+			else if(typeof(UnityEngine.Object).IsAssignableFrom(t))
+			{	return ParamType.Object;	}
+			else if(typeof(bool) == t)
+			{	return ParamType.Bool;	}
+			else if(typeof(string).IsAssignableFrom(t))
+			{	return ParamType.String;	}
+			else if(typeof(System.Enum) == t.BaseType)
+			{	return ParamType.Enum;	}
+			else
+			{	return ParamType.Bool;	}
+		}
+	}
 	
 	
 	
@@ -327,6 +351,27 @@ public class Command
 		}
 		
 		isRunning = false;
+	}
+
+	public object DirectInvoke()
+	{
+		if(Method==null)	return null;
+
+		isRunning = true;
+		
+		if(onExecuteCommand!=null)
+			onExecuteCommand();
+		
+		try
+		{
+			return Method.Invoke(null,ParamsAsObjects);
+		}
+		catch (Exception e)
+		{
+			Debug.LogError("Could not call function: " + Method.Name + "(" + ParamsAsObjects.ToString() + ")\nError: " + e.Message);
+		}
+
+		return null;
 	}
 	
 	

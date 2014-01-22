@@ -13,7 +13,7 @@ public class ScriptEditor : Editor
 	
 	//TODO: Find a better place for styles / blank textures
 	private static Texture2D white = null;
-	private static Texture2D White
+	public static Texture2D White
 	{
 		get
 		{
@@ -28,7 +28,7 @@ public class ScriptEditor : Editor
 	}
 	
 	private static GUIStyle greyedOutStyle;
-	private static GUIStyle GreyedOutStyle
+	public static GUIStyle GreyedOutStyle
 	{
 		get {
 			if(greyedOutStyle==null)
@@ -40,7 +40,7 @@ public class ScriptEditor : Editor
 		}
 	}
 	private static GUIStyle activeStyle;
-	private static GUIStyle ActiveStyle
+	public static GUIStyle ActiveStyle
 	{
 		get {
 			if(activeStyle==null)

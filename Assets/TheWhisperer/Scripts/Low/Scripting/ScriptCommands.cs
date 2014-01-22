@@ -212,6 +212,31 @@ public partial class ScriptCommands
 	{
 		GlobalVariableDatabase.SetBool(key,value);
 	}
+
+	
+	[CommandCategory("Global")]
+	public static int GetGlobalInt(string key, int def)
+	{
+		return GlobalVariableDatabase.GetInt(key);
+	}
+	
+	[CommandCategory("Global")]
+	public static float GetGlobalFloat(string key, float def)
+	{
+		return GlobalVariableDatabase.GetFloat(key);
+	}
+	
+	[CommandCategory("Global")]
+	public static string GetGlobalString(string key, string def)
+	{
+		return GlobalVariableDatabase.GetString(key);
+	}
+	
+	[CommandCategory("Global")]
+	public static bool GetGlobalBool(string key, bool def)
+	{
+		return GlobalVariableDatabase.GetBool(key);
+	}
 	
 
 

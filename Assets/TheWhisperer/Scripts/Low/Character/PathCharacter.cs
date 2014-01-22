@@ -16,7 +16,7 @@ public class PathCharacter : MonoBehaviour
 	private PathCharacterNavigationState navState = PathCharacterNavigationState.Stopped;
 
 	protected NavMeshAgent agentRef;
-	protected CharacterAnimation animRef;
+	protected Animator animator;
 	
 	
 	private bool destinationWasSet = false;
@@ -41,12 +41,20 @@ public class PathCharacter : MonoBehaviour
 	{
 		agentRef = GetComponent<NavMeshAgent>();
 		
-		animRef = GetComponent<CharacterAnimation>();
+		animator = GetComponent<Animator>();
 		
 		navState = PathCharacterNavigationState.Stopped;
 		
 		if(!destinationWasSet)
 			SetDestination(transform.position);
+	}
+
+	protected virtual void Update()
+	{
+		if(animator!=null)
+		{
+			animator.SetFloat("speed",Velocity.magnitude);
+		}
 	}
 	
 	
@@ -59,9 +67,6 @@ public class PathCharacter : MonoBehaviour
 		agentRef.destination = pos;
 		
 		navState = PathCharacterNavigationState.Moving;
-		
-		if(animRef!=null)
-			animRef.PlayRun();
 		
 		//Wait for destination, so that we can set the state at the end.
 		StartCoroutine(WaitForDestinationOrChanged());
@@ -81,13 +86,7 @@ public class PathCharacter : MonoBehaviour
 		Vector3 curDest = agentRef.destination;
 		
 		while(agentRef.destination==curDest && (agentRef.hasPath || agentRef.pathPending))
-		{
-			if( (curDest-transform.position).sqrMagnitude < 1f )
-			{
-				if(animRef!=null)
-					animRef.PlayIdle();
-			}
-			
+		{	
 			yield return null;
 		}
 		
@@ -132,8 +131,5 @@ public class PathCharacter : MonoBehaviour
 			SetDestination(pos);
 		
 		navState = PathCharacterNavigationState.Stopped;
-		
-		if(animRef!=null)
-			animRef.PlayIdle();
 	}
 }
