@@ -28,9 +28,15 @@ public class Script2DParameterNode : Script2DNode
 	}
 
 
-	public override object Run()
+	public override IEnumerator Run()
+	{
+		yield break;
+	}
+
+	public override object Get()
 	{
 		return paramOutput.Value;
 	}
+
 
 }

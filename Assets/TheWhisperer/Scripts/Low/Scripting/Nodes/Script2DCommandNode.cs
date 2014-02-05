@@ -41,17 +41,38 @@ public class Script2DCommandNode : Script2DNode
 
 	
 	
-	public override object Run()
+	public override IEnumerator Run()
 	{
 		for(int i=0;i<command.ParamCount;i++)
 		{
 			if(inputs[i].Node!=null)
 			{
-				command.GetParam(i).Value = inputs[i].Node.Run();
+				command.GetParam(i).Value = inputs[i].Node.Get();
 			}
 		}
 
-		return command.DirectInvoke();
+		object retVal = command.DirectInvoke();
+
+		if(retVal!=null && retVal.GetType()==typeof(IEnumerator))
+		{
+			yield return (IEnumerator)retVal;
+		}
+		yield break;
+	}
+
+	public override object Get()
+	{
+		for(int i=0;i<command.ParamCount;i++)
+		{
+			if(inputs[i].Node!=null)
+			{
+				command.GetParam(i).Value = inputs[i].Node.Get();
+			}
+		}
+		
+		object retVal = command.DirectInvoke();
+
+		return retVal;
 	}
 
 

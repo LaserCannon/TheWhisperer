@@ -6,7 +6,7 @@ using System;
 
 
 
-public enum ParamType { Object, Number, Int, String, Bool, Enum }
+public enum ParamType { Void, Object, Number, Int, String, Bool, Enum }
 [System.Serializable]
 public class Param
 {
@@ -41,6 +41,7 @@ public class Param
 		get {
 			object val = null;
 			switch(Type) {
+			case ParamType.Void:	val = null; break;
 			case ParamType.Object:	val = obj; break;
 			case ParamType.Number:	val = flt; break;
 			case ParamType.Int:		val = itg; break;
@@ -72,7 +73,7 @@ public class Param
 			else if(value!=null && typeof(System.Enum) == value.GetType().BaseType)
 			{	itg = (int)value; Type = ParamType.Enum;	typ = value.GetType().AssemblyQualifiedName;	}
 			else if(value!=null)
-			{	Debug.LogError ("Cannot Convert '" + value.GetType().ToString() + "' to a Param Value.");	}
+			{	Debug.LogError ("Cannot Convert '" + value.GetType().ToString() + "' to a Param Value.");	Type = ParamType.Void;	}
 		}
 	}
 	
@@ -94,7 +95,7 @@ public class Param
 		else if(typeof(System.Enum) == t.BaseType)
 		{	Type = ParamType.Enum;	}
 		else
-		{	Debug.LogError ("Cannot Convert '" + t.ToString() + "' to a Param Value.");	}
+		{	Debug.LogError ("Cannot Convert '" + t.ToString() + "' to a Param Value."); Type = ParamType.Void;	}
 	}
 	
 	
@@ -122,6 +123,9 @@ public class Param
 		return (T)System.Enum.Parse(typeof(T), num.ToString(), true);
 	}*/
 	
+	public bool IsVoid {
+		get { return Type==ParamType.Void; }
+	}
 	public bool IsObject {
 		get { return Type==ParamType.Object; }
 	}
@@ -290,7 +294,7 @@ public class Command
 			else if(typeof(System.Enum) == t.BaseType)
 			{	return ParamType.Enum;	}
 			else
-			{	return ParamType.Bool;	}
+			{	return ParamType.Void;	}
 		}
 	}
 	

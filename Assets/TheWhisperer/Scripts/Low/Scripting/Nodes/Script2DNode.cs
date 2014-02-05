@@ -44,7 +44,12 @@ public abstract class Script2DNode
 	public Script2DNode()
 	{
 	}
-	
+
+
+	public virtual Script2DNode GetMoveNext()
+	{
+		return Next;
+	}
 	
 	
 	public Script2DPort GetInput(int index)
@@ -65,6 +70,8 @@ public abstract class Script2DNode
 	}
 
 
-	public abstract object Run();
+	public abstract IEnumerator Run();
+
+	public abstract object Get();
 
 }

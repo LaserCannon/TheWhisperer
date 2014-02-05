@@ -6,7 +6,14 @@ using System.Collections.Generic;
 public class Script2DTree
 {
 
+	private Script2DNode head = null;
 	private List<Script2DNode> nodeList = new List<Script2DNode>();
+
+
+	public Script2DNode Head
+	{
+		get { return head; }
+	}
 
 	public List<Script2DNode> NodeList
 	{
