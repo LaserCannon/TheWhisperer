@@ -52,7 +52,7 @@ public class Script2D  : Triggerable
 		//TODO: Allow a script to update its coroutines on deltatime, fixeddeltatime, etc.?
 		isRunning = true;
 
-		currentNode = tree.NodeList[0];
+		currentNode = tree.Head;
 		while(currentNode!=null)
 		{
 			yield return StartCoroutine( currentNode.Run() );

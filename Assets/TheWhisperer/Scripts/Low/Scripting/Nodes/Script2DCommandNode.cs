@@ -25,7 +25,7 @@ public class Script2DCommandNode : Script2DNode
 
 		for(int i=0;i<command.ParamCount;i++)
 		{
-			inputs.Add(new Script2DPort(command.GetParam(i).Type));
+			inputs.Add(new Script2DPort(command.GetParam(i).Type,this));
 		}
 	}
 	public Script2DCommandNode(Command c) : base()
@@ -34,7 +34,7 @@ public class Script2DCommandNode : Script2DNode
 		
 		for(int i=0;i<command.ParamCount;i++)
 		{
-			inputs.Add(new Script2DPort(command.GetParam(i).Type));
+			inputs.Add(new Script2DPort(command.GetParam(i).Type,this));
 		}
 	}
 
@@ -43,6 +43,11 @@ public class Script2DCommandNode : Script2DNode
 	
 	public override IEnumerator Run()
 	{
+		if(!command.enabled)
+		{
+			yield break;
+		}
+
 		for(int i=0;i<command.ParamCount;i++)
 		{
 			if(inputs[i].Node!=null)
@@ -53,7 +58,7 @@ public class Script2DCommandNode : Script2DNode
 
 		object retVal = command.DirectInvoke();
 
-		if(retVal!=null && retVal.GetType()==typeof(IEnumerator))
+		if(retVal!=null && retVal.GetType()==typeof(IEnumerator) && command.DoesWaitForFinish)
 		{
 			yield return (IEnumerator)retVal;
 		}

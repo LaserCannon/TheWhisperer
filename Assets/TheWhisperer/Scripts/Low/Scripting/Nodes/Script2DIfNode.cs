@@ -5,7 +5,7 @@ public class Script2DIfNode : Script2DNode
 {
 
 
-	private Script2DNode falseNext = null;
+	private Script2DPort falseNext = null;
 
 
 	public override ParamType ReturnType
@@ -15,15 +15,22 @@ public class Script2DIfNode : Script2DNode
 
 	public Script2DNode FalseNext
 	{
+		get { return falseNext.Node; }
+		set { falseNext.Node = value; }
+	}
+	
+	public Script2DPort FalseNextPort
+	{
 		get { return falseNext; }
-		set { falseNext = value; }
 	}
 
 
 
-	public Script2DIfNode(string methodName) : base()
+	public Script2DIfNode() : base()
 	{
-		inputs.Add(new Script2DPort(ParamType.Bool));
+		inputs.Add(new Script2DPort(ParamType.Bool,this));
+
+		falseNext = new Script2DPort(ParamType.Void,this);
 	}
 
 

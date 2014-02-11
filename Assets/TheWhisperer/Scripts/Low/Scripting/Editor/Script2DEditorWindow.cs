@@ -34,32 +34,26 @@ public class Script2DEditorWindow : EditorWindow
 	{
 		if(target!=null)
 		{
-
-			Vector2 gridCursor = cameraPos;
-			gridCursor.x = ((int)(gridCursor.x/200f)+1)*200f;
-			gridCursor.y = ((int)(gridCursor.y/200f)+1)*200f;
-
-			while(gridCursor.x < cameraPos.x + 4000f)
-			{
-				Drawing.DrawLine(cam_pos(new Vector2(gridCursor.x,cameraPos.y)),cam_pos(new Vector2(gridCursor.x,cameraPos.y+4200)),Color.grey,1f);
-
-				gridCursor.x += 200f;
-			}
-
-			while(gridCursor.y < cameraPos.y + 4000f)
-			{
-				Drawing.DrawLine(cam_pos(new Vector2(cameraPos.x,gridCursor.y)),cam_pos(new Vector2(cameraPos.x+4200,gridCursor.y)),Color.gray,1f);
-
-				gridCursor.y += 200f;
-			}
+			DrawGrid ();
 
 			Script2DNode lastNode = null;
 			foreach(Script2DNode node in target.ScriptTree.NodeList)
 			{
-				if(!DrawNodeGUI((Script2DCommandNode)node))
+				if(node.GetType()==typeof(Script2DCommandNode))
 				{
-					target.ScriptTree.RemoveNode(node);
-					return;
+					if(!DrawCommandNodeGUI((Script2DCommandNode)node))
+					{
+						target.ScriptTree.RemoveNode(node);
+						return;
+					}
+				}
+				if(node.GetType()==typeof(Script2DIfNode))
+				{
+					if(!DrawIfNodeGUI((Script2DIfNode)node))
+					{
+						target.ScriptTree.RemoveNode(node);
+						return;
+					}
 				}
 
 				for(int i=0;i<node.InputCount;i++)
@@ -94,62 +88,25 @@ public class Script2DEditorWindow : EditorWindow
 
 			if(connectingPort!=null)
 			{
-				Script2DNode closeNode = null;
-				float closest = 20f;
-				foreach(Script2DNode node in target.ScriptTree.NodeList)
-				{
-					if( (cam_pos(GetOutputPosition(node)) - Event.current.mousePosition).magnitude < closest )
-					{
-						if(node.ReturnType == connectingPort.Type)
-						{
-							closeNode = node;
-							closest = (cam_pos(GetOutputPosition(node)) - Event.current.mousePosition).magnitude;
-						}
-					}
-				}
-
-				if(closeNode != null)
-				{
-					connectingPort.Node = closeNode;
-					DrawBezier(cam_pos(GetOutputPosition(closeNode)),cam_pos(portPosition),true,Color.white,2f,false);
-				}
-				else
-				{
-					connectingPort.Node = null;
-					DrawBezier(Event.current.mousePosition,cam_pos(portPosition),true,Color.white,2f,false);
-				}
+				connectingPort.Node = DrawActiveConnection(connectingPort,GetOutputPosition,GetCurrentPortPosition);
 			}
 
 			if(connectingNode!=null)
 			{
-				Script2DNode closeNode = null;
-				float closest = 20f;
-
-				foreach(Script2DNode node in target.ScriptTree.NodeList)
-				{
-					if( (cam_pos(GetLastPosition(node)) - Event.current.mousePosition).magnitude < closest )
-					{
-						closeNode = node;
-						closest = (cam_pos(GetLastPosition(node)) - Event.current.mousePosition).magnitude;
-					}
-				}
-				
-				if(closeNode != null)
-				{
-					connectingNode.Next = closeNode;
-					DrawBezier(cam_pos(GetNextPosition(connectingNode)),cam_pos(GetLastPosition(closeNode)),false,Color.white,2f,false);
-				}
-				else
-				{
-					connectingNode.Next = null;
-					DrawBezier(cam_pos(GetNextPosition(connectingNode)),Event.current.mousePosition,false,Color.white,2f,false);
-				}
+				connectingNode.Node = DrawActiveConnection(connectingNode,GetLastPosition,GetNextPosition);
 			}
 
 			Command c = ScriptEditor.NewCommandDropDown();
 			if(c!=null)
 			{
 				Script2DNode newNode = new Script2DCommandNode(c);
+				newNode.Position = cameraPos + Vector2.one*20f;
+				target.ScriptTree.AddNode(newNode);
+			}
+
+			if(GUILayout.Button ("If"))
+			{
+				Script2DNode newNode = new Script2DIfNode();
 				newNode.Position = cameraPos + Vector2.one*20f;
 				target.ScriptTree.AddNode(newNode);
 			}
@@ -161,13 +118,7 @@ public class Script2DEditorWindow : EditorWindow
 				{
 					draggingNode.Position += Event.current.delta / zoom;
 				}
-				else if(connectingPort!=null)
-				{
-				}
-				else if(connectingNode!=null)
-				{
-				}
-				else
+				else if(!ObjectSelected)
 				{
 					cameraPos -= Event.current.delta / zoom;
 
@@ -190,40 +141,56 @@ public class Script2DEditorWindow : EditorWindow
 
 	Script2DNode draggingNode = null;
 	Script2DPort connectingPort = null;
-	Script2DNode connectingNode = null;
+	Script2DPort connectingNode = null;
 	Vector2 portPosition = Vector2.zero;
 
-	public bool DrawNodeGUI(Script2DCommandNode node)
+	private bool ObjectSelected
 	{
-		//NOTE: Returns false if either the Command is null, or if the user clicked the "X" button
+		get { return draggingNode!=null || connectingPort!=null || connectingNode!=null; }
+	}
 
-		Command cmd = node.ScriptCommand;
-		
-		
-		Rect dragRect = cam_rect(node.Position.x,node.Position.y,300,100);
 
-		bool used = false;
+	public delegate Vector2 NodeOffsetDelegate(Script2DNode node);
 
-		for(int i=0;i<node.InputCount;i++)
+
+	private Script2DNode DrawActiveConnection(Script2DPort fromPort, NodeOffsetDelegate offsetDelegate, NodeOffsetDelegate fromOffsetDelegate)
+	{
+		Script2DNode closeNode = null;
+		float closest = 20f;
+		foreach(Script2DNode node in target.ScriptTree.NodeList)
 		{
-			if(DrawPort(GetPortPosition(node,i),node.GetInput(i)))
+			if(fromPort.Type==node.ReturnType)
 			{
-				if(draggingNode==null && connectingPort==null)
+				if( (cam_pos(offsetDelegate(node)) - Event.current.mousePosition).magnitude < closest )
 				{
-					connectingPort = node.GetInput(i);
-					portPosition = GetPortPosition(node,i);
-					break;
+					closeNode = node;
+					closest = (cam_pos(offsetDelegate(node)) - Event.current.mousePosition).magnitude;
 				}
 			}
 		}
 
-		if(DrawNext(GetNextPosition(node)))
+		if(closeNode != null)
 		{
-			if(draggingNode==null && connectingNode==null)
-			{
-				connectingNode = node;
-			}
+			DrawBezier(cam_pos(fromOffsetDelegate(fromPort.MyNode)),cam_pos(offsetDelegate(closeNode)),false,Color.white,2f,false);
 		}
+		else
+		{
+			DrawBezier(cam_pos(fromOffsetDelegate(fromPort.MyNode)),Event.current.mousePosition,false,Color.white,2f,false);
+		}
+		return closeNode;
+	}
+
+
+	public bool DrawCommandNodeGUI(Script2DCommandNode node)
+	{
+		//NOTE: Returns false if either the Command is null, or if the user clicked the "X" button
+
+		for(int i=0;i<node.InputCount;i++)
+		{
+			DrawPort(GetPortPosition(node,i),node.GetInput(i));
+		}
+
+		DrawNext(GetNextPosition(node),node.NextPort);
 
 		if(node.Next!=null)
 		{
@@ -232,16 +199,11 @@ public class Script2DEditorWindow : EditorWindow
 
 		DrawLast(GetLastPosition(node));
 
-		if(Event.current.type==EventType.MouseDown && draggingNode==null && connectingPort==null && connectingNode==null && dragRect.Contains( Event.current.mousePosition))
-		{
-			draggingNode = node;
-		}
 
+		BeginNode(node);
 
-		GUILayout.BeginArea(dragRect,EditorStyles.textField);
+		Command cmd = node.ScriptCommand;
 
-		EditorGUILayout.BeginVertical ();
-		
 		if(cmd!=null)
 		{
 			EditorGUILayout.BeginHorizontal();
@@ -254,14 +216,6 @@ public class Script2DEditorWindow : EditorWindow
 			}
 			// -- -- -- -- //
 			
-			// -- Drag handle -- //
-			///dragRect = GUILayoutUtility.GetRect(32,24,GUILayout.Width(24));
-			//if(cmd.IsRunning)
-			//	GUI.Label(dragRect,">>",ActiveStyle);
-			//else
-			//	GUI.Label(dragRect,"__");
-			// -- -- -- -- //
-			
 			// -- Method name -- //
 			if(cmd.enabled)
 				GUILayout.Label(cmd.MethodName,EditorStyles.whiteLargeLabel);
@@ -270,7 +224,6 @@ public class Script2DEditorWindow : EditorWindow
 			// -- -- -- -- //
 			
 			// -- Wait for this function? -- //
-			//Check to see if we are FORCING this command to wait / not wait
 			if(cmd.IsWaitable && cmd.Method.ReturnTypeCustomAttributes.IsDefined(typeof(ForceWaitAttribute),true))
 			{
 				cmd.DoesWaitForFinish = true;
@@ -346,17 +299,91 @@ public class Script2DEditorWindow : EditorWindow
 			// -- -- -- -- //
 		}
 
-		
-		EditorGUILayout.EndVertical();
-
-		GUILayout.EndArea();
+		EndNode();
 		
 		DrawReturn(GetOutputPosition(node));
 		
 		return cmd!=null && cmd.Method!=null;
 	}
 
-	
+	public bool DrawIfNodeGUI(Script2DIfNode node)
+	{
+
+		for(int i=0;i<node.InputCount;i++)
+		{
+			DrawPort(GetPortPosition(node,i),node.GetInput(i));
+		}
+		
+		DrawNext(GetNextPosition(node),node.NextPort);
+		DrawNext(GetAltNextPosition(node),node.FalseNextPort);
+		
+		if(node.Next!=null)
+		{
+			DrawBezier(GetNextPosition(node),GetLastPosition(node.Next),false,Color.white,1f);
+		}
+		if(node.FalseNext!=null)
+		{
+			DrawBezier(GetAltNextPosition(node),GetLastPosition(node.FalseNext),false,Color.white,1f);
+		}
+		
+		DrawLast(GetLastPosition(node));
+
+		BeginNode(node);
+
+		
+		EndNode();
+		
+		DrawReturn(GetOutputPosition(node));
+
+		return true;
+	}
+
+
+	public Rect BeginNode(Script2DNode node)
+	{
+		Rect dragRect = cam_rect(node.Position.x,node.Position.y,300,100);
+
+		if(Event.current.type==EventType.MouseDown && !ObjectSelected && dragRect.Contains( Event.current.mousePosition))
+		{
+			draggingNode = node;
+		}
+
+		GUILayout.BeginArea(dragRect,EditorStyles.textField);
+		
+		EditorGUILayout.BeginVertical ();
+
+		return dragRect;
+	}
+
+	public void EndNode()
+	{
+		EditorGUILayout.EndVertical();
+
+		GUILayout.EndArea();
+	}
+
+
+	public void DrawGrid()
+	{
+		Vector2 gridCursor = cameraPos;
+		gridCursor.x = ((int)(gridCursor.x/200f)+1)*200f;
+		gridCursor.y = ((int)(gridCursor.y/200f)+1)*200f;
+		
+		while(gridCursor.x < cameraPos.x + 4000f)
+		{
+			Drawing.DrawLine(cam_pos(new Vector2(gridCursor.x,cameraPos.y)),cam_pos(new Vector2(gridCursor.x,cameraPos.y+4200)),Color.grey,1f);
+			
+			gridCursor.x += 200f;
+		}
+		
+		while(gridCursor.y < cameraPos.y + 4000f)
+		{
+			Drawing.DrawLine(cam_pos(new Vector2(cameraPos.x,gridCursor.y)),cam_pos(new Vector2(cameraPos.x+4200,gridCursor.y)),Color.gray,1f);
+			
+			gridCursor.y += 200f;
+		}
+	}
+
 	
 	public object DrawParamGUI(string pName, Param p)
 	{
@@ -380,7 +407,12 @@ public class Script2DEditorWindow : EditorWindow
 
 		if(Event.current.type == EventType.MouseDown && rect.Contains(Event.current.mousePosition))
 		{
-			return true;
+			if(!ObjectSelected)
+			{
+				connectingPort = port;
+				portPosition = pos;
+				return true;
+			}
 		}
 		return false;
 	}
@@ -390,15 +422,19 @@ public class Script2DEditorWindow : EditorWindow
 		Rect rect = useCam ? cam_rect(pos.x-10f,pos.y-10f,20f,20f) : new Rect(pos.x-10f,pos.y-10f,20f,20f);
 		GUI.DrawTexture(rect,ScriptEditor.White);
 	}
-	
-	public bool DrawNext(Vector2 pos, bool useCam = true)
+
+	public bool DrawNext(Vector2 pos, Script2DPort port, bool useCam = true)
 	{
 		Rect rect = useCam ? cam_rect(pos.x-10f,pos.y-10f,20f,20f) : new Rect(pos.x-10f,pos.y-10f,20f,20f);
 		GUI.DrawTexture(rect,ScriptEditor.White);
-
+		
 		if(Event.current.type == EventType.MouseDown && rect.Contains(Event.current.mousePosition))
 		{
-			return true;
+			if(!ObjectSelected)
+			{
+				connectingNode = port;
+				return true;
+			}
 		}
 		return false;
 	}
@@ -432,6 +468,10 @@ public class Script2DEditorWindow : EditorWindow
 	{
 		return new Vector2(node.Position.x+portInd*40f+40f,node.Position.y);
 	}
+	public Vector2 GetCurrentPortPosition(Script2DNode node)
+	{
+		return portPosition;
+	}
 	public static Vector2 GetOutputPosition(Script2DNode node)
 	{
 		return new Vector2(node.Position.x+40f,node.Position.y+100);
@@ -439,6 +479,10 @@ public class Script2DEditorWindow : EditorWindow
 	public static Vector2 GetNextPosition(Script2DNode node)
 	{
 		return new Vector2(node.Position.x+300,node.Position.y+50);
+	}
+	public static Vector2 GetAltNextPosition(Script2DNode node)
+	{
+		return new Vector2(node.Position.x+300,node.Position.y+100);
 	}
 	public static Vector2 GetLastPosition(Script2DNode node)
 	{

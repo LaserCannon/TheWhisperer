@@ -6,12 +6,20 @@ public class Script2DPort
 
 	private ParamType type = ParamType.Bool;
 
+	private Script2DNode myNode = null;
+
 	private Script2DNode node = null;
 
 
 	public ParamType Type
 	{
 		get { return type; }
+	}
+
+
+	public Script2DNode MyNode
+	{
+		get { return myNode; }
 	}
 
 
@@ -33,9 +41,10 @@ public class Script2DPort
 
 
 
-	public Script2DPort(ParamType t)
+	public Script2DPort(ParamType t, Script2DNode thisNode)
 	{
 		type = t;
+		myNode = thisNode;
 	}
 
 }
