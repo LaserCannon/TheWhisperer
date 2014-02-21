@@ -10,48 +10,7 @@ public class ScriptEditor : Editor
 	
 	private static Command draggingCommand = null;
 	private static int indexToInsert = -1;
-	
-	//TODO: Find a better place for styles / blank textures
-	private static Texture2D white = null;
-	public static Texture2D White
-	{
-		get
-		{
-			if(white==null)
-			{
-				white = new Texture2D(1,1);
-				white.SetPixel(0,0,Color.white);
-				white.Apply();
-			}
-			return white;
-		}
-	}
-	
-	private static GUIStyle greyedOutStyle;
-	public static GUIStyle GreyedOutStyle
-	{
-		get {
-			if(greyedOutStyle==null)
-			{
-				greyedOutStyle = new GUIStyle(EditorStyles.whiteBoldLabel);
-				greyedOutStyle.normal.textColor = Color.gray;
-			}
-			return greyedOutStyle;
-		}
-	}
-	private static GUIStyle activeStyle;
-	public static GUIStyle ActiveStyle
-	{
-		get {
-			if(activeStyle==null)
-			{
-				activeStyle = new GUIStyle(EditorStyles.whiteBoldLabel);
-				activeStyle.normal.textColor = Color.green;
-			}
-			return activeStyle;
-		}
-	}
-	
+
 	
 	public delegate void messageDelegate();
 	public static event messageDelegate onScriptSelected;
@@ -119,7 +78,7 @@ public class ScriptEditor : Editor
 		if(indexToInsert==0 && Event.current.type != EventType.MouseDrag)	//Somehow, it doesnt like "GetRect()" while dragging...
 		{
 			Rect r = GUILayoutUtility.GetRect(200,4,GUILayout.Height(4));
-			GUI.DrawTexture(r,White);
+			GUI.DrawTexture(r,ScriptEditorStyles.White);
 			if(editor!=null)
 				editor.Repaint();
 		}
@@ -184,7 +143,7 @@ public class ScriptEditor : Editor
 			if(indexToInsert==i+1 && Event.current.type != EventType.MouseDrag)	//Somehow, it doesnt like "GetRect()" while dragging...
 			{
 				Rect r = GUILayoutUtility.GetRect(200,4,GUILayout.Height(4));
-				GUI.DrawTexture(r,White);
+				GUI.DrawTexture(r,ScriptEditorStyles.White);
 				if(editor!=null)	
 					editor.Repaint();
 			}
@@ -299,7 +258,7 @@ public class ScriptEditor : Editor
 			// -- Drag handle -- //
 			dragRect = GUILayoutUtility.GetRect(32,24,GUILayout.Width(24));
 			if(cmd.IsRunning)
-				GUI.Label(dragRect,">>",ActiveStyle);
+				GUI.Label(dragRect,">>",ScriptEditorStyles.ActiveStyle);
 			else
 				GUI.Label(dragRect,"__");
 			// -- -- -- -- //
@@ -308,7 +267,7 @@ public class ScriptEditor : Editor
 			if(cmd.enabled)
 				GUILayout.Label(cmd.MethodName,EditorStyles.whiteLargeLabel);
 			else
-				GUILayout.Label(cmd.MethodName,GreyedOutStyle);
+				GUILayout.Label(cmd.MethodName,ScriptEditorStyles.GreyedOutStyle);
 			// -- -- -- -- //
 			
 			// -- Wait for this function? -- //

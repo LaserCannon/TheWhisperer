@@ -3,19 +3,23 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Reflection;
 
+#if UNITY_EDITOR
+using UnityEditor;
+#endif
+
 
 public abstract class Script2DNode
 {
 
 	//private int id = 0;
 
+
 	private Vector2 position = Vector2.zero;
 
+	private Script2DTree tree = null;
 
-	protected Script2DPort next = null;
+
 	protected List<Script2DPort> inputs = new List<Script2DPort>();
-
-
 
 	public abstract ParamType ReturnType
 	{
@@ -34,27 +38,28 @@ public abstract class Script2DNode
 	}
 
 
-	public Script2DNode Next
+
+
+	public Script2DNode(Script2DTree nodeTree)
 	{
-		get { return next.Node; }
-		set { next.Node = value; }
+		tree = nodeTree;
+		tree.AddNode(this);
 	}
 
-	public Script2DPort NextPort
+	~Script2DNode()
 	{
-		get { return next; }
+		RemoveFromTree();
 	}
 
-
-	public Script2DNode()
+	protected void RemoveFromTree()
 	{
-		next = new Script2DPort(ParamType.Void,this);
+		tree.RemoveNode(this);
 	}
 
 
 	public virtual Script2DNode GetMoveNext()
 	{
-		return Next;
+		return null;
 	}
 	
 	
@@ -66,12 +71,28 @@ public abstract class Script2DNode
 		}
 		return null;
 	}
+
+	protected void RegisterPort(Script2DPort port)
+	{
+		if(!tree.PortList.Contains(port))
+		{
+			tree.AddPort(port);
+		}
+	}
+
+	protected void DeregisterPort(Script2DPort port)
+	{
+		if(tree.PortList.Contains(port))
+		{
+			tree.RemovePort(port);
+		}
+	}
 	
-	public void ConnectInputTo(int inputIndex, Script2DNode node)
+	public void ConnectInputTo(int inputIndex, Script2DPort port)
 	{
 		if(inputIndex>=0 && inputIndex<inputs.Count)
 		{
-			inputs[inputIndex].Node = node;
+			inputs[inputIndex].ConnectedPort = port;
 		}
 	}
 
@@ -79,5 +100,11 @@ public abstract class Script2DNode
 	public abstract IEnumerator Run();
 
 	public abstract object Get();
+
+#if UNITY_EDITOR
+	public abstract bool DrawContents(Script2DDrawContext context);
+#endif
+
+
 
 }

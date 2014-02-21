@@ -14,7 +14,7 @@ public class Script2DParameterNode : Script2DNode
 
 
 
-	public Script2DParameterNode(System.Type type, object defaultVal) : base()
+	public Script2DParameterNode(System.Type type, object defaultVal, Script2DTree nodeTree) : base(nodeTree)
 	{
 		paramOutput = new Param(type,defaultVal);
 	}
@@ -37,6 +37,12 @@ public class Script2DParameterNode : Script2DNode
 	{
 		return paramOutput.Value;
 	}
-
+#if UNITY_EDITOR
+	
+	public override bool DrawContents(Script2DDrawContext context)
+	{	
+		return true;
+	}
+#endif
 
 }
