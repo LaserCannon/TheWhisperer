@@ -1,9 +1,12 @@
-﻿using UnityEngine;
+﻿#define UNITY_EDITOR
+
+using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
 
 
 //TODO: To avoid the UNITY_EDITOR command, make an interface for the Script2D to interact with
+
 
 #if UNITY_EDITOR
 
@@ -31,10 +34,28 @@ public class Script2DDrawContext
 	}
 
 
+
+
+	private Texture arrow_down = null;
+	private Texture arrow_right = null;
+
+	
+	
+	public Script2DDrawContext()
+	{
+
+		arrow_down = (Texture)Resources.LoadAssetAtPath("Assets/"+PlayerSettings.productName+"/Scripts/Low/Scripting/Editor/arrow_down.psd",typeof(Texture));
+		arrow_right = (Texture)Resources.LoadAssetAtPath("Assets/"+PlayerSettings.productName+"/Scripts/Low/Scripting/Editor/arrow_right.psd",typeof(Texture));
+		
+	}
+
+
+
 	public void SetTargetScript(Script2D targetScript)
 	{
 		target = targetScript;
 	}
+
 
 
 	void Repaint()
@@ -187,9 +208,9 @@ public class Script2DDrawContext
 
 	
 	
-	public Rect BeginNode(Script2DNode node)
+	public Rect BeginNode(Script2DNode node, Vector2 size)
 	{
-		Rect dragRect = cam_rect(node.Position.x,node.Position.y,300,100);
+		Rect dragRect = cam_rect(node.Position.x,node.Position.y,size.x,size.y);
 		
 		if(Event.current.type==EventType.MouseDown && !ObjectSelected && dragRect.Contains( Event.current.mousePosition))
 		{
@@ -236,8 +257,11 @@ public class Script2DDrawContext
 	
 	public bool DrawPort(Script2DPort port)
 	{
-		Rect rect = cam_rect(port.Position.x-10f,port.Position.y-10f,20f,20f);
-		GUI.DrawTexture(rect,ScriptEditorStyles.White);
+		//Draw the arrow texture
+		bool isVert = port.PortDirection==Script2DPortDirection.VerticalIn || port.PortDirection==Script2DPortDirection.VerticalOut;
+		Vector2 arrowSize = isVert ? new Vector2(20,10) : new Vector2(10,20);
+		Rect rect = cam_rect(port.Position.x-arrowSize.x/2f,port.Position.y-arrowSize.y/2f,arrowSize.x,arrowSize.y);
+		GUI.DrawTexture(rect,isVert ? arrow_down : arrow_right);
 		
 		if(port.ConnectedPort!=null)
 		{
@@ -273,6 +297,18 @@ public class Script2DDrawContext
 		}
 	}
 	
+	
+	private Texture GetArrowTexture(Script2DPortDirection dir)
+	{
+		if(dir==Script2DPortDirection.VerticalIn || dir==Script2DPortDirection.VerticalOut)
+		{
+			return arrow_down;
+		}
+		else
+		{
+			return arrow_right;
+		}
+	}
 	
 	
 	//Camera transforms

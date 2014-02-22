@@ -21,10 +21,6 @@ public abstract class Script2DNode
 
 	protected List<Script2DPort> inputs = new List<Script2DPort>();
 
-	public abstract ParamType ReturnType
-	{
-		get;
-	}
 
 	public Vector2 Position
 	{

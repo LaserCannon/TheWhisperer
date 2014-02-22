@@ -22,7 +22,7 @@ public class Script2DParameterNode : Script2DNode
 
 
 
-	public override ParamType ReturnType
+	public ParamType ReturnType
 	{
 		get { return paramOutput.Type; }
 	}

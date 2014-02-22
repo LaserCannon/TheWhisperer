@@ -40,7 +40,7 @@ public class Script2DCommandNode : Script2DNode
 	}
 
 
-	public override ParamType ReturnType
+	public ParamType ReturnType
 	{
 		get { return returnPort.Type; }
 	}
@@ -151,20 +151,9 @@ public class Script2DCommandNode : Script2DNode
 
 	public override bool DrawContents(Script2DDrawContext context)
 	{		
-		for(int i=0;i<InputCount;i++)
-		{
-			context.DrawPort(GetInput(i));
-		}
-		
-		context.DrawPort(next);
-
-		//--
-		//++
-		
-		context.DrawPort(last);
 		
 		//--
-		context.BeginNode(this);
+		context.BeginNode(this,new Vector2(300,100));
 		//++
 		
 		Command cmd = ScriptCommand;
@@ -265,6 +254,17 @@ public class Script2DCommandNode : Script2DNode
 		}
 		
 		context.EndNode();
+
+
+		for(int i=0;i<InputCount;i++)
+		{
+			context.DrawPort(GetInput(i));
+		}
+		
+		context.DrawPort(next);
+		
+		
+		context.DrawPort(last);
 		
 		context.DrawPort(returnPort);
 		

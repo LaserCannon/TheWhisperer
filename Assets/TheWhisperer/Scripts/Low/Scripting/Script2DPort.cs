@@ -74,7 +74,7 @@ public class Script2DPort
 
 	public bool IsCompatibleWith(Script2DPort otherPort)
 	{
-		return otherPort==null || ( otherPort.Type==type && IsOppositeModes(otherPort.PortDirection,portDirection) );
+		return otherPort==null || ( otherPort.Type==type && IsOppositeModes(otherPort.PortDirection,portDirection ) && otherPort.MyNode!=myNode );
 	}
 
 	public static bool IsOppositeModes(Script2DPortDirection dir1, Script2DPortDirection dir2)

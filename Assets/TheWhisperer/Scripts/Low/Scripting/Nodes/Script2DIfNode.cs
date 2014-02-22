@@ -1,22 +1,21 @@
 ﻿using UnityEngine;
 using System.Collections;
 
+
+#if UNITY_EDITOR
+using UnityEditor;
+#endif
+
+
 public class Script2DIfNode : Script2DNode
 {
 
-	
-	
 	private Script2DPort next = null;
 	private Script2DPort falseNext = null;
 	private Script2DPort last = null;
-	private Script2DPort returnPort = null;
 
 
-	public override ParamType ReturnType
-	{
-		get { return ParamType.Bool; }
-	}
-	
+
 
 	public Script2DPort NextPort
 	{
@@ -32,29 +31,21 @@ public class Script2DIfNode : Script2DNode
 	{
 		get { return last; }
 	}
-	
-	public Script2DPort ReturnPort
-	{
-		get { return returnPort; }
-	}
 
 
 
 	public Script2DIfNode(Script2DTree tree) : base(tree)
 	{
-		inputs.Add(new Script2DPort(new Vector2(50,0),ParamType.Bool,this,Script2DPortDirection.VerticalIn));
+		inputs.Add(new Script2DPort(new Vector2(25,0),ParamType.Bool,this,Script2DPortDirection.VerticalIn));
 		
-		next = new Script2DPort(new Vector2(300,25),ParamType.Void,this,Script2DPortDirection.HorizontalOut);
-		falseNext = new Script2DPort(new Vector2(300,75),ParamType.Void,this,Script2DPortDirection.HorizontalOut);
-		last = new Script2DPort(new Vector2(0,50),ParamType.Void,this,Script2DPortDirection.HorizontalIn);
-
-		returnPort = new Script2DPort(new Vector2(50,100),ParamType.Bool,this,Script2DPortDirection.VerticalOut);
+		next = new Script2DPort(new Vector2(100,10),ParamType.Void,this,Script2DPortDirection.HorizontalOut);
+		falseNext = new Script2DPort(new Vector2(100,40),ParamType.Void,this,Script2DPortDirection.HorizontalOut);
+		last = new Script2DPort(new Vector2(0,25),ParamType.Void,this,Script2DPortDirection.HorizontalIn);
 		
 		RegisterPort(inputs[0]);
 		RegisterPort(next);
 		RegisterPort(falseNext);
 		RegisterPort(last);
-		RegisterPort(returnPort);
 	}
 	
 	protected override void DestroyPorts()
@@ -63,7 +54,6 @@ public class Script2DIfNode : Script2DNode
 		DeregisterPort(next);
 		DeregisterPort(falseNext);
 		DeregisterPort(last);
-		DeregisterPort(returnPort);
 	}
 
 
@@ -101,6 +91,15 @@ public class Script2DIfNode : Script2DNode
 	
 	public override bool DrawContents(Script2DDrawContext context)
 	{		
+		
+		context.BeginNode(this, new Vector2(100,50));
+
+
+		GUI.Label (new Rect(15,15,20,20),"IF",EditorStyles.boldLabel);
+		
+		
+		context.EndNode();
+		
 		for(int i=0;i<InputCount;i++)
 		{
 			context.DrawPort(GetInput(i));
@@ -109,13 +108,6 @@ public class Script2DIfNode : Script2DNode
 		context.DrawPort(next);
 		context.DrawPort(falseNext);
 		context.DrawPort(last);
-		
-		context.BeginNode(this);
-		
-		
-		context.EndNode();
-		
-		context.DrawPort(returnPort);
 		
 		return true;
 	}
