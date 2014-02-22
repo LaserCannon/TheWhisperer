@@ -42,13 +42,13 @@ public class Script2DIfNode : Script2DNode
 
 	public Script2DIfNode(Script2DTree tree) : base(tree)
 	{
-		inputs.Add(new Script2DPort(new Vector2(50,0),ParamType.Bool,this,Script2DPortMode.In));
+		inputs.Add(new Script2DPort(new Vector2(50,0),ParamType.Bool,this,Script2DPortDirection.VerticalIn));
 		
-		next = new Script2DPort(new Vector2(300,50),ParamType.Void,this,Script2DPortMode.Out);
-		falseNext = new Script2DPort(new Vector2(200,100),ParamType.Void,this,Script2DPortMode.Out);
-		last = new Script2DPort(new Vector2(0,50),ParamType.Void,this,Script2DPortMode.In);
+		next = new Script2DPort(new Vector2(300,25),ParamType.Void,this,Script2DPortDirection.HorizontalOut);
+		falseNext = new Script2DPort(new Vector2(300,75),ParamType.Void,this,Script2DPortDirection.HorizontalOut);
+		last = new Script2DPort(new Vector2(0,50),ParamType.Void,this,Script2DPortDirection.HorizontalIn);
 
-		returnPort = new Script2DPort(new Vector2(50,100),ParamType.Bool,this,Script2DPortMode.Out);
+		returnPort = new Script2DPort(new Vector2(50,100),ParamType.Bool,this,Script2DPortDirection.VerticalOut);
 		
 		RegisterPort(inputs[0]);
 		RegisterPort(next);
@@ -56,16 +56,14 @@ public class Script2DIfNode : Script2DNode
 		RegisterPort(last);
 		RegisterPort(returnPort);
 	}
-
-	~Script2DIfNode()
+	
+	protected override void DestroyPorts()
 	{
 		DeregisterPort(inputs[0]);
 		DeregisterPort(next);
 		DeregisterPort(falseNext);
 		DeregisterPort(last);
 		DeregisterPort(returnPort);
-
-		RemoveFromTree();
 	}
 
 

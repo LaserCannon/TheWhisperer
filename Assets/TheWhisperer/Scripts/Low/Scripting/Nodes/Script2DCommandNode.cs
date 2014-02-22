@@ -48,12 +48,12 @@ public class Script2DCommandNode : Script2DNode
 
 	public Script2DCommandNode(string methodName, Script2DTree nodeTree) : base(nodeTree)
 	{
-		next = new Script2DPort(new Vector2(300,50),ParamType.Void,this,Script2DPortMode.Out);
-		last = new Script2DPort(new Vector2(0,50),ParamType.Void,this,Script2DPortMode.In);
+		next = new Script2DPort(new Vector2(300,50),ParamType.Void,this,Script2DPortDirection.HorizontalOut);
+		last = new Script2DPort(new Vector2(0,50),ParamType.Void,this,Script2DPortDirection.HorizontalIn);
 
 		command = new Command(methodName);
 		
-		returnPort = new Script2DPort(new Vector2(50,100),command.ReturnType,this,Script2DPortMode.Out);
+		returnPort = new Script2DPort(new Vector2(50,100),command.ReturnType,this,Script2DPortDirection.VerticalOut);
 
 		RegisterPort(next);
 		RegisterPort(last);
@@ -61,19 +61,19 @@ public class Script2DCommandNode : Script2DNode
 
 		for(int i=0;i<command.ParamCount;i++)
 		{
-			Script2DPort port = new Script2DPort(new Vector2(20+i*45,0),command.GetParam(i).Type,this,Script2DPortMode.In);
+			Script2DPort port = new Script2DPort(new Vector2(20+i*45,0),command.GetParam(i).Type,this,Script2DPortDirection.VerticalIn);
 			inputs.Add(port);
 			RegisterPort(port);
 		}
 	}
 	public Script2DCommandNode(Command c, Script2DTree nodeTree) : base(nodeTree)
 	{
-		next = new Script2DPort(new Vector2(300,50),ParamType.Void,this,Script2DPortMode.Out);
-		last = new Script2DPort(new Vector2(0,50),ParamType.Void,this,Script2DPortMode.In);
+		next = new Script2DPort(new Vector2(300,50),ParamType.Void,this,Script2DPortDirection.HorizontalOut);
+		last = new Script2DPort(new Vector2(0,50),ParamType.Void,this,Script2DPortDirection.HorizontalIn);
 
 		command = c;
 		
-		returnPort = new Script2DPort(new Vector2(50,100),command.ReturnType,this,Script2DPortMode.Out);
+		returnPort = new Script2DPort(new Vector2(50,100),command.ReturnType,this,Script2DPortDirection.VerticalOut);
 		
 		RegisterPort(next);
 		RegisterPort(last);
@@ -81,14 +81,14 @@ public class Script2DCommandNode : Script2DNode
 
 		for(int i=0;i<command.ParamCount;i++)
 		{
-			Script2DPort port = new Script2DPort(new Vector2(20+i*45,0),command.GetParam(i).Type,this,Script2DPortMode.In);
+			Script2DPort port = new Script2DPort(new Vector2(20+i*45,0),command.GetParam(i).Type,this,Script2DPortDirection.VerticalIn);
 			inputs.Add(port);
 			RegisterPort(port);
 		}
 	}
 
 
-	~Script2DCommandNode()
+	protected override void DestroyPorts()
 	{
 		DeregisterPort(next);
 		DeregisterPort(last);
@@ -98,8 +98,6 @@ public class Script2DCommandNode : Script2DNode
 		{
 			DeregisterPort(inputs[i]);
 		}
-		
-		RemoveFromTree();
 	}
 
 	

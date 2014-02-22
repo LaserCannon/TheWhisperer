@@ -1,10 +1,12 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public enum Script2DPortMode
+public enum Script2DPortDirection
 {
-	Out,
-	In,
+	VerticalIn,
+	VerticalOut,
+	HorizontalIn,
+	HorizontalOut,
 }
 
 public class Script2DPort
@@ -18,7 +20,7 @@ public class Script2DPort
 
 	private Script2DPort connectedPort = null;
 
-	private Script2DPortMode portMode = Script2DPortMode.Out;
+	private Script2DPortDirection portDirection = Script2DPortDirection.HorizontalIn;
 
 
 	public ParamType Type
@@ -41,9 +43,9 @@ public class Script2DPort
 		get { return myNode; }
 	}
 
-	public Script2DPortMode PortMode
+	public Script2DPortDirection PortDirection
 	{
-		get { return portMode; }
+		get { return portDirection; }
 	}
 
 
@@ -54,7 +56,14 @@ public class Script2DPort
 		{
 			if(IsCompatibleWith(value))
 			{
-				connectedPort = value;
+				if(DoesStoreLink)
+				{
+					connectedPort = value;
+				}
+				else if(value!=null)
+				{
+					value.connectedPort = this;
+				}
 			}
 			else if(value!=null)
 			{
@@ -65,16 +74,52 @@ public class Script2DPort
 
 	public bool IsCompatibleWith(Script2DPort otherPort)
 	{
-		return otherPort==null || ( otherPort.Type==type && otherPort.PortMode!=portMode );
+		return otherPort==null || ( otherPort.Type==type && IsOppositeModes(otherPort.PortDirection,portDirection) );
+	}
+
+	public static bool IsOppositeModes(Script2DPortDirection dir1, Script2DPortDirection dir2)
+	{
+		if(dir1==Script2DPortDirection.VerticalIn)
+		{
+			return dir2==Script2DPortDirection.VerticalOut;
+		}
+		else if(dir1==Script2DPortDirection.VerticalOut)
+		{
+			return dir2==Script2DPortDirection.VerticalIn;
+		}
+		else if(dir1==Script2DPortDirection.HorizontalIn)
+		{
+			return dir2==Script2DPortDirection.HorizontalOut;
+		}
+		else if(dir1==Script2DPortDirection.HorizontalOut)
+		{
+			return dir2==Script2DPortDirection.HorizontalIn;
+		}
+		return false;
+	}
+
+	public bool IsVertical
+	{
+		get { return portDirection==Script2DPortDirection.VerticalIn || portDirection==Script2DPortDirection.VerticalOut; }
+	}
+	
+	public bool IsHorizontal
+	{
+		get { return portDirection==Script2DPortDirection.HorizontalIn || portDirection==Script2DPortDirection.HorizontalOut; }
+	}
+
+	public bool DoesStoreLink		//Only VerticalIn (parameters) and HorizontalOut (next node) stores references.
+	{
+		get { return portDirection==Script2DPortDirection.VerticalIn || portDirection==Script2DPortDirection.HorizontalOut; } 
 	}
 
 
 
-	public Script2DPort(Vector2 posOffset, ParamType t, Script2DNode thisNode, Script2DPortMode mode)
+	public Script2DPort(Vector2 posOffset, ParamType t, Script2DNode thisNode, Script2DPortDirection dir)
 	{
 		type = t;
 		myNode = thisNode;
-		portMode = mode;
+		portDirection = dir;
 		offset = posOffset;
 	}
 

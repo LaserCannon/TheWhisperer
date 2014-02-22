@@ -51,9 +51,14 @@ public abstract class Script2DNode
 		RemoveFromTree();
 	}
 
-	protected void RemoveFromTree()
+	public void RemoveFromTree()
 	{
 		tree.RemoveNode(this);
+		DestroyPorts();
+	}
+
+	protected virtual void DestroyPorts()
+	{
 	}
 
 

@@ -2,6 +2,9 @@
 using System.Collections;
 using System.Collections.Generic;
 
+
+//TODO: To avoid the UNITY_EDITOR command, make an interface for the Script2D to interact with
+
 #if UNITY_EDITOR
 
 using UnityEditor;
@@ -50,29 +53,10 @@ public class Script2DDrawContext
 
 			foreach(Script2DNode node in target.ScriptTree.NodeList)
 			{
-				if(node.GetType()==typeof(Script2DCommandNode))
+				if(!node.DrawContents(this))
 				{
-					if(!DrawCommandNodeGUI((Script2DCommandNode)node))
-					{
-						target.ScriptTree.RemoveNode(node);
-						return;
-					}
-				}
-				if(node.GetType()==typeof(Script2DIfNode))
-				{
-					if(!DrawIfNodeGUI((Script2DIfNode)node))
-					{
-						target.ScriptTree.RemoveNode(node);
-						return;
-					}
-				}
-				
-				for(int i=0;i<node.InputCount;i++)
-				{
-					if(node.GetInput(i).ConnectedPort != null)
-					{
-						DrawBezier(node.GetInput(i).ConnectedPort.Position, node.GetInput(i).Position, true,Color.white,1f);
-					}
+					node.RemoveFromTree();
+					return;
 				}
 				
 				bounds = new Rect(0,0,1,1);
@@ -200,17 +184,7 @@ public class Script2DDrawContext
 		}
 		return closePort;
 	}
-	
-	
-	public bool DrawCommandNodeGUI(Script2DCommandNode node)
-	{
-		return node.DrawContents(this);
-	}
-	
-	public bool DrawIfNodeGUI(Script2DIfNode node)
-	{
-		return node.DrawContents(this);
-	}
+
 	
 	
 	public Rect BeginNode(Script2DNode node)

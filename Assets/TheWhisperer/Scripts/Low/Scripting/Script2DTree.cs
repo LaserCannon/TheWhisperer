@@ -34,6 +34,14 @@ public class Script2DTree
 	public void RemovePort(Script2DPort port)
 	{
 		portList.Remove(port);
+
+		foreach(Script2DPort p in portList)
+		{
+			if(p.ConnectedPort==port)
+			{
+				p.ConnectedPort = null;
+			}
+		}
 	}
 
 
