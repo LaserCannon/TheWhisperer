@@ -162,8 +162,8 @@ public class UIPanelTool : EditorWindow
 
 			// Sort the list alphabetically
 			entries.Sort(Compare);
-
-			EditorGUIUtility.LookLikeControls(80f);
+			
+			EditorGUIUtility.labelWidth = 80f;
 			bool showAll = DrawRow(null, null, allEnabled);
 			NGUIEditorTools.DrawSeparator();
 

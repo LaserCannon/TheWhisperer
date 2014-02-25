@@ -119,11 +119,11 @@ public class UIAtlasMaker : EditorWindow
 
 #if UNITY_ANDROID || UNITY_IPHONE
 #if !UNITY_3_5 && !UNITY_4_0
-		if (PlayerSettings.targetGlesGraphics == TargetGlesGraphics.OpenGLES_1_x)
-		{
-			maxSize = Mathf.Min(maxSize, 1024);
-		}
-		else
+		//if (PlayerSettings.targetGlesGraphics == TargetGlesGraphics.OpenGLES_1_x)
+		//{
+		//	maxSize = Mathf.Min(maxSize, 1024);
+		//}
+		//else
 #endif
 		{
 			maxSize = Mathf.Min(maxSize, NGUISettings.allow4096 ? 4096 : 2048);
@@ -658,8 +658,8 @@ public class UIAtlasMaker : EditorWindow
 		// Try to load the prefab
 		GameObject go = AssetDatabase.LoadAssetAtPath(prefabPath, typeof(GameObject)) as GameObject;
 		if (NGUISettings.atlas == null && go != null) NGUISettings.atlas = go.GetComponent<UIAtlas>();
-
-		EditorGUIUtility.LookLikeControls(80f);
+		
+		EditorGUIUtility.labelWidth = 80f;
 
 		GUILayout.Space(6f);
 		GUILayout.BeginHorizontal();

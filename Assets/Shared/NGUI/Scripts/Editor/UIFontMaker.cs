@@ -87,8 +87,8 @@ public class UIFontMaker : EditorWindow
 		if (string.IsNullOrEmpty(NGUISettings.fontName)) NGUISettings.fontName = "New Font";
 		if (string.IsNullOrEmpty(prefabPath)) prefabPath = NGUIEditorTools.GetSelectionFolder() + NGUISettings.fontName + ".prefab";
 		if (string.IsNullOrEmpty(matPath)) matPath = NGUIEditorTools.GetSelectionFolder() + NGUISettings.fontName + ".mat";
-
-		EditorGUIUtility.LookLikeControls(80f);
+		
+		EditorGUIUtility.labelWidth = 80f;
 		NGUIEditorTools.DrawHeader("Input");
 
 		GUILayout.BeginHorizontal();

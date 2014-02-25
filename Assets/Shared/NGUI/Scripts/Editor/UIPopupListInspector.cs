@@ -49,7 +49,7 @@ public class UIPopupListInspector : Editor
 
 	public override void OnInspectorGUI ()
 	{
-		EditorGUIUtility.LookLikeControls(80f);
+		EditorGUIUtility.labelWidth = 80f;
 		mList = target as UIPopupList;
 
 		ComponentSelector.Draw<UIAtlas>(mList.atlas, OnSelectAtlas);
@@ -157,8 +157,8 @@ public class UIPopupListInspector : Editor
 				RegisterUndo();
 				mList.padding = padding;
 			}
-
-			EditorGUIUtility.LookLikeControls(100f);
+			
+			EditorGUIUtility.labelWidth = 100f;
 
 			GameObject go = EditorGUILayout.ObjectField("Event Receiver", mList.eventReceiver,
 				typeof(GameObject), true) as GameObject;

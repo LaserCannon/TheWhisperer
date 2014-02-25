@@ -51,7 +51,7 @@ public class UIPanelInspector : Editor
 	{
 		UIPanel panel = target as UIPanel;
 		BetterList<UIDrawCall> drawcalls = panel.drawCalls;
-		EditorGUIUtility.LookLikeControls(80f);
+		EditorGUIUtility.labelWidth = 80f;
 
 		//NGUIEditorTools.DrawSeparator();
 		EditorGUILayout.Space();
@@ -201,10 +201,10 @@ public class UIPanelInspector : Editor
 			}
 
 #if !UNITY_3_5 && !UNITY_4_0 && (UNITY_ANDROID || UNITY_IPHONE)
-			if (PlayerSettings.targetGlesGraphics == TargetGlesGraphics.OpenGLES_1_x)
-			{
-				EditorGUILayout.HelpBox("Clipping requires shader support!\n\nOpen File -> Build Settings -> Player Settings -> Other Settings, then set:\n\n- Graphics Level: OpenGL ES 2.0.", MessageType.Error);
-			}
+			//if (PlayerSettings.targetGlesGraphics == TargetGlesGraphics.OpenGLES_1_x)
+			//{
+			//	EditorGUILayout.HelpBox("Clipping requires shader support!\n\nOpen File -> Build Settings -> Player Settings -> Other Settings, then set:\n\n- Graphics Level: OpenGL ES 2.0.", MessageType.Error);
+			//}
 #endif
 		}
 
