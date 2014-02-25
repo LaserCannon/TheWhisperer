@@ -1,5 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System.Collections.Generic;
+
 
 
 #if UNITY_EDITOR
@@ -9,6 +11,7 @@ using UnityEditor;
 
 public class Script2DIfNode : Script2DNode
 {
+	private Script2DPort input = null;
 
 	private Script2DPort next = null;
 	private Script2DPort falseNext = null;
@@ -36,28 +39,28 @@ public class Script2DIfNode : Script2DNode
 
 	public Script2DIfNode(Script2DTree tree) : base(tree)
 	{
-		inputs.Add(new Script2DPort(new Vector2(25,0),ParamType.Bool,this,Script2DPortDirection.VerticalIn));
+		input = new Script2DPort(new Vector2(25,0),ParamType.Bool,this,Script2DPortDirection.VerticalIn);
 		
 		next = new Script2DPort(new Vector2(100,10),ParamType.Void,this,Script2DPortDirection.HorizontalOut);
 		falseNext = new Script2DPort(new Vector2(100,40),ParamType.Void,this,Script2DPortDirection.HorizontalOut);
 		last = new Script2DPort(new Vector2(0,25),ParamType.Void,this,Script2DPortDirection.HorizontalIn);
 		
-		RegisterPort(inputs[0]);
+		RegisterPort(input);
 		RegisterPort(next);
 		RegisterPort(falseNext);
 		RegisterPort(last);
 	}
-	
+
 	protected override void DestroyPorts()
 	{
-		DeregisterPort(inputs[0]);
+		DeregisterPort(input);
 		DeregisterPort(next);
 		DeregisterPort(falseNext);
 		DeregisterPort(last);
 	}
 
 
-	public virtual Script2DNode GetMoveNext()
+	public override Script2DNode GetMoveNext()
 	{
 		bool isTrue = (bool)Get();
 		
@@ -80,12 +83,48 @@ public class Script2DIfNode : Script2DNode
 
 	public override object Get()
 	{
-		if(inputs[0].ConnectedPort!=null)
+		if(input.ConnectedPort!=null)
 		{
-			return inputs[0].ConnectedPort.MyNode.Run();
+			return input.ConnectedPort.MyNode.Get();
 		}
 		return false;
 	}
+	
+	public override Hashtable Serialize ()
+	{
+		Hashtable hash = base.Serialize();
+		
+		hash.Add("next",next.ID);
+		hash.Add("falseNext",falseNext.ID);
+		hash.Add("last",last.ID);
+		hash.Add("input",input.ID);
+
+		hash.Add("nextLink",next.ConnectedPortID);
+		hash.Add("falseNextLink",falseNext.ConnectedPortID);
+		hash.Add("inputLink",input.ConnectedPortID);
+
+		return hash;
+	}
+
+	public override void Deserialize(Hashtable data)
+	{
+		base.Deserialize(data);
+
+		next.AssignID( (int)(double)data["next"] );
+		falseNext.AssignID( (int)(double)data["falseNext"] );
+		last.AssignID( (int)(double)data["last"] );
+		input.AssignID( (int)(double)data["input"] );
+	}
+	
+	public override void DeserializeConnections (Hashtable data)
+	{
+		base.DeserializeConnections(data);
+
+		next.ConnectedPort = tree.GetPort( (int)(double)data["nextLink"] );
+		falseNext.ConnectedPort = tree.GetPort( (int)(double)data["falseNextLink"] );
+		input.ConnectedPort = tree.GetPort( (int)(double)data["inputLink"] );
+	}
+
 
 #if UNITY_EDITOR
 	
@@ -93,17 +132,14 @@ public class Script2DIfNode : Script2DNode
 	{		
 		
 		context.BeginNode(this, new Vector2(100,50));
-
+		
 
 		GUI.Label (new Rect(15,15,20,20),"IF",EditorStyles.boldLabel);
 		
 		
 		context.EndNode();
 		
-		for(int i=0;i<InputCount;i++)
-		{
-			context.DrawPort(GetInput(i));
-		}
+		context.DrawPort(input);
 		
 		context.DrawPort(next);
 		context.DrawPort(falseNext);

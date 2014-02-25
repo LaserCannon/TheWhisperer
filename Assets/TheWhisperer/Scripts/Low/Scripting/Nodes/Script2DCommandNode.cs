@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System.Collections.Generic;
 using System.Reflection;
 
 #if UNITY_EDITOR
@@ -14,6 +15,8 @@ public class Script2DCommandNode : Script2DNode
 	protected Script2DPort next = null;
 	protected Script2DPort last = null;
 	protected Script2DPort returnPort = null;
+	
+	protected List<Script2DPort> inputs = new List<Script2DPort>();
 
 
 	public Command ScriptCommand
@@ -48,29 +51,23 @@ public class Script2DCommandNode : Script2DNode
 
 	public Script2DCommandNode(string methodName, Script2DTree nodeTree) : base(nodeTree)
 	{
-		next = new Script2DPort(new Vector2(300,50),ParamType.Void,this,Script2DPortDirection.HorizontalOut);
-		last = new Script2DPort(new Vector2(0,50),ParamType.Void,this,Script2DPortDirection.HorizontalIn);
-
-		command = new Command(methodName);
-		
-		returnPort = new Script2DPort(new Vector2(50,100),command.ReturnType,this,Script2DPortDirection.VerticalOut);
-
-		RegisterPort(next);
-		RegisterPort(last);
-		RegisterPort(returnPort);
-
-		for(int i=0;i<command.ParamCount;i++)
-		{
-			Script2DPort port = new Script2DPort(new Vector2(20+i*45,0),command.GetParam(i).Type,this,Script2DPortDirection.VerticalIn);
-			inputs.Add(port);
-			RegisterPort(port);
-		}
+		SetupWithCommand(new Command(methodName));
 	}
 	public Script2DCommandNode(Command c, Script2DTree nodeTree) : base(nodeTree)
 	{
+		SetupWithCommand(c); 
+	}
+	public Script2DCommandNode(Hashtable data, Script2DTree nodeTree) : base(data,nodeTree)
+	{
+		SetupWithCommand( new Command((Hashtable)data["command"]) );
+	}
+
+
+	private void SetupWithCommand(Command c)
+	{
 		next = new Script2DPort(new Vector2(300,50),ParamType.Void,this,Script2DPortDirection.HorizontalOut);
 		last = new Script2DPort(new Vector2(0,50),ParamType.Void,this,Script2DPortDirection.HorizontalIn);
-
+		
 		command = c;
 		
 		returnPort = new Script2DPort(new Vector2(50,100),command.ReturnType,this,Script2DPortDirection.VerticalOut);
@@ -78,7 +75,8 @@ public class Script2DCommandNode : Script2DNode
 		RegisterPort(next);
 		RegisterPort(last);
 		RegisterPort(returnPort);
-
+		
+		
 		for(int i=0;i<command.ParamCount;i++)
 		{
 			Script2DPort port = new Script2DPort(new Vector2(20+i*45,0),command.GetParam(i).Type,this,Script2DPortDirection.VerticalIn);
@@ -103,6 +101,10 @@ public class Script2DCommandNode : Script2DNode
 	
 	public override Script2DNode GetMoveNext()
 	{
+		if(NextPort.ConnectedPort==null)
+		{
+			return null;
+		}
 		return NextPort.ConnectedPort.MyNode;
 	}
 	
@@ -144,6 +146,63 @@ public class Script2DCommandNode : Script2DNode
 		object retVal = command.DirectInvoke();
 
 		return retVal;
+	}
+
+	public override Hashtable Serialize ()
+	{
+		Hashtable hash = base.Serialize();
+
+		hash.Add("next",next.ID);
+		hash.Add("return",returnPort.ID);
+		hash.Add("last",last.ID);
+		
+		hash.Add("nextLink",next.ConnectedPortID);
+
+		ArrayList inputList = new ArrayList();
+		for(int i=0;i<inputs.Count;i++)
+		{
+			Hashtable element = new Hashtable();
+			element.Add("inputID",inputs[i].ID);
+			element.Add("inputLinkID",inputs[i].ConnectedPortID);
+			inputList.Add(element);
+		}
+		hash.Add("inputs",inputList);
+
+		hash.Add("command",command.Serialize());
+
+		return hash;
+	}
+	
+	public override void Deserialize(Hashtable data)
+	{
+		base.Deserialize(data);
+
+		next.AssignID( (int)(double)data["next"] );
+		returnPort.AssignID( (int)(double)data["return"] ); 
+		last.AssignID( (int)(double)data["last"] );
+		
+		ArrayList inputList = (ArrayList)data["inputs"];
+		for(int i=0;i<command.ParamCount;i++)
+		{
+			Hashtable element = (Hashtable)inputList[i];
+			inputs[i].AssignID( (int)(double)element["inputID"] );
+		}
+	}
+
+	
+	public override void DeserializeConnections (Hashtable data)
+	{
+		base.DeserializeConnections(data);
+
+		next.ConnectedPort = tree.GetPort( (int)(double)data["nextLink"] );
+		
+		ArrayList inputList = (ArrayList)data["inputs"];
+		for(int i=0;i<inputList.Count;i++)
+		{
+			Hashtable element = (Hashtable)inputList[i];
+			inputs[i].ConnectedPort = tree.GetPort( (int)(double)element["inputLinkID"] );
+		}
+
 	}
 
 	
@@ -221,7 +280,7 @@ public class Script2DCommandNode : Script2DNode
 			{
 				for(int j=0;j<ScriptCommand.ParamCount;j++)
 				{
-					if(GetInput(j).ConnectedPort!=null)
+					if(inputs[j].ConnectedPort!=null)
 					{
 						GUI.enabled = false;
 					}
@@ -256,9 +315,9 @@ public class Script2DCommandNode : Script2DNode
 		context.EndNode();
 
 
-		for(int i=0;i<InputCount;i++)
+		for(int i=0;i<inputs.Count;i++)
 		{
-			context.DrawPort(GetInput(i));
+			context.DrawPort(inputs[i]);
 		}
 		
 		context.DrawPort(next);

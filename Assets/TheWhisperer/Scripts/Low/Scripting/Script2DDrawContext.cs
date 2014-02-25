@@ -16,7 +16,6 @@ public class Script2DDrawContext
 {
 	
 	private Script2D target = null;
-	private Vector2 scrollPos = Vector2.zero;
 	
 	private Rect bounds = new Rect(0,0,1,1);
 	private Vector2 cameraPos = Vector2.zero;
@@ -43,10 +42,8 @@ public class Script2DDrawContext
 	
 	public Script2DDrawContext()
 	{
-
 		arrow_down = (Texture)Resources.LoadAssetAtPath("Assets/"+PlayerSettings.productName+"/Scripts/Low/Scripting/Editor/arrow_down.psd",typeof(Texture));
 		arrow_right = (Texture)Resources.LoadAssetAtPath("Assets/"+PlayerSettings.productName+"/Scripts/Low/Scripting/Editor/arrow_right.psd",typeof(Texture));
-		
 	}
 
 
@@ -79,17 +76,24 @@ public class Script2DDrawContext
 					node.RemoveFromTree();
 					return;
 				}
-				
-				bounds = new Rect(0,0,1,1);
-				
-				if(node.Position.x-60f < bounds.x)
-					bounds.x = node.Position.x - 60f;
-				if(node.Position.x > bounds.x+bounds.width)
-					bounds.width = node.Position.x - bounds.x;
-				if(node.Position.y-60f < bounds.y)
-					bounds.y = node.Position.y - 60f;
-				if(node.Position.y > bounds.y+bounds.height)
-					bounds.height = node.Position.y - bounds.y;
+			}
+
+			bounds = new Rect(0,0,1,1);
+
+			//TODO: Make the bounds extensions a variable
+			foreach(Script2DNode node in target.ScriptTree.NodeList)
+			{
+				if(node.Position.x < bounds.x)
+					bounds.x = node.Position.x;
+				if(node.Position.y < bounds.y)
+					bounds.y = node.Position.y;
+			}
+			foreach(Script2DNode node in target.ScriptTree.NodeList)
+			{
+				if(node.Position.x+300f > bounds.x+bounds.width)
+					bounds.width = node.Position.x+300f - bounds.x;
+				if(node.Position.y+200f > bounds.y+bounds.height)
+					bounds.height = node.Position.y+200f - bounds.y;
 			}
 			
 			if(Event.current.type == EventType.ScrollWheel)
@@ -116,6 +120,11 @@ public class Script2DDrawContext
 			{
 				Script2DNode newNode = new Script2DIfNode(target.ScriptTree);
 				newNode.Position = cameraPos + Vector2.one*20f;
+			}
+
+			if(GUILayout.Button("Save"))
+			{
+				target.savedJson = target.ScriptTree.Serialize();
 			}
 			
 			
@@ -235,8 +244,8 @@ public class Script2DDrawContext
 	public void DrawGrid()
 	{
 		Vector2 gridCursor = cameraPos;
-		gridCursor.x = ((int)(gridCursor.x/200f)+1)*200f;
-		gridCursor.y = ((int)(gridCursor.y/200f)+1)*200f;
+		gridCursor.x = ((int)(gridCursor.x/200f))*200f;
+		gridCursor.y = ((int)(gridCursor.y/200f))*200f;
 		
 		while(gridCursor.x < cameraPos.x + 4000f)
 		{
@@ -257,7 +266,7 @@ public class Script2DDrawContext
 	
 	public bool DrawPort(Script2DPort port)
 	{
-		//Draw the arrow texture
+		//Draw the arrow texture 
 		bool isVert = port.PortDirection==Script2DPortDirection.VerticalIn || port.PortDirection==Script2DPortDirection.VerticalOut;
 		Vector2 arrowSize = isVert ? new Vector2(20,10) : new Vector2(10,20);
 		Rect rect = cam_rect(port.Position.x-arrowSize.x/2f,port.Position.y-arrowSize.y/2f,arrowSize.x,arrowSize.y);

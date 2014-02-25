@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Reflection;
 
+[ExecuteInEditMode]
 public class Script2D  : Triggerable
 {
 
@@ -10,6 +11,10 @@ public class Script2D  : Triggerable
 	public TriggerPlayLimit PlayLimit;
 	public string PlayLimitSaveString = "";
 
+	
+	
+	[SerializeField]
+	public string savedJson = "";
 
 
 	private Script2DTree tree = null;
@@ -31,10 +36,24 @@ public class Script2D  : Triggerable
 	}
 
 
-	public Script2D()
+	void Update()
 	{
-		tree = new Script2DTree();
+		if(tree==null)
+		{
+			tree = new Script2DTree();
+
+			if(savedJson!="")
+			{
+				tree.Deserialize(savedJson);
+			}
+			else
+			{
+				tree.Init();
+			}
+		}
 	}
+
+
 
 
 	public override void OnTriggered(TriggerEventType triggerType)
@@ -52,13 +71,12 @@ public class Script2D  : Triggerable
 		//TODO: Allow a script to update its coroutines on deltatime, fixeddeltatime, etc.?
 		isRunning = true;
 
-		currentNode = tree.Head;
+		currentNode = tree.EntryNode;
 		while(currentNode!=null)
 		{
 			yield return StartCoroutine( currentNode.Run() );
 			currentNode = currentNode.GetMoveNext();
 		}
-
 		isRunning = false;
 		
 		switch(PlayLimit)

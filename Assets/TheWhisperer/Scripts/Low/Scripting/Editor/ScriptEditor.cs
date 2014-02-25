@@ -94,7 +94,7 @@ public class ScriptEditor : Editor
 			catch (System.Exception e)
 			{
 				EditorGUILayout.BeginHorizontal();
-				GUILayout.Label ("[missing method - " + cmd.MethodName + "] Replace with:");
+				GUILayout.Label (e.GetType().ToString() + " [missing method - " + cmd.MethodName + "] Replace with:");
 				Command newCommand = NewCommandDropDown();
 				if(newCommand!=null)
 				{

@@ -11,6 +11,7 @@ public enum Script2DPortDirection
 
 public class Script2DPort
 {
+	private int id = 0;
 
 	private ParamType type = ParamType.Bool;
 
@@ -22,6 +23,19 @@ public class Script2DPort
 
 	private Script2DPortDirection portDirection = Script2DPortDirection.HorizontalIn;
 
+
+	public int ID
+	{
+		get { return id; }
+	}
+	
+	public int ConnectedPortID
+	{
+		get
+		{
+			return ConnectedPort!=null ? ConnectedPort.ID : -1;
+		}
+	}
 
 	public ParamType Type
 	{
@@ -72,6 +86,18 @@ public class Script2DPort
 		}
 	}
 
+	
+	
+	public Script2DPort(Vector2 posOffset, ParamType t, Script2DNode thisNode, Script2DPortDirection dir)
+	{
+		type = t;
+		myNode = thisNode;
+		portDirection = dir;
+		offset = posOffset;
+	}
+
+
+
 	public bool IsCompatibleWith(Script2DPort otherPort)
 	{
 		return otherPort==null || ( otherPort.Type==type && IsOppositeModes(otherPort.PortDirection,portDirection ) && otherPort.MyNode!=myNode );
@@ -114,13 +140,12 @@ public class Script2DPort
 	}
 
 
-
-	public Script2DPort(Vector2 posOffset, ParamType t, Script2DNode thisNode, Script2DPortDirection dir)
+	public void AssignID(int portid)
 	{
-		type = t;
-		myNode = thisNode;
-		portDirection = dir;
-		offset = posOffset;
+		if(portid>=0)
+		{
+			id = portid;
+		}
 	}
 
 }
