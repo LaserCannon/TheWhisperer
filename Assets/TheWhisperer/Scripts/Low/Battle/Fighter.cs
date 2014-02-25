@@ -58,7 +58,7 @@ public abstract class Fighter : MonoBehaviour
 	{
 	}
 	
-	protected void Start()
+	protected virtual void Start()
 	{
 		initPos = transform.localPosition;
 		moveToPos = initPos;

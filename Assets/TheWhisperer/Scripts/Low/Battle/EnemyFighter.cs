@@ -20,7 +20,7 @@ public class EnemyFighter : Fighter
 	public int speed = 5;
 	
 	
-	void Start()
+	protected override void Start()
 	{
 		StartCoroutine(BattleLoop());
 	}
