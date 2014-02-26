@@ -121,21 +121,34 @@ public class Script2DDrawContext
 			{
 				connectingPort.ConnectedPort = DrawActiveConnection(connectingPort);
 			}
+
+			
+			EditorGUILayout.BeginHorizontal();
+			
+			if(GUILayout.Button("if",GUILayout.Width(40)))
+			{
+				Script2DNode newNode = new Script2DIfNode(target.ScriptTree);
+				newNode.Position = cameraPos + Vector2.one*200f;
+			}
+			if(GUILayout.Button("while",GUILayout.Width(40)))
+			{
+			}
+			if(GUILayout.Button("for",GUILayout.Width(40)))
+			{
+			}
 			
 			Command c = NewCommandDropDown();
 			if(c!=null)
 			{
 				Script2DNode newNode = new Script2DCommandNode(c,target.ScriptTree);
-				newNode.Position = cameraPos + Vector2.one*20f;
-			}
-			
-			if(GUILayout.Button ("If"))
-			{
-				Script2DNode newNode = new Script2DIfNode(target.ScriptTree);
-				newNode.Position = cameraPos + Vector2.one*20f;
+				newNode.Position = cameraPos + Vector2.one*200f;
 			}
 
-			if(GUILayout.Button("Save"))
+			EditorGUILayout.EndHorizontal();
+
+
+
+			if(GUILayout.Button("Save",GUILayout.Width(100)))
 			{
 				target.savedJson = target.ScriptTree.Serialize();
 			}
@@ -165,8 +178,8 @@ public class Script2DDrawContext
 				Repaint();
 			}
 			
-			EditorStyles.miniButton.fontSize = oldLabelSize;
-			EditorStyles.label.fontSize = oldLabelSize;
+			EditorStyles.miniButton.fontSize = 12;
+			EditorStyles.label.fontSize = 12;
 		}
 	}
 
@@ -194,7 +207,7 @@ public class Script2DDrawContext
 		
 		//Now do the drop-down
 		int commind = 0;
-		commind = EditorGUILayout.Popup(commind,methodnames.ToArray());
+		commind = EditorGUILayout.Popup(commind,methodnames.ToArray(),GUILayout.Width(250));
 		if(commind!=0 && !methodnames[commind].Contains("-"))
 		{
 			return new Command(methodnames[commind]);

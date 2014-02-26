@@ -134,7 +134,10 @@ public class Script2DIfNode : Script2DNode
 		context.BeginNode(this, new Vector2(100,50));
 
 		GUI.Label (context.zoomed_rect(15,15,20,20),"IF",EditorStyles.label);
-		
+		if(GUI.Button(context.zoomed_rect(70,0,20,20),"X",EditorStyles.miniButton))
+		{
+			return false;
+		}
 		
 		context.EndNode();
 		

@@ -1118,17 +1118,17 @@ MonoBehaviour:
   Cooldown: 0
   PlayLimit: 0
   PlayLimitSaveString: 
-  savedJson: '{"nodes":[{"id":1, "type":"Script2DEntryNode", "next":1, "nextLink":10,
-    "posy":198.321334838867, "posx":-12.5423717498779}, {"type":"Script2DCommandNode",
-    "posy":155.187774658203, "command":{"params":[{"value":-1, "type":1}, {"value":"",
+  savedJson: '{"nodes":[{"id":1, "type":"Script2DEntryNode", "next":1, "nextLink":3,
+    "posy":287.299468994141, "posx":-53.1627998352051}, {"type":"Script2DCommandNode",
+    "posy":404.49072265625, "command":{"params":[{"value":-1, "type":1}, {"value":"",
     "type":4}], "doesWaitForFinish":false, "commandName":"SendMessage", "enabled":false},
     "last":3, "inputs":[{"inputLinkID":-1, "inputID":5}, {"inputLinkID":-1, "inputID":6}],
-    "id":2, "return":4, "posx":138.218978881836, "next":2, "nextLink":12}, {"type":"Script2DIfNode",
-    "inputLink":-1, "last":10, "falseNext":9, "id":3, "posx":104.070762634277, "next":8,
-    "input":7, "falseNextLink":-1, "nextLink":3, "posy":296.651519775391}, {"type":"Script2DCommandNode",
-    "posy":326.525299072266, "command":{"params":[{"value":1, "type":2}], "doesWaitForFinish":true,
+    "id":2, "return":4, "posx":131.436752319336, "next":2, "nextLink":12}, {"type":"Script2DCommandNode",
+    "posy":383.47314453125, "command":{"params":[{"value":1, "type":2}], "doesWaitForFinish":true,
     "commandName":"Wait", "enabled":true}, "last":12, "inputs":[{"inputLinkID":-1,
-    "inputID":14}], "id":4, "return":13, "posx":332.679351806641, "next":11, "nextLink":-1}]}'
+    "inputID":14}], "id":4, "return":13, "posx":480.958587646484, "next":11, "nextLink":-1},
+    {"type":"Script2DIfNode", "inputLink":-1, "last":10, "falseNext":9, "id":3, "posx":188.532119750977,
+    "next":8, "input":7, "falseNextLink":-1, "nextLink":-1, "posy":322.833801269531}]}'
 --- !u!4 &253251651
 Transform:
   m_ObjectHideFlags: 0
