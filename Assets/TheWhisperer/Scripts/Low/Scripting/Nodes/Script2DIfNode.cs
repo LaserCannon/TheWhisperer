@@ -132,9 +132,8 @@ public class Script2DIfNode : Script2DNode
 	{		
 		
 		context.BeginNode(this, new Vector2(100,50));
-		
 
-		GUI.Label (new Rect(15,15,20,20),"IF",EditorStyles.boldLabel);
+		GUI.Label (context.zoomed_rect(15,15,20,20),"IF",EditorStyles.label);
 		
 		
 		context.EndNode();

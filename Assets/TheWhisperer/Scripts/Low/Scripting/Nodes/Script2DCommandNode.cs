@@ -223,7 +223,7 @@ public class Script2DCommandNode : Script2DNode
 			
 			// -- 'Enabled' button -- //
 			string buttonTxt = ScriptCommand.enabled ? ":" : "//";
-			if(GUILayout.Button(buttonTxt,GUILayout.Width(24)))
+			if(GUILayout.Button(buttonTxt,EditorStyles.miniButton,GUILayout.Width(context.cam_size(24)),GUILayout.Height(context.cam_size(24))))
 			{
 				ScriptCommand.enabled = !ScriptCommand.enabled;
 			}
@@ -231,9 +231,14 @@ public class Script2DCommandNode : Script2DNode
 			
 			// -- Method name -- //
 			if(cmd.enabled)
-				GUILayout.Label(ScriptCommand.MethodName,EditorStyles.whiteLargeLabel);
+				GUILayout.Label(ScriptCommand.MethodName,EditorStyles.label);
 			else
+			{
+				int oldSize = ScriptEditorStyles.GreyedOutStyle.fontSize;
+				ScriptEditorStyles.GreyedOutStyle.fontSize = (int)(context.Zoom * 12f);
 				GUILayout.Label(ScriptCommand.MethodName,ScriptEditorStyles.GreyedOutStyle);
+				ScriptEditorStyles.GreyedOutStyle.fontSize = oldSize;
+			}
 			// -- -- -- -- //
 			
 			// -- Wait for this function? -- //
@@ -252,7 +257,7 @@ public class Script2DCommandNode : Script2DNode
 			if(ScriptCommand.IsWaitable)
 			{
 				string waitString = ScriptCommand.DoesWaitForFinish ? "Wait" : "---";
-				if(GUILayout.Button (waitString,GUILayout.Width(40)))
+				if(GUILayout.Button (waitString,EditorStyles.miniButton,GUILayout.Width(context.cam_size(40)),GUILayout.Height(context.cam_size(20))))
 				{
 					ScriptCommand.DoesWaitForFinish = !ScriptCommand.DoesWaitForFinish;
 				}
@@ -264,7 +269,7 @@ public class Script2DCommandNode : Script2DNode
 			// -- -- -- -- //
 			
 			// -- 'Delete this function' button -- //
-			if(GUILayout.Button ("X",GUILayout.Width(24)))
+			if(GUILayout.Button ("X",EditorStyles.miniButton,GUILayout.Width(context.cam_size(24)),GUILayout.Height(context.cam_size(24))))
 			{
 				return false;
 			}
@@ -296,7 +301,7 @@ public class Script2DCommandNode : Script2DNode
 					//If we didn't find a GUI function, do the default UI
 					if(!customFound)
 					{
-						outval = DrawParamGUI(pName,p);
+						outval = DrawParamGUI(context,pName,p);
 					}
 					
 					//Set the value!
@@ -332,21 +337,20 @@ public class Script2DCommandNode : Script2DNode
 
 	
 	
-	public object DrawParamGUI(string pName, Param p)
+	public object DrawParamGUI(Script2DDrawContext context, string pName, Param p)
 	{
-		if(p.IsInt)		return EditorGUILayout.IntField(pName + " (Integer):",p.Int);
-		if(p.IsFloat)	return EditorGUILayout.FloatField(pName + " (Float):",p.Float);
-		if(p.IsObject)	return EditorGUILayout.ObjectField(pName + " (Object):",p.Object,p.TypeRecord,true);
-		if(p.IsString)	return EditorGUILayout.TextField(pName + " (String):",p.String);
-		if(p.IsBool)	return EditorGUILayout.Toggle(pName + " (Bool):",p.Bool);
+		if(p.IsInt)		return EditorGUILayout.IntField(pName + " (Integer):",p.Int,GUILayout.Height((float)(18f*context.Zoom)));
+		if(p.IsFloat)	return EditorGUILayout.FloatField(pName + " (Float):",p.Float,GUILayout.Height((float)(18f*context.Zoom)));
+		if(p.IsObject)	return EditorGUILayout.ObjectField(pName + " (Object):",p.Object,p.TypeRecord,true,GUILayout.Height((float)(18f*context.Zoom)));
+		if(p.IsString)	return EditorGUILayout.TextField(pName + " (String):",p.String,GUILayout.Height((float)(18f*context.Zoom)));
+		if(p.IsBool)	return EditorGUILayout.Toggle(pName + " (Bool):",p.Bool,GUILayout.Height((float)(18f*context.Zoom)));
 		if(p.IsEnum)	{
 			string[] strs = System.Enum.GetNames(p.TypeRecord);
-			return EditorGUILayout.Popup(pName + " (Enum):",p.Int,strs);
+			return EditorGUILayout.Popup(pName + " (Enum):",p.Int,strs,GUILayout.Height((float)(18f*context.Zoom)));
 		}
 		return null;
 	}
 
 	#endif
-
 
 }

@@ -14,6 +14,8 @@ using UnityEditor;
 
 public class Script2DDrawContext
 {
+	private Font font;
+	private GUIStyle textStyle;
 	
 	private Script2D target = null;
 	
@@ -32,7 +34,10 @@ public class Script2DDrawContext
 		get { return draggingNode!=null || connectingPort!=null; }
 	}
 
-
+	public float Zoom
+	{
+		get { return zoom; }
+	}
 
 
 	private Texture arrow_down = null;
@@ -44,6 +49,8 @@ public class Script2DDrawContext
 	{
 		arrow_down = (Texture)Resources.LoadAssetAtPath("Assets/"+PlayerSettings.productName+"/Scripts/Low/Scripting/Editor/arrow_down.psd",typeof(Texture));
 		arrow_right = (Texture)Resources.LoadAssetAtPath("Assets/"+PlayerSettings.productName+"/Scripts/Low/Scripting/Editor/arrow_right.psd",typeof(Texture));
+
+		textStyle = new GUIStyle(EditorStyles.label);
 	}
 
 
@@ -68,15 +75,6 @@ public class Script2DDrawContext
 		if(target!=null)
 		{
 			DrawGrid ();
-
-			foreach(Script2DNode node in target.ScriptTree.NodeList)
-			{
-				if(!node.DrawContents(this))
-				{
-					node.RemoveFromTree();
-					return;
-				}
-			}
 
 			bounds = new Rect(0,0,1,1);
 
@@ -103,6 +101,21 @@ public class Script2DDrawContext
 				
 				Repaint();
 			}
+			
+			
+			int oldLabelSize = EditorStyles.label.fontSize;
+			EditorStyles.label.fontSize = (int)(12f * zoom);
+			EditorStyles.miniButton.fontSize = (int)(12f * zoom);
+			
+			foreach(Script2DNode node in target.ScriptTree.NodeList)
+			{
+				if(!node.DrawContents(this))
+				{
+					node.RemoveFromTree();
+					return;
+				}
+			}
+
 			
 			if(connectingPort!=null)
 			{
@@ -151,6 +164,9 @@ public class Script2DDrawContext
 				
 				Repaint();
 			}
+			
+			EditorStyles.miniButton.fontSize = oldLabelSize;
+			EditorStyles.label.fontSize = oldLabelSize;
 		}
 	}
 
@@ -322,33 +338,37 @@ public class Script2DDrawContext
 	
 	//Camera transforms
 	
-	private Vector2 cam_pos(Vector2 pos)
+	public Vector2 cam_pos(Vector2 pos)
 	{
 		return (pos - cameraPos) * zoom;
 	}
 	
-	private float cam_x(float x)
+	public float cam_x(float x)
 	{
 		return (x - cameraPos.x) * zoom;
 	}
-	private float cam_y(float y)
+	public float cam_y(float y)
 	{
 		return (y - cameraPos.y) * zoom;
 	}
 	
-	private Vector2 cam_size(Vector2 size)
+	public Vector2 cam_size(Vector2 size)
 	{
 		return size * zoom;
 	}
 	
-	private float cam_size(float size)
+	public float cam_size(float size)
 	{
 		return size * zoom;
 	}
 	
-	private Rect cam_rect(float x, float y, float w, float h)
+	public Rect cam_rect(float x, float y, float w, float h)
 	{
 		return new Rect(cam_x(x),cam_y(y),cam_size(w),cam_size(h));
+	}
+	public Rect zoomed_rect(float x, float y, float w, float h)
+	{
+		return new Rect(x*zoom,y*zoom,w*zoom,h*zoom);
 	}
 
 }

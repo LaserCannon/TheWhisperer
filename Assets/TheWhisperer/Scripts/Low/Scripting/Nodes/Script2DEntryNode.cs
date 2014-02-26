@@ -85,7 +85,7 @@ public class Script2DEntryNode : Script2DNode
 	{		
 		context.BeginNode(this, new Vector2(100,50));
 
-		GUI.Label (new Rect(15,15,100,20),"BEGIN",EditorStyles.boldLabel);
+		GUI.Label (context.zoomed_rect(15,15,100,20),"BEGIN",EditorStyles.label);
 
 		context.EndNode();
 		
