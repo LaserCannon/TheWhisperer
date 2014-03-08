@@ -72,7 +72,7 @@ public class GameTrigger : BaseTrigger
 			cantrig = true;
 			break;
 		case TriggeringObjectType.PlayerOnly:
-			cantrig = (obj == PlayerAgent.main.gameObject);
+			cantrig = (obj == GameController.main.Player.gameObject);
 			break;
 		}
 		

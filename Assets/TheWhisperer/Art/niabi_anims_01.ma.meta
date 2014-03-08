@@ -1,0 +1,1645 @@
+fileFormatVersion: 2
+guid: c72cd27fb651747069d42ce756761191
+ModelImporter:
+  serializedVersion: 15
+  fileIDToRecycleName:
+    100000: arrow1
+    100002: arrow2
+    100004: arrow3
+    100006: arrow4
+    100008: ArrowJoint
+    100010: bow
+    100012: Case
+    100014: chest
+    100016: chest 1
+    100018: feather1
+    100020: feather1 1
+    100022: feather2
+    100024: feather2 1
+    100026: feather3
+    100028: feather3 1
+    100030: ikHandle1
+    100032: ikHandle2
+    100034: ikHandle3
+    100036: ikHandle4
+    100038: jaw
+    100040: L_ankle
+    100042: L_braid1
+    100044: L_braid1 1
+    100046: L_braid2
+    100048: L_braid2 1
+    100050: L_braid3
+    100052: L_braid3 1
+    100054: L_braid4
+    100056: L_braid4 1
+    100058: L_elbow
+    100060: L_elbow 1
+    100062: L_eye
+    100064: L_fingers1
+    100066: L_fingers1 1
+    100068: L_fingers2
+    100070: L_fingers2 1
+    100072: L_foot
+    100074: L_foot 1
+    100076: L_knee
+    100078: L_knee 1
+    100080: L_knee1
+    100082: L_Leg
+    100084: L_shoulder
+    100086: L_shoulder 1
+    100088: L_thumb
+    100090: L_thumb 1
+    100092: L_wrist
+    100094: L_wrist 1
+    100096: master
+    100098: Mesh
+    100100: neck
+    100102: neck 1
+    100104: //RootNode
+    100106: niabiFeather
+    100108: niabiMesh
+    100110: R_ankle
+    100112: R_braid1
+    100114: R_braid1 1
+    100116: R_braid2
+    100118: R_braid2 1
+    100120: R_braid3
+    100122: R_braid3 1
+    100124: R_braid4
+    100126: R_braid4 1
+    100128: R_elbow
+    100130: R_elbow 1
+    100132: R_eye
+    100134: R_fingers1
+    100136: R_fingers1 1
+    100138: R_fingers2
+    100140: R_fingers2 1
+    100142: R_foot
+    100144: R_foot 1
+    100146: R_knee
+    100148: R_Leg
+    100150: R_shoulder
+    100152: R_shoulder1
+    100154: R_thumb
+    100156: R_thumb 1
+    100158: R_wrist
+    100160: R_wrist 1
+    100162: root
+    100164: root1
+    400000: arrow1
+    400002: arrow2
+    400004: arrow3
+    400006: arrow4
+    400008: ArrowJoint
+    400010: bow
+    400012: Case
+    400014: chest
+    400016: chest 1
+    400018: feather1
+    400020: feather1 1
+    400022: feather2
+    400024: feather2 1
+    400026: feather3
+    400028: feather3 1
+    400030: ikHandle1
+    400032: ikHandle2
+    400034: ikHandle3
+    400036: ikHandle4
+    400038: jaw
+    400040: L_ankle
+    400042: L_braid1
+    400044: L_braid1 1
+    400046: L_braid2
+    400048: L_braid2 1
+    400050: L_braid3
+    400052: L_braid3 1
+    400054: L_braid4
+    400056: L_braid4 1
+    400058: L_elbow
+    400060: L_elbow 1
+    400062: L_eye
+    400064: L_fingers1
+    400066: L_fingers1 1
+    400068: L_fingers2
+    400070: L_fingers2 1
+    400072: L_foot
+    400074: L_foot 1
+    400076: L_knee
+    400078: L_knee 1
+    400080: L_knee1
+    400082: L_Leg
+    400084: L_shoulder
+    400086: L_shoulder 1
+    400088: L_thumb
+    400090: L_thumb 1
+    400092: L_wrist
+    400094: L_wrist 1
+    400096: master
+    400098: Mesh
+    400100: neck
+    400102: neck 1
+    400104: //RootNode
+    400106: niabiFeather
+    400108: niabiMesh
+    400110: R_ankle
+    400112: R_braid1
+    400114: R_braid1 1
+    400116: R_braid2
+    400118: R_braid2 1
+    400120: R_braid3
+    400122: R_braid3 1
+    400124: R_braid4
+    400126: R_braid4 1
+    400128: R_elbow
+    400130: R_elbow 1
+    400132: R_eye
+    400134: R_fingers1
+    400136: R_fingers1 1
+    400138: R_fingers2
+    400140: R_fingers2 1
+    400142: R_foot
+    400144: R_foot 1
+    400146: R_knee
+    400148: R_Leg
+    400150: R_shoulder
+    400152: R_shoulder1
+    400154: R_thumb
+    400156: R_thumb 1
+    400158: R_wrist
+    400160: R_wrist 1
+    400162: root
+    400164: root1
+    2300000: arrow1
+    2300002: arrow2
+    2300004: arrow3
+    2300006: arrow4
+    2300008: bow
+    2300010: Case
+    3300000: arrow1
+    3300002: arrow2
+    3300004: arrow3
+    3300006: arrow4
+    3300008: bow
+    3300010: Case
+    4300000: bow
+    4300002: Case
+    4300004: arrow2
+    4300006: arrow3
+    4300008: arrow4
+    4300010: niabiMesh
+    4300012: niabiFeather
+    4300014: arrow1
+    7400000: idle
+    7400002: attack
+    7400004: walk
+    7400006: run
+    9500000: //RootNode
+    13700000: niabiFeather
+    13700002: niabiMesh
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 1
+    optimizeGameObjects: 1
+    animationCompression: 3
+    animationRotationError: .5
+    animationPositionError: .5
+    animationScaleError: .5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    clipAnimations:
+    - serializedVersion: 16
+      name: idle
+      takeName: Take 001
+      firstFrame: 1
+      lastFrame: 23
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      loopTime: 1
+      loopBlend: 1
+      loopBlendOrientation: 0
+      loopBlendPositionY: 1
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 1
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: ArrowJoint
+        weight: 0
+      - path: ArrowJoint/arrow1
+        weight: 0
+      - path: master
+        weight: 1
+      - path: master/L_foot
+        weight: 0
+      - path: master/L_foot/ikHandle1
+        weight: 0
+      - path: master/L_foot/ikHandle1/ikHandle2
+        weight: 0
+      - path: master/L_foot/L_knee
+        weight: 0
+      - path: master/R_foot
+        weight: 0
+      - path: master/R_foot/ikHandle3
+        weight: 0
+      - path: master/R_foot/ikHandle3/ikHandle4
+        weight: 0
+      - path: master/R_foot/L_knee1
+        weight: 0
+      - path: master/root1
+        weight: 1
+      - path: master/root1/chest
+        weight: 0
+      - path: master/root1/chest/L_shoulder
+        weight: 0
+      - path: master/root1/chest/L_shoulder/L_elbow
+        weight: 0
+      - path: master/root1/chest/L_shoulder/L_elbow/L_wrist
+        weight: 0
+      - path: master/root1/chest/L_shoulder/L_elbow/L_wrist/L_fingers1
+        weight: 0
+      - path: master/root1/chest/L_shoulder/L_elbow/L_wrist/L_fingers1/L_fingers2
+        weight: 0
+      - path: master/root1/chest/L_shoulder/L_elbow/L_wrist/L_thumb
+        weight: 0
+      - path: master/root1/chest/neck
+        weight: 0
+      - path: master/root1/chest/neck/feather1
+        weight: 0
+      - path: master/root1/chest/neck/feather1/feather2
+        weight: 0
+      - path: master/root1/chest/neck/feather1/feather2/feather3
+        weight: 0
+      - path: master/root1/chest/neck/L_braid1
+        weight: 0
+      - path: master/root1/chest/neck/L_braid1/L_braid2
+        weight: 0
+      - path: master/root1/chest/neck/L_braid1/L_braid2/L_braid3
+        weight: 0
+      - path: master/root1/chest/neck/L_braid1/L_braid2/L_braid3/L_braid4
+        weight: 0
+      - path: master/root1/chest/neck/R_braid1
+        weight: 0
+      - path: master/root1/chest/neck/R_braid1/R_braid2
+        weight: 0
+      - path: master/root1/chest/neck/R_braid1/R_braid2/R_braid3
+        weight: 0
+      - path: master/root1/chest/neck/R_braid1/R_braid2/R_braid3/R_braid4
+        weight: 0
+      - path: master/root1/chest/R_shoulder
+        weight: 0
+      - path: master/root1/chest/R_shoulder/R_elbow
+        weight: 0
+      - path: master/root1/chest/R_shoulder/R_elbow/R_wrist
+        weight: 0
+      - path: master/root1/chest/R_shoulder/R_elbow/R_wrist/R_fingers1
+        weight: 0
+      - path: master/root1/chest/R_shoulder/R_elbow/R_wrist/R_fingers1/R_fingers2
+        weight: 0
+      - path: master/root1/chest/R_shoulder/R_elbow/R_wrist/R_thumb
+        weight: 0
+      - path: master/root1/root
+        weight: 1
+      - path: master/root1/root/chest 1
+        weight: 1
+      - path: master/root1/root/chest 1/Case
+        weight: 0
+      - path: master/root1/root/chest 1/Case/arrow2
+        weight: 0
+      - path: master/root1/root/chest 1/Case/arrow3
+        weight: 0
+      - path: master/root1/root/chest 1/Case/arrow4
+        weight: 0
+      - path: master/root1/root/chest 1/L_shoulder 1
+        weight: 1
+      - path: master/root1/root/chest 1/L_shoulder 1/L_elbow 1
+        weight: 1
+      - path: master/root1/root/chest 1/L_shoulder 1/L_elbow 1/L_wrist 1
+        weight: 1
+      - path: master/root1/root/chest 1/L_shoulder 1/L_elbow 1/L_wrist 1/L_fingers1
+          1
+        weight: 1
+      - path: master/root1/root/chest 1/L_shoulder 1/L_elbow 1/L_wrist 1/L_fingers1
+          1/L_fingers2 1
+        weight: 1
+      - path: master/root1/root/chest 1/L_shoulder 1/L_elbow 1/L_wrist 1/L_thumb 1
+        weight: 1
+      - path: master/root1/root/chest 1/neck 1
+        weight: 1
+      - path: master/root1/root/chest 1/neck 1/feather1 1
+        weight: 0
+      - path: master/root1/root/chest 1/neck 1/feather1 1/feather2 1
+        weight: 0
+      - path: master/root1/root/chest 1/neck 1/feather1 1/feather2 1/feather3 1
+        weight: 0
+      - path: master/root1/root/chest 1/neck 1/jaw
+        weight: 0
+      - path: master/root1/root/chest 1/neck 1/L_braid1 1
+        weight: 0
+      - path: master/root1/root/chest 1/neck 1/L_braid1 1/L_braid2 1
+        weight: 0
+      - path: master/root1/root/chest 1/neck 1/L_braid1 1/L_braid2 1/L_braid3 1
+        weight: 0
+      - path: master/root1/root/chest 1/neck 1/L_braid1 1/L_braid2 1/L_braid3 1/L_braid4
+          1
+        weight: 0
+      - path: master/root1/root/chest 1/neck 1/L_eye
+        weight: 0
+      - path: master/root1/root/chest 1/neck 1/R_braid1 1
+        weight: 0
+      - path: master/root1/root/chest 1/neck 1/R_braid1 1/R_braid2 1
+        weight: 0
+      - path: master/root1/root/chest 1/neck 1/R_braid1 1/R_braid2 1/R_braid3 1
+        weight: 0
+      - path: master/root1/root/chest 1/neck 1/R_braid1 1/R_braid2 1/R_braid3 1/R_braid4
+          1
+        weight: 0
+      - path: master/root1/root/chest 1/neck 1/R_eye
+        weight: 0
+      - path: master/root1/root/chest 1/R_shoulder1
+        weight: 1
+      - path: master/root1/root/chest 1/R_shoulder1/R_elbow 1
+        weight: 1
+      - path: master/root1/root/chest 1/R_shoulder1/R_elbow 1/R_wrist 1
+        weight: 1
+      - path: master/root1/root/chest 1/R_shoulder1/R_elbow 1/R_wrist 1/R_fingers1
+          1
+        weight: 1
+      - path: master/root1/root/chest 1/R_shoulder1/R_elbow 1/R_wrist 1/R_fingers1
+          1/bow
+        weight: 0
+      - path: master/root1/root/chest 1/R_shoulder1/R_elbow 1/R_wrist 1/R_fingers1
+          1/R_fingers2 1
+        weight: 1
+      - path: master/root1/root/chest 1/R_shoulder1/R_elbow 1/R_wrist 1/R_thumb 1
+        weight: 1
+      - path: master/root1/root/L_Leg
+        weight: 1
+      - path: master/root1/root/L_Leg/L_knee 1
+        weight: 1
+      - path: master/root1/root/L_Leg/L_knee 1/L_ankle
+        weight: 1
+      - path: master/root1/root/L_Leg/L_knee 1/L_ankle/L_foot 1
+        weight: 1
+      - path: master/root1/root/R_Leg
+        weight: 1
+      - path: master/root1/root/R_Leg/R_knee
+        weight: 1
+      - path: master/root1/root/R_Leg/R_knee/R_ankle
+        weight: 1
+      - path: master/root1/root/R_Leg/R_knee/R_ankle/R_foot 1
+        weight: 1
+      - path: Mesh
+        weight: 0
+      - path: Mesh/niabiFeather
+        weight: 0
+      - path: Mesh/niabiMesh
+        weight: 0
+      maskType: 0
+      maskSource: {instanceID: 0}
+    - serializedVersion: 16
+      name: attack
+      takeName: Take 001
+      firstFrame: 24
+      lastFrame: 60
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: ArrowJoint
+        weight: 0
+      - path: ArrowJoint/arrow1
+        weight: 0
+      - path: master
+        weight: 1
+      - path: master/L_foot
+        weight: 0
+      - path: master/L_foot/ikHandle1
+        weight: 0
+      - path: master/L_foot/ikHandle1/ikHandle2
+        weight: 0
+      - path: master/L_foot/L_knee
+        weight: 0
+      - path: master/R_foot
+        weight: 0
+      - path: master/R_foot/ikHandle3
+        weight: 0
+      - path: master/R_foot/ikHandle3/ikHandle4
+        weight: 0
+      - path: master/R_foot/L_knee1
+        weight: 0
+      - path: master/root1
+        weight: 1
+      - path: master/root1/chest
+        weight: 0
+      - path: master/root1/chest/L_shoulder
+        weight: 0
+      - path: master/root1/chest/L_shoulder/L_elbow
+        weight: 0
+      - path: master/root1/chest/L_shoulder/L_elbow/L_wrist
+        weight: 0
+      - path: master/root1/chest/L_shoulder/L_elbow/L_wrist/L_fingers1
+        weight: 0
+      - path: master/root1/chest/L_shoulder/L_elbow/L_wrist/L_fingers1/L_fingers2
+        weight: 0
+      - path: master/root1/chest/L_shoulder/L_elbow/L_wrist/L_thumb
+        weight: 0
+      - path: master/root1/chest/neck
+        weight: 0
+      - path: master/root1/chest/neck/feather1
+        weight: 0
+      - path: master/root1/chest/neck/feather1/feather2
+        weight: 0
+      - path: master/root1/chest/neck/feather1/feather2/feather3
+        weight: 0
+      - path: master/root1/chest/neck/L_braid1
+        weight: 0
+      - path: master/root1/chest/neck/L_braid1/L_braid2
+        weight: 0
+      - path: master/root1/chest/neck/L_braid1/L_braid2/L_braid3
+        weight: 0
+      - path: master/root1/chest/neck/L_braid1/L_braid2/L_braid3/L_braid4
+        weight: 0
+      - path: master/root1/chest/neck/R_braid1
+        weight: 0
+      - path: master/root1/chest/neck/R_braid1/R_braid2
+        weight: 0
+      - path: master/root1/chest/neck/R_braid1/R_braid2/R_braid3
+        weight: 0
+      - path: master/root1/chest/neck/R_braid1/R_braid2/R_braid3/R_braid4
+        weight: 0
+      - path: master/root1/chest/R_shoulder
+        weight: 0
+      - path: master/root1/chest/R_shoulder/R_elbow
+        weight: 0
+      - path: master/root1/chest/R_shoulder/R_elbow/R_wrist
+        weight: 0
+      - path: master/root1/chest/R_shoulder/R_elbow/R_wrist/R_fingers1
+        weight: 0
+      - path: master/root1/chest/R_shoulder/R_elbow/R_wrist/R_fingers1/R_fingers2
+        weight: 0
+      - path: master/root1/chest/R_shoulder/R_elbow/R_wrist/R_thumb
+        weight: 0
+      - path: master/root1/root
+        weight: 1
+      - path: master/root1/root/chest 1
+        weight: 1
+      - path: master/root1/root/chest 1/Case
+        weight: 0
+      - path: master/root1/root/chest 1/Case/arrow2
+        weight: 0
+      - path: master/root1/root/chest 1/Case/arrow3
+        weight: 0
+      - path: master/root1/root/chest 1/Case/arrow4
+        weight: 0
+      - path: master/root1/root/chest 1/L_shoulder 1
+        weight: 1
+      - path: master/root1/root/chest 1/L_shoulder 1/L_elbow 1
+        weight: 1
+      - path: master/root1/root/chest 1/L_shoulder 1/L_elbow 1/L_wrist 1
+        weight: 1
+      - path: master/root1/root/chest 1/L_shoulder 1/L_elbow 1/L_wrist 1/L_fingers1
+          1
+        weight: 1
+      - path: master/root1/root/chest 1/L_shoulder 1/L_elbow 1/L_wrist 1/L_fingers1
+          1/L_fingers2 1
+        weight: 1
+      - path: master/root1/root/chest 1/L_shoulder 1/L_elbow 1/L_wrist 1/L_thumb 1
+        weight: 1
+      - path: master/root1/root/chest 1/neck 1
+        weight: 1
+      - path: master/root1/root/chest 1/neck 1/feather1 1
+        weight: 0
+      - path: master/root1/root/chest 1/neck 1/feather1 1/feather2 1
+        weight: 0
+      - path: master/root1/root/chest 1/neck 1/feather1 1/feather2 1/feather3 1
+        weight: 0
+      - path: master/root1/root/chest 1/neck 1/jaw
+        weight: 0
+      - path: master/root1/root/chest 1/neck 1/L_braid1 1
+        weight: 0
+      - path: master/root1/root/chest 1/neck 1/L_braid1 1/L_braid2 1
+        weight: 0
+      - path: master/root1/root/chest 1/neck 1/L_braid1 1/L_braid2 1/L_braid3 1
+        weight: 0
+      - path: master/root1/root/chest 1/neck 1/L_braid1 1/L_braid2 1/L_braid3 1/L_braid4
+          1
+        weight: 0
+      - path: master/root1/root/chest 1/neck 1/L_eye
+        weight: 0
+      - path: master/root1/root/chest 1/neck 1/R_braid1 1
+        weight: 0
+      - path: master/root1/root/chest 1/neck 1/R_braid1 1/R_braid2 1
+        weight: 0
+      - path: master/root1/root/chest 1/neck 1/R_braid1 1/R_braid2 1/R_braid3 1
+        weight: 0
+      - path: master/root1/root/chest 1/neck 1/R_braid1 1/R_braid2 1/R_braid3 1/R_braid4
+          1
+        weight: 0
+      - path: master/root1/root/chest 1/neck 1/R_eye
+        weight: 0
+      - path: master/root1/root/chest 1/R_shoulder1
+        weight: 1
+      - path: master/root1/root/chest 1/R_shoulder1/R_elbow 1
+        weight: 1
+      - path: master/root1/root/chest 1/R_shoulder1/R_elbow 1/R_wrist 1
+        weight: 1
+      - path: master/root1/root/chest 1/R_shoulder1/R_elbow 1/R_wrist 1/R_fingers1
+          1
+        weight: 1
+      - path: master/root1/root/chest 1/R_shoulder1/R_elbow 1/R_wrist 1/R_fingers1
+          1/bow
+        weight: 0
+      - path: master/root1/root/chest 1/R_shoulder1/R_elbow 1/R_wrist 1/R_fingers1
+          1/R_fingers2 1
+        weight: 1
+      - path: master/root1/root/chest 1/R_shoulder1/R_elbow 1/R_wrist 1/R_thumb 1
+        weight: 1
+      - path: master/root1/root/L_Leg
+        weight: 1
+      - path: master/root1/root/L_Leg/L_knee 1
+        weight: 1
+      - path: master/root1/root/L_Leg/L_knee 1/L_ankle
+        weight: 1
+      - path: master/root1/root/L_Leg/L_knee 1/L_ankle/L_foot 1
+        weight: 1
+      - path: master/root1/root/R_Leg
+        weight: 1
+      - path: master/root1/root/R_Leg/R_knee
+        weight: 1
+      - path: master/root1/root/R_Leg/R_knee/R_ankle
+        weight: 1
+      - path: master/root1/root/R_Leg/R_knee/R_ankle/R_foot 1
+        weight: 1
+      - path: Mesh
+        weight: 0
+      - path: Mesh/niabiFeather
+        weight: 0
+      - path: Mesh/niabiMesh
+        weight: 0
+      maskType: 0
+      maskSource: {instanceID: 0}
+    - serializedVersion: 16
+      name: walk
+      takeName: Take 001
+      firstFrame: 61
+      lastFrame: 83
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      loopTime: 1
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: ArrowJoint
+        weight: 0
+      - path: ArrowJoint/arrow1
+        weight: 0
+      - path: master
+        weight: 1
+      - path: master/L_foot
+        weight: 0
+      - path: master/L_foot/ikHandle1
+        weight: 0
+      - path: master/L_foot/ikHandle1/ikHandle2
+        weight: 0
+      - path: master/L_foot/L_knee
+        weight: 0
+      - path: master/R_foot
+        weight: 0
+      - path: master/R_foot/ikHandle3
+        weight: 0
+      - path: master/R_foot/ikHandle3/ikHandle4
+        weight: 0
+      - path: master/R_foot/L_knee1
+        weight: 0
+      - path: master/root1
+        weight: 1
+      - path: master/root1/chest
+        weight: 0
+      - path: master/root1/chest/L_shoulder
+        weight: 0
+      - path: master/root1/chest/L_shoulder/L_elbow
+        weight: 0
+      - path: master/root1/chest/L_shoulder/L_elbow/L_wrist
+        weight: 0
+      - path: master/root1/chest/L_shoulder/L_elbow/L_wrist/L_fingers1
+        weight: 0
+      - path: master/root1/chest/L_shoulder/L_elbow/L_wrist/L_fingers1/L_fingers2
+        weight: 0
+      - path: master/root1/chest/L_shoulder/L_elbow/L_wrist/L_thumb
+        weight: 0
+      - path: master/root1/chest/neck
+        weight: 0
+      - path: master/root1/chest/neck/feather1
+        weight: 0
+      - path: master/root1/chest/neck/feather1/feather2
+        weight: 0
+      - path: master/root1/chest/neck/feather1/feather2/feather3
+        weight: 0
+      - path: master/root1/chest/neck/L_braid1
+        weight: 0
+      - path: master/root1/chest/neck/L_braid1/L_braid2
+        weight: 0
+      - path: master/root1/chest/neck/L_braid1/L_braid2/L_braid3
+        weight: 0
+      - path: master/root1/chest/neck/L_braid1/L_braid2/L_braid3/L_braid4
+        weight: 0
+      - path: master/root1/chest/neck/R_braid1
+        weight: 0
+      - path: master/root1/chest/neck/R_braid1/R_braid2
+        weight: 0
+      - path: master/root1/chest/neck/R_braid1/R_braid2/R_braid3
+        weight: 0
+      - path: master/root1/chest/neck/R_braid1/R_braid2/R_braid3/R_braid4
+        weight: 0
+      - path: master/root1/chest/R_shoulder
+        weight: 0
+      - path: master/root1/chest/R_shoulder/R_elbow
+        weight: 0
+      - path: master/root1/chest/R_shoulder/R_elbow/R_wrist
+        weight: 0
+      - path: master/root1/chest/R_shoulder/R_elbow/R_wrist/R_fingers1
+        weight: 0
+      - path: master/root1/chest/R_shoulder/R_elbow/R_wrist/R_fingers1/R_fingers2
+        weight: 0
+      - path: master/root1/chest/R_shoulder/R_elbow/R_wrist/R_thumb
+        weight: 0
+      - path: master/root1/root
+        weight: 1
+      - path: master/root1/root/chest 1
+        weight: 1
+      - path: master/root1/root/chest 1/Case
+        weight: 0
+      - path: master/root1/root/chest 1/Case/arrow2
+        weight: 0
+      - path: master/root1/root/chest 1/Case/arrow3
+        weight: 0
+      - path: master/root1/root/chest 1/Case/arrow4
+        weight: 0
+      - path: master/root1/root/chest 1/L_shoulder 1
+        weight: 1
+      - path: master/root1/root/chest 1/L_shoulder 1/L_elbow 1
+        weight: 1
+      - path: master/root1/root/chest 1/L_shoulder 1/L_elbow 1/L_wrist 1
+        weight: 1
+      - path: master/root1/root/chest 1/L_shoulder 1/L_elbow 1/L_wrist 1/L_fingers1
+          1
+        weight: 1
+      - path: master/root1/root/chest 1/L_shoulder 1/L_elbow 1/L_wrist 1/L_fingers1
+          1/L_fingers2 1
+        weight: 1
+      - path: master/root1/root/chest 1/L_shoulder 1/L_elbow 1/L_wrist 1/L_thumb 1
+        weight: 1
+      - path: master/root1/root/chest 1/neck 1
+        weight: 1
+      - path: master/root1/root/chest 1/neck 1/feather1 1
+        weight: 0
+      - path: master/root1/root/chest 1/neck 1/feather1 1/feather2 1
+        weight: 0
+      - path: master/root1/root/chest 1/neck 1/feather1 1/feather2 1/feather3 1
+        weight: 0
+      - path: master/root1/root/chest 1/neck 1/jaw
+        weight: 0
+      - path: master/root1/root/chest 1/neck 1/L_braid1 1
+        weight: 0
+      - path: master/root1/root/chest 1/neck 1/L_braid1 1/L_braid2 1
+        weight: 0
+      - path: master/root1/root/chest 1/neck 1/L_braid1 1/L_braid2 1/L_braid3 1
+        weight: 0
+      - path: master/root1/root/chest 1/neck 1/L_braid1 1/L_braid2 1/L_braid3 1/L_braid4
+          1
+        weight: 0
+      - path: master/root1/root/chest 1/neck 1/L_eye
+        weight: 0
+      - path: master/root1/root/chest 1/neck 1/R_braid1 1
+        weight: 0
+      - path: master/root1/root/chest 1/neck 1/R_braid1 1/R_braid2 1
+        weight: 0
+      - path: master/root1/root/chest 1/neck 1/R_braid1 1/R_braid2 1/R_braid3 1
+        weight: 0
+      - path: master/root1/root/chest 1/neck 1/R_braid1 1/R_braid2 1/R_braid3 1/R_braid4
+          1
+        weight: 0
+      - path: master/root1/root/chest 1/neck 1/R_eye
+        weight: 0
+      - path: master/root1/root/chest 1/R_shoulder1
+        weight: 1
+      - path: master/root1/root/chest 1/R_shoulder1/R_elbow 1
+        weight: 1
+      - path: master/root1/root/chest 1/R_shoulder1/R_elbow 1/R_wrist 1
+        weight: 1
+      - path: master/root1/root/chest 1/R_shoulder1/R_elbow 1/R_wrist 1/R_fingers1
+          1
+        weight: 1
+      - path: master/root1/root/chest 1/R_shoulder1/R_elbow 1/R_wrist 1/R_fingers1
+          1/bow
+        weight: 0
+      - path: master/root1/root/chest 1/R_shoulder1/R_elbow 1/R_wrist 1/R_fingers1
+          1/R_fingers2 1
+        weight: 1
+      - path: master/root1/root/chest 1/R_shoulder1/R_elbow 1/R_wrist 1/R_thumb 1
+        weight: 1
+      - path: master/root1/root/L_Leg
+        weight: 1
+      - path: master/root1/root/L_Leg/L_knee 1
+        weight: 1
+      - path: master/root1/root/L_Leg/L_knee 1/L_ankle
+        weight: 1
+      - path: master/root1/root/L_Leg/L_knee 1/L_ankle/L_foot 1
+        weight: 1
+      - path: master/root1/root/R_Leg
+        weight: 1
+      - path: master/root1/root/R_Leg/R_knee
+        weight: 1
+      - path: master/root1/root/R_Leg/R_knee/R_ankle
+        weight: 1
+      - path: master/root1/root/R_Leg/R_knee/R_ankle/R_foot 1
+        weight: 1
+      - path: Mesh
+        weight: 0
+      - path: Mesh/niabiFeather
+        weight: 0
+      - path: Mesh/niabiMesh
+        weight: 0
+      maskType: 0
+      maskSource: {instanceID: 0}
+    - serializedVersion: 16
+      name: run
+      takeName: Take 001
+      firstFrame: 85
+      lastFrame: 98
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      loopTime: 1
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: ArrowJoint
+        weight: 0
+      - path: ArrowJoint/arrow1
+        weight: 0
+      - path: master
+        weight: 1
+      - path: master/L_foot
+        weight: 0
+      - path: master/L_foot/ikHandle1
+        weight: 0
+      - path: master/L_foot/ikHandle1/ikHandle2
+        weight: 0
+      - path: master/L_foot/L_knee
+        weight: 0
+      - path: master/R_foot
+        weight: 0
+      - path: master/R_foot/ikHandle3
+        weight: 0
+      - path: master/R_foot/ikHandle3/ikHandle4
+        weight: 0
+      - path: master/R_foot/L_knee1
+        weight: 0
+      - path: master/root1
+        weight: 1
+      - path: master/root1/chest
+        weight: 0
+      - path: master/root1/chest/L_shoulder
+        weight: 0
+      - path: master/root1/chest/L_shoulder/L_elbow
+        weight: 0
+      - path: master/root1/chest/L_shoulder/L_elbow/L_wrist
+        weight: 0
+      - path: master/root1/chest/L_shoulder/L_elbow/L_wrist/L_fingers1
+        weight: 0
+      - path: master/root1/chest/L_shoulder/L_elbow/L_wrist/L_fingers1/L_fingers2
+        weight: 0
+      - path: master/root1/chest/L_shoulder/L_elbow/L_wrist/L_thumb
+        weight: 0
+      - path: master/root1/chest/neck
+        weight: 0
+      - path: master/root1/chest/neck/feather1
+        weight: 0
+      - path: master/root1/chest/neck/feather1/feather2
+        weight: 0
+      - path: master/root1/chest/neck/feather1/feather2/feather3
+        weight: 0
+      - path: master/root1/chest/neck/L_braid1
+        weight: 0
+      - path: master/root1/chest/neck/L_braid1/L_braid2
+        weight: 0
+      - path: master/root1/chest/neck/L_braid1/L_braid2/L_braid3
+        weight: 0
+      - path: master/root1/chest/neck/L_braid1/L_braid2/L_braid3/L_braid4
+        weight: 0
+      - path: master/root1/chest/neck/R_braid1
+        weight: 0
+      - path: master/root1/chest/neck/R_braid1/R_braid2
+        weight: 0
+      - path: master/root1/chest/neck/R_braid1/R_braid2/R_braid3
+        weight: 0
+      - path: master/root1/chest/neck/R_braid1/R_braid2/R_braid3/R_braid4
+        weight: 0
+      - path: master/root1/chest/R_shoulder
+        weight: 0
+      - path: master/root1/chest/R_shoulder/R_elbow
+        weight: 0
+      - path: master/root1/chest/R_shoulder/R_elbow/R_wrist
+        weight: 0
+      - path: master/root1/chest/R_shoulder/R_elbow/R_wrist/R_fingers1
+        weight: 0
+      - path: master/root1/chest/R_shoulder/R_elbow/R_wrist/R_fingers1/R_fingers2
+        weight: 0
+      - path: master/root1/chest/R_shoulder/R_elbow/R_wrist/R_thumb
+        weight: 0
+      - path: master/root1/root
+        weight: 1
+      - path: master/root1/root/chest 1
+        weight: 1
+      - path: master/root1/root/chest 1/Case
+        weight: 0
+      - path: master/root1/root/chest 1/Case/arrow2
+        weight: 0
+      - path: master/root1/root/chest 1/Case/arrow3
+        weight: 0
+      - path: master/root1/root/chest 1/Case/arrow4
+        weight: 0
+      - path: master/root1/root/chest 1/L_shoulder 1
+        weight: 1
+      - path: master/root1/root/chest 1/L_shoulder 1/L_elbow 1
+        weight: 1
+      - path: master/root1/root/chest 1/L_shoulder 1/L_elbow 1/L_wrist 1
+        weight: 1
+      - path: master/root1/root/chest 1/L_shoulder 1/L_elbow 1/L_wrist 1/L_fingers1
+          1
+        weight: 1
+      - path: master/root1/root/chest 1/L_shoulder 1/L_elbow 1/L_wrist 1/L_fingers1
+          1/L_fingers2 1
+        weight: 1
+      - path: master/root1/root/chest 1/L_shoulder 1/L_elbow 1/L_wrist 1/L_thumb 1
+        weight: 1
+      - path: master/root1/root/chest 1/neck 1
+        weight: 1
+      - path: master/root1/root/chest 1/neck 1/feather1 1
+        weight: 0
+      - path: master/root1/root/chest 1/neck 1/feather1 1/feather2 1
+        weight: 0
+      - path: master/root1/root/chest 1/neck 1/feather1 1/feather2 1/feather3 1
+        weight: 0
+      - path: master/root1/root/chest 1/neck 1/jaw
+        weight: 0
+      - path: master/root1/root/chest 1/neck 1/L_braid1 1
+        weight: 0
+      - path: master/root1/root/chest 1/neck 1/L_braid1 1/L_braid2 1
+        weight: 0
+      - path: master/root1/root/chest 1/neck 1/L_braid1 1/L_braid2 1/L_braid3 1
+        weight: 0
+      - path: master/root1/root/chest 1/neck 1/L_braid1 1/L_braid2 1/L_braid3 1/L_braid4
+          1
+        weight: 0
+      - path: master/root1/root/chest 1/neck 1/L_eye
+        weight: 0
+      - path: master/root1/root/chest 1/neck 1/R_braid1 1
+        weight: 0
+      - path: master/root1/root/chest 1/neck 1/R_braid1 1/R_braid2 1
+        weight: 0
+      - path: master/root1/root/chest 1/neck 1/R_braid1 1/R_braid2 1/R_braid3 1
+        weight: 0
+      - path: master/root1/root/chest 1/neck 1/R_braid1 1/R_braid2 1/R_braid3 1/R_braid4
+          1
+        weight: 0
+      - path: master/root1/root/chest 1/neck 1/R_eye
+        weight: 0
+      - path: master/root1/root/chest 1/R_shoulder1
+        weight: 1
+      - path: master/root1/root/chest 1/R_shoulder1/R_elbow 1
+        weight: 1
+      - path: master/root1/root/chest 1/R_shoulder1/R_elbow 1/R_wrist 1
+        weight: 1
+      - path: master/root1/root/chest 1/R_shoulder1/R_elbow 1/R_wrist 1/R_fingers1
+          1
+        weight: 1
+      - path: master/root1/root/chest 1/R_shoulder1/R_elbow 1/R_wrist 1/R_fingers1
+          1/bow
+        weight: 0
+      - path: master/root1/root/chest 1/R_shoulder1/R_elbow 1/R_wrist 1/R_fingers1
+          1/R_fingers2 1
+        weight: 1
+      - path: master/root1/root/chest 1/R_shoulder1/R_elbow 1/R_wrist 1/R_thumb 1
+        weight: 1
+      - path: master/root1/root/L_Leg
+        weight: 1
+      - path: master/root1/root/L_Leg/L_knee 1
+        weight: 1
+      - path: master/root1/root/L_Leg/L_knee 1/L_ankle
+        weight: 1
+      - path: master/root1/root/L_Leg/L_knee 1/L_ankle/L_foot 1
+        weight: 1
+      - path: master/root1/root/R_Leg
+        weight: 1
+      - path: master/root1/root/R_Leg/R_knee
+        weight: 1
+      - path: master/root1/root/R_Leg/R_knee/R_ankle
+        weight: 1
+      - path: master/root1/root/R_Leg/R_knee/R_ankle/R_foot 1
+        weight: 1
+      - path: Mesh
+        weight: 0
+      - path: Mesh/niabiFeather
+        weight: 0
+      - path: Mesh/niabiMesh
+        weight: 0
+      maskType: 0
+      maskSource: {instanceID: 0}
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: .0599999987
+    meshCompression: 0
+    addColliders: 0
+    importBlendShapes: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    weldVertices: 1
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+  tangentSpace:
+    normalSmoothAngle: 60
+    splitTangentsAcrossUV: 1
+    normalImportMode: 0
+    tangentImportMode: 1
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    human:
+    - boneName: root
+      humanName: Hips
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: L_Leg
+      humanName: LeftUpperLeg
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: R_Leg
+      humanName: RightUpperLeg
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: L_knee 1
+      humanName: LeftLowerLeg
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: R_knee
+      humanName: RightLowerLeg
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: L_ankle
+      humanName: LeftFoot
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: R_ankle
+      humanName: RightFoot
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: chest 1
+      humanName: Spine
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: neck 1
+      humanName: Head
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: L_shoulder 1
+      humanName: LeftUpperArm
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: R_shoulder1
+      humanName: RightUpperArm
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: L_elbow 1
+      humanName: LeftLowerArm
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: R_elbow 1
+      humanName: RightLowerArm
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: L_wrist 1
+      humanName: LeftHand
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: R_wrist 1
+      humanName: RightHand
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: L_foot 1
+      humanName: LeftToes
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: R_foot 1
+      humanName: RightToes
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: L_thumb 1
+      humanName: Left Thumb Proximal
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: L_fingers1 1
+      humanName: Left Index Proximal
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: L_fingers2 1
+      humanName: Left Index Intermediate
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: R_thumb 1
+      humanName: Right Thumb Proximal
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: R_fingers1 1
+      humanName: Right Index Proximal
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: R_fingers2 1
+      humanName: Right Index Intermediate
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    skeleton:
+    - name: niabi_anims_01(Clone)
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: ArrowJoint
+      position: {x: -.126600578, y: 1.03400469, z: -.0372781046}
+      rotation: {x: .167735696, y: -.492235482, z: .211230159, w: .827617526}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: arrow1
+      position: {x: -.065443702, y: .0391098298, z: -.0187336337}
+      rotation: {x: -.014385812, y: .114700481, z: .0792440772, w: .990129948}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: master
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: L_foot
+      position: {x: -.124195062, y: .084265098, z: -.0725560412}
+      rotation: {x: 0, y: .00445844233, z: -0, w: .999990106}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: ikHandle1
+      position: {x: -4.22253316e-10, y: -1.15928599e-12, z: -.0195009802}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: ikHandle2
+      position: {x: 2.07799764e-10, y: -.0599999987, z: .0548453033}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: L_knee
+      position: {x: .000553508347, y: .221257851, z: 1.0391053}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: R_foot
+      position: {x: .120819993, y: .0842652023, z: .0840038806}
+      rotation: {x: .0149350511, y: -.0537856482, z: .00676354952, w: .998417914}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: ikHandle3
+      position: {x: 6.45989151e-10, y: -8.03463958e-13, z: -.0195009802}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: ikHandle4
+      position: {x: 6.751983e-11, y: -.0600001216, z: .0548452996}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: L_knee1
+      position: {x: -.000553508347, y: .221257761, z: 1.0391053}
+      rotation: {x: -4.32978063e-17, y: .707106829, z: .707106829, w: -4.32978063e-17}
+      scale: {x: .120074414, y: .120074414, z: -.120074414}
+      transformModified: 1
+    - name: root1
+      position: {x: -.0184480138, y: .475282103, z: -.0383809619}
+      rotation: {x: .0953765437, y: -.181242496, z: -.0422679, w: .977889538}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: chest
+      position: {x: -.00487068621, y: .239206374, z: -.0284334142}
+      rotation: {x: .235045493, y: -.240891144, z: -.0496707037, w: .940349877}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: L_shoulder
+      position: {x: -.105587676, y: .113313615, z: -.0237123519}
+      rotation: {x: .0524297431, y: .301147312, z: .411961138, w: .858399332}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: L_elbow
+      position: {x: -.207990915, y: -.0076649189, z: 9.99200679e-18}
+      rotation: {x: .00525498018, y: .335182071, z: -.16748561, w: .92713207}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: L_wrist
+      position: {x: -.215945423, y: -.00538234692, z: -6.661338e-18}
+      rotation: {x: -.163546279, y: .00504324725, z: -.17455557, w: .970957041}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: L_fingers1
+      position: {x: -.0559365302, y: -.000132930043, z: -9.99200679e-18}
+      rotation: {x: 0, y: 0, z: .240185544, w: .970727026}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: L_fingers2
+      position: {x: -.0361966342, y: -.0029828113, z: -.000276145496}
+      rotation: {x: .0191367175, y: -.0683530271, z: .167060152, w: .983388305}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: L_thumb
+      position: {x: -.0550887287, y: -.00791096035, z: .0265033562}
+      rotation: {x: .176143214, y: .230243325, z: .227683231, w: .929581583}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: neck
+      position: {x: 3.65831445e-17, y: .18153508, z: -.0150834629}
+      rotation: {x: -.191413373, y: .416882187, z: -.013746215, w: .888471305}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: feather1
+      position: {x: -.165191337, y: .293258011, z: -.0435368344}
+      rotation: {x: -.145460367, y: -.0793173835, z: .0120520573, w: .986105859}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: feather2
+      position: {x: -.0218453351, y: .172010154, z: -.0130020026}
+      rotation: {x: .019706089, y: -.0343488269, z: .0879577845, w: .995336771}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: feather3
+      position: {x: -.00908355415, y: .0724106729, z: -.00940143969}
+      rotation: {x: -.0921620876, y: -.0572485141, z: .0858973265, w: .990378916}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: L_braid1
+      position: {x: -.0881841257, y: .116140805, z: -.163483247}
+      rotation: {x: -.0103497747, y: -.0140754199, z: -.0687297359, w: .997482359}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: L_braid2
+      position: {x: -1.19904078e-16, y: -.0979683548, z: .0123649379}
+      rotation: {x: .139904663, y: .0332921036, z: .136615232, w: .980129898}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: L_braid3
+      position: {x: -1.73194785e-16, y: -.178816035, z: .0228275768}
+      rotation: {x: -.283834726, y: .0388279222, z: -.0118938107, w: .958012938}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: L_braid4
+      position: {x: -1.06581408e-16, y: -.107479848, z: .000951149093}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: R_braid1
+      position: {x: .0881841257, y: .116140805, z: -.163483247}
+      rotation: {x: -.020176312, y: -.0042404132, z: -.00283853128, w: .999783397}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: R_braid2
+      position: {x: 1.06581408e-16, y: -.0979683548, z: .0123649379}
+      rotation: {x: .123844951, y: -0, z: -0, w: .992301583}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: R_braid3
+      position: {x: 2.13162816e-16, y: -.178816035, z: .0228275768}
+      rotation: {x: -.191160977, y: -.0603490658, z: .047890462, w: .978530526}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: R_braid4
+      position: {x: 1.06581408e-16, y: -.107479848, z: .000951149093}
+      rotation: {x: -.281848043, y: -.0290369261, z: -.0413976535, w: .958125651}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: R_shoulder
+      position: {x: .105587393, y: .113313243, z: -.0237123594}
+      rotation: {x: .0319467112, y: .154123232, z: -.408579826, w: .899048388}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: R_elbow
+      position: {x: .207991198, y: -.00766199967, z: 2.99760195e-17}
+      rotation: {x: .10305658, y: -.577253401, z: .0422974937, w: .808930635}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: R_wrist
+      position: {x: .215945408, y: -.005382, z: -2.99760195e-17}
+      rotation: {x: .012692878, y: -.011534296, z: .0965416878, w: .995181143}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: R_fingers1
+      position: {x: .0559367985, y: -.000138000003, z: -1.3322676e-17}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: R_fingers2
+      position: {x: .0361992009, y: -.00298199989, z: -.000276120001}
+      rotation: {x: .0180444568, y: .0302257147, z: -.763957679, w: .644305408}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: R_thumb
+      position: {x: .0519906618, y: -.00791399926, z: .0274124518}
+      rotation: {x: .570189178, y: -.328196168, z: -.0282769222, w: .752576888}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: root
+      position: {x: .0228780434, y: .0719440356, z: .017392436}
+      rotation: {x: -.195599213, y: .0607164055, z: -.661584437, w: .721360266}
+      scale: {x: 1.00000012, y: .999999881, z: 1}
+      transformModified: 1
+    - name: chest 1
+      position: {x: -.223220378, y: -1.44354999e-07, z: 0}
+      rotation: {x: 3.45735618e-09, y: -2.26013963e-08, z: -5.96046306e-08, w: 1}
+      scale: {x: .999999881, y: 1, z: .99999994}
+      transformModified: 1
+    - name: Case
+      position: {x: .0170152914, y: -.0017134439, z: -.0793621764}
+      rotation: {x: -.0416694395, y: .00751824258, z: .937325001, w: .34587428}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: arrow2
+      position: {x: .0131628737, y: .0768532008, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: arrow3
+      position: {x: -.00207914365, y: .114333346, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: arrow4
+      position: {x: -.0153466752, y: .0558125712, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: L_shoulder 1
+      position: {x: -.11331369, y: -.105587408, z: -.0237122346}
+      rotation: {x: 2.48959786e-08, y: -1.10211484e-08, z: .719039559, w: .694969177}
+      scale: {x: 1.00000012, y: 1, z: 1}
+      transformModified: 1
+    - name: L_elbow 1
+      position: {x: -.208131447, y: -.00058140466, z: -1.178717e-07}
+      rotation: {x: 1.58344307e-08, y: 2.13803464e-08, z: -.00243498944, w: .999997079}
+      scale: {x: 1.00000024, y: 1.00000012, z: 1.00000024}
+      transformModified: 1
+    - name: L_wrist 1
+      position: {x: -.216010675, y: .000918884063, z: -3.18046389e-08}
+      rotation: {x: 6.88381441e-09, y: 1.7651514e-08, z: -.0133975064, w: .999910295}
+      scale: {x: .999999821, y: .999999881, z: 1}
+      transformModified: 1
+    - name: L_fingers1 1
+      position: {x: -.0559367202, y: -3.58792022e-07, z: 2.31228043e-07}
+      rotation: {x: -.00011653814, y: -.00323064416, z: .0336669274, w: .999427915}
+      scale: {x: 1, y: .99999994, z: .999999881}
+      transformModified: 1
+    - name: L_fingers2 1
+      position: {x: -.036317274, y: -.000453797722, z: -4.22960875e-05}
+      rotation: {x: .000112682072, y: .00323079224, z: -.0348544642, w: .999387264}
+      scale: {x: .999999881, y: 1.00000012, z: .999999881}
+      transformModified: 1
+    - name: L_thumb 1
+      position: {x: -.0551071092, y: -.0077802497, z: .0265034493}
+      rotation: {x: -2.72004481e-08, y: -4.49954598e-08, z: -.00118825329, w: .999999285}
+      scale: {x: 1, y: .99999994, z: .999999881}
+      transformModified: 1
+    - name: neck 1
+      position: {x: -.18156153, y: 7.12282411e-09, z: -.0150924465}
+      rotation: {x: -.667665005, y: .232859224, z: .232859522, w: .667664945}
+      scale: {x: .999999881, y: 1, z: 1}
+      transformModified: 1
+    - name: feather1 1
+      position: {x: -.14202626, y: .260238618, z: -.165191501}
+      rotation: {x: .796898901, y: -.453300416, z: -.157952324, w: .366772383}
+      scale: {x: .999999702, y: 1.00000024, z: 1.00000012}
+      transformModified: 1
+    - name: feather2 1
+      position: {x: -.173701853, y: -.0057247635, z: .00535744336}
+      rotation: {x: .026411742, y: -.00384533405, z: .0340203717, w: .999064744}
+      scale: {x: 1.00000024, y: .999999881, z: 1.00000012}
+      transformModified: 1
+    - name: feather3 1
+      position: {x: -.0735814273, y: -3.0548108e-08, z: -9.05129127e-08}
+      rotation: {x: -.250469834, y: .29973802, z: .590281785, w: .706391811}
+      scale: {x: .999999702, y: .999999702, z: 1}
+      transformModified: 1
+    - name: jaw
+      position: {x: -.146854699, y: -2.38418579e-07, z: -1.48044379e-07}
+      rotation: {x: .224766687, y: -.670432687, z: .224766627, w: .670432627}
+      scale: {x: 1, y: .999999881, z: 1.00000012}
+      transformModified: 1
+    - name: L_braid1 1
+      position: {x: .0604409203, y: .191212863, z: -.0881841481}
+      rotation: {x: -5.21540571e-08, y: -8.19563795e-08, z: .8654778, w: .500947297}
+      scale: {x: 1.00000012, y: 1.00000024, z: 1.00000012}
+      transformModified: 1
+    - name: L_braid2 1
+      position: {x: -.0987454206, y: 1.00582817e-07, z: 1.2585366e-07}
+      rotation: {x: 1.04308107e-07, y: 7.45057918e-08, z: -.000711455767, w: .999999762}
+      scale: {x: 1, y: 1, z: 1.00000024}
+      transformModified: 1
+    - name: L_braid3 1
+      position: {x: -.180266991, y: 1.58324589e-08, z: -1.47519941e-07}
+      rotation: {x: 5.96046306e-08, y: 0, z: .0590273589, w: .998256385}
+      scale: {x: 1.00000012, y: 1, z: 1}
+      transformModified: 1
+    - name: L_braid4 1
+      position: {x: -.10748449, y: -2.42143674e-08, z: 1.62989807e-07}
+      rotation: {x: -.497782797, y: -.502207577, z: -.497782677, w: .502207398}
+      scale: {x: .999999762, y: 1, z: 1}
+      transformModified: 1
+    - name: L_eye
+      position: {x: -.208204567, y: .0769165084, z: -.0693574101}
+      rotation: {x: .224766687, y: -.670432687, z: .224766627, w: .670432627}
+      scale: {x: 1, y: .999999762, z: 1.00000012}
+      transformModified: 1
+    - name: R_braid1 1
+      position: {x: .0604412332, y: .191211969, z: .08818461}
+      rotation: {x: -4.470348e-08, y: -9.68575335e-08, z: .865478039, w: .500946939}
+      scale: {x: .999999702, y: .99999994, z: 1}
+      transformModified: 1
+    - name: R_braid2 1
+      position: {x: -.0987449735, y: 5.58793722e-08, z: -8.74655086e-08}
+      rotation: {x: 7.45057918e-08, y: 2.98023153e-08, z: -.000711306755, w: .999999762}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: R_braid3 1
+      position: {x: -.180269137, y: -1.04861059e-07, z: 2.61055703e-07}
+      rotation: {x: -1.04308107e-07, y: -5.96046306e-08, z: .0590273142, w: .998256385}
+      scale: {x: .999999881, y: .99999994, z: 1.00000012}
+      transformModified: 1
+    - name: R_braid4 1
+      position: {x: -.107482426, y: 9.59262962e-08, z: -3.28855123e-07}
+      rotation: {x: -.497783065, y: -.502207041, z: -.497783124, w: .50220722}
+      scale: {x: 1, y: 1.00000012, z: 1.00000024}
+      transformModified: 1
+    - name: R_eye
+      position: {x: -.2082064, y: .0769185275, z: .0693574771}
+      rotation: {x: .224766687, y: -.670432687, z: .224766627, w: .670432627}
+      scale: {x: 1, y: .999999881, z: 1.00000012}
+      transformModified: 1
+    - name: R_shoulder1
+      position: {x: -.11331363, y: .105587609, z: -.0237124078}
+      rotation: {x: -.693969429, y: .720004499, z: -8.21308266e-09, w: -6.57012111e-10}
+      scale: {x: .999999762, y: .999999821, z: .999999583}
+      transformModified: 1
+    - name: R_elbow 1
+      position: {x: -.208132327, y: 1.47148967e-07, z: -2.54026673e-07}
+      rotation: {x: -3.5107913e-08, y: 1.41514604e-08, z: -.00595174637, w: .999982357}
+      scale: {x: .999999881, y: .99999994, z: 1}
+      transformModified: 1
+    - name: R_wrist 1
+      position: {x: -.216012225, y: -4.7753565e-07, z: 6.76504328e-08}
+      rotation: {x: 1.86960687e-08, y: -6.90937512e-08, z: -.0112251444, w: .999937057}
+      scale: {x: 1.00000048, y: 1.00000012, z: 1.00000036}
+      transformModified: 1
+    - name: R_fingers1 1
+      position: {x: -.055937618, y: 6.61239028e-07, z: -3.9179735e-08}
+      rotation: {x: .000161327189, y: .00381039013, z: .0398503579, w: .999198437}
+      scale: {x: .999999583, y: 1, z: .999999821}
+      transformModified: 1
+    - name: bow
+      position: {x: -.0175514743, y: -.0167385712, z: -.000122945072}
+      rotation: {x: .71754241, y: .696504474, z: .00250927592, w: .00287205656}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: R_fingers2 1
+      position: {x: -.0363225378, y: -2.65972062e-07, z: 6.47851266e-08}
+      rotation: {x: -.0410828739, y: -.999148488, z: .000156638926, w: -.00381059013}
+      scale: {x: 1.00000036, y: 1, z: 1.00000012}
+      transformModified: 1
+    - name: R_thumb 1
+      position: {x: -.0520103574, y: -.00778546091, z: -.0274123922}
+      rotation: {x: -.00123354385, y: -.999999285, z: 2.24303616e-08, w: 8.53903401e-08}
+      scale: {x: .999999523, y: 1, z: .999999523}
+      transformModified: 1
+    - name: L_Leg
+      position: {x: .0440892056, y: -.0599999428, z: -.0132542476}
+      rotation: {x: -.0116454642, y: .719883919, z: .69387567, w: .0129674934}
+      scale: {x: .999999464, y: 1.00000012, z: 1}
+      transformModified: 1
+    - name: L_knee 1
+      position: {x: -.190154642, y: -.0100098839, z: .000803625211}
+      rotation: {x: -.997499466, y: -.0664200559, z: .00076259661, w: -.0241386853}
+      scale: {x: .999999821, y: .999999702, z: .999999642}
+      transformModified: 1
+    - name: L_ankle
+      position: {x: -.222599179, y: .00277454685, z: -7.10573513e-05}
+      rotation: {x: .950710714, y: .31002301, z: .00247217645, w: -.00537413219}
+      scale: {x: 1, y: .999999881, z: .999999702}
+      transformModified: 1
+    - name: L_foot 1
+      position: {x: -.0795342326, y: .0168024953, z: -1.31956767e-07}
+      rotation: {x: -.35087204, y: -.613912821, z: -.350871891, w: .613912761}
+      scale: {x: 1.00000036, y: 1.00000024, z: .999999881}
+      transformModified: 1
+    - name: R_Leg
+      position: {x: .0440889783, y: .0600003563, z: -.0132541703}
+      rotation: {x: -.0129674664, y: .693875909, z: .71988368, w: .0116454642}
+      scale: {x: 1.0000006, y: 1.00000048, z: 1.00000048}
+      transformModified: 1
+    - name: R_knee
+      position: {x: -.190154478, y: -.0100100646, z: -.00080380193}
+      rotation: {x: -.997499466, y: -.0664201528, z: -.000762552023, w: .0241381824}
+      scale: {x: .999999702, y: .999999881, z: .999999762}
+      transformModified: 1
+    - name: R_ankle
+      position: {x: -.222599, y: .00277433544, z: 7.08028674e-05}
+      rotation: {x: .950710773, y: .310022771, z: -.00247217715, w: .00537395477}
+      scale: {x: 1, y: 1, z: 1.00000012}
+      transformModified: 1
+    - name: R_foot 1
+      position: {x: -.0795343295, y: .0168023352, z: 3.74857336e-08}
+      rotation: {x: -.350872129, y: -.613912702, z: -.350872159, w: .613912702}
+      scale: {x: .999999762, y: 1, z: .999999762}
+      transformModified: 1
+    - name: Mesh
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: niabiFeather
+      position: {x: -.003621476, y: 0, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: niabiMesh
+      position: {x: 1.59260488, y: 0, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    armTwist: .5
+    foreArmTwist: .5
+    upperLegTwist: .5
+    legTwist: .5
+    armStretch: .0500000007
+    legStretch: .0500000007
+    feetSpacing: 0
+    rootMotionBoneName: 
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 3
+  userData: 

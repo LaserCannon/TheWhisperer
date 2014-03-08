@@ -26,10 +26,6 @@ public class SceneObjectReference : SingletonBehaviour
 	private List<ObjectReference> refs = new List<ObjectReference>();
 
 
-	void Awake()
-	{
-	//	gameObject.hideFlags = HideFlags.HideInHierarchy;
-	}
 
 	public int GetNewID()
 	{

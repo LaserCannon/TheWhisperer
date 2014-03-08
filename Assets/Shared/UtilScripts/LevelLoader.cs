@@ -75,8 +75,8 @@ public class LevelLoader : MonoBehaviour {
 			timeLastLoaded = Time.time;
 			DontDestroyOnLoad(gameObject);
 			
-			if(PlayerAgent.main!=null)
-				PlayerAgent.main.Enabled = false;
+			if(GameController.main.Player!=null)
+				GameController.main.Player.Enabled = false;
 			
 			yield return ColorCard.FadeToBlack(0.5f);
 			
@@ -90,9 +90,9 @@ public class LevelLoader : MonoBehaviour {
 			}
 
 			if(spawnLocation!="")
-				SpawnLocator.SpawnCharacterAtLocator(PlayerAgent.main,spawnLocation);
+				SpawnLocator.SpawnCharacterAtLocator(GameController.main.Player,spawnLocation);
 			
-			PlayerAgent.main.Enabled = true;
+			GameController.main.Player.Enabled = true;
 			
 			yield return ColorCard.FadeToPicture(0.5f);
 			
@@ -108,8 +108,8 @@ public class LevelLoader : MonoBehaviour {
 			timeLastLoaded = Time.time;
 			DontDestroyOnLoad(gameObject);
 			
-			if(PlayerAgent.main!=null)
-				PlayerAgent.main.Enabled = false;
+			if(GameController.main.Player!=null)
+				GameController.main.Player.Enabled = false;
 			
 			yield return ColorCard.FadeToBlack(0.5f);
 			
@@ -117,9 +117,9 @@ public class LevelLoader : MonoBehaviour {
 			
 			yield return null;
 
-			SpawnLocator.SpawnCharacterAtPosition(PlayerAgent.main,spawnLocation);
+			SpawnLocator.SpawnCharacterAtPosition(GameController.main.Player,spawnLocation);
 			
-			PlayerAgent.main.Enabled = true;
+			GameController.main.Player.Enabled = true;
 			
 			if(LevelLoaded!=null)
 			{
@@ -139,19 +139,19 @@ public class LevelLoader : MonoBehaviour {
 			timeLastLoaded = Time.time;
 			DontDestroyOnLoad(gameObject);
 			
-			if(PlayerAgent.main!=null)
-				PlayerAgent.main.Enabled = false;
+			if(GameController.main.Player!=null)
+				GameController.main.Player.Enabled = false;
 			
 			yield return ColorCard.FadeToBlack(0.5f);
 			
 			Application.LoadLevel(levelnum);
-			
+
 			yield return null;
 
 			if(spawnLocation!="")
-				SpawnLocator.SpawnCharacterAtLocator(PlayerAgent.main,spawnLocation);
+				SpawnLocator.SpawnCharacterAtLocator(GameController.main.Player,spawnLocation);
 			
-			PlayerAgent.main.Enabled = true;
+			GameController.main.Player.Enabled = true;
 			
 			if(LevelLoaded!=null)
 			{
@@ -171,8 +171,8 @@ public class LevelLoader : MonoBehaviour {
 			timeLastLoaded = Time.time;
 			DontDestroyOnLoad(gameObject);
 			
-			if(PlayerAgent.main!=null)
-				PlayerAgent.main.Enabled = false;
+			if(GameController.main.Player!=null)
+				GameController.main.Player.Enabled = false;
 			
 			yield return ColorCard.FadeToColor(Color.white,0.1f);
 			

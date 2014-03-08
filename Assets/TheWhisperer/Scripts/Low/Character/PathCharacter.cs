@@ -37,14 +37,18 @@ public class PathCharacter : MonoBehaviour
 	
 	// -- Callbacks
 
-	protected virtual void Start()
+	protected virtual void Awake()
 	{
 		agentRef = GetComponent<NavMeshAgent>();
+	}
+
+	protected virtual void Start()
+	{
 		
 		animator = GetComponent<Animator>();
 		
 		navState = PathCharacterNavigationState.Stopped;
-		
+
 		if(!destinationWasSet)
 			SetDestination(transform.position);
 	}
@@ -78,7 +82,6 @@ public class PathCharacter : MonoBehaviour
 		transform.position = position;
 		SetDestination(position);
 		Halt ();
-		Debug.LogError("!");
 	}
 	
 	public IEnumerator WaitForDestinationOrChanged()

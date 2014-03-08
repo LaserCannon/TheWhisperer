@@ -39,7 +39,7 @@ public class BattleManager : ScriptableObject
 	//static version
 	public static void LoadBattle(string player, string enemy, BattleScene scene)
 	{
-		GameController.Profile.RecordPlayerLocation(PlayerAgent.main);
+		GameController.Profile.RecordPlayerLocation(GameController.main.Player);
 		
 		savedPlayer = player;
 		savedEnemy = enemy;

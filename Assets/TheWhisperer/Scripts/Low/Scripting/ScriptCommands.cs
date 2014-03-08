@@ -45,7 +45,7 @@ public partial class ScriptCommands
 	[CommandCategory("Global")]
 	public static void EnableCharacterControl(bool on)
 	{
-		PlayerAgent.main.Enabled = on;
+		GameController.main.Player.Enabled = on;
 	}
 	
 	[CommandCategory("Global")]
@@ -294,7 +294,7 @@ public partial class ScriptCommands
 	[CommandCategory("Object-Based")]
 	public static void NPCRotateTowardsPlayer(NonPlayerCharacter character)
 	{
-		Vector3 towardsPlayer = character.transform.position - PlayerAgent.main.transform.position;
+		Vector3 towardsPlayer = character.transform.position - GameController.main.Player.transform.position;
 		character.LookInDirection(towardsPlayer);
 	}
 	

@@ -33,7 +33,7 @@ public class AttackEditorWindow : EditorWindow{
 		
 		EditorGUILayout.Space();
 		
-		if(Selection.activeObject.GetType() == typeof(Attack))
+		if(Selection.activeObject!=null && Selection.activeObject.GetType() == typeof(Attack))
 			AttackEditor.DrawAttackUI((Attack)Selection.activeObject);
 		
 		GUI.enabled = true;

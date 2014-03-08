@@ -65,12 +65,14 @@ public class Script2DCommandNode : Script2DNode
 
 	private void SetupWithCommand(Command c)
 	{
-		next = new Script2DPort(new Vector2(300,50),ParamType.Void,this,Script2DPortDirection.HorizontalOut);
-		last = new Script2DPort(new Vector2(0,50),ParamType.Void,this,Script2DPortDirection.HorizontalIn);
+		int height = 30 + 24 * c.ParamCount;
+
+		next = new Script2DPort(new Vector2(250,height/2),ParamType.Void,this,Script2DPortDirection.HorizontalOut);
+		last = new Script2DPort(new Vector2(0,height/2),ParamType.Void,this,Script2DPortDirection.HorizontalIn);
 		
 		command = c;
 		
-		returnPort = new Script2DPort(new Vector2(50,100),command.ReturnType,this,Script2DPortDirection.VerticalOut);
+		returnPort = new Script2DPort(new Vector2(50,height),command.ReturnType,this,Script2DPortDirection.VerticalOut);
 		
 		RegisterPort(next);
 		RegisterPort(last);
@@ -210,12 +212,13 @@ public class Script2DCommandNode : Script2DNode
 
 	public override bool DrawContents(Script2DDrawContext context)
 	{		
-		
-		//--
-		context.BeginNode(this,new Vector2(300,100));
-		//++
-		
 		Command cmd = ScriptCommand;
+
+		int height = 30 + 24 * cmd.ParamCount;
+
+		//--
+		context.BeginNode(this,new Vector2(250,height));
+		//++
 		
 		if(cmd!=null)
 		{

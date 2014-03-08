@@ -39,9 +39,9 @@ public class SideCinemaCamera : CameraMotion
 	{
 		//TODO: Organize this! Comment it! Beef it up! Implement smooth movement/velocities! More features!!!
 		
-		if(PlayerAgent.main == null)	return;	//For now, only follow the player
+		if(GameController.main.Player == null)	return;	//For now, only follow the player
 		
-		Vector3 targ3dPos = focused ? focusPos : PlayerAgent.main.transform.position;
+		Vector3 targ3dPos = focused ? focusPos : GameController.main.Player.transform.position;
 		
 		Vector3 targ2dPos = camera.WorldToScreenPoint(targ3dPos);
 		

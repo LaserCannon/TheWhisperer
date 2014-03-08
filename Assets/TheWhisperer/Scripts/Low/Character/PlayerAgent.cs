@@ -3,8 +3,6 @@ using System.Collections;
 
 public class PlayerAgent : PathCharacter
 {
-	public static PlayerAgent main;
-	
 	
 	private bool isEnabled = true;
 	
@@ -20,13 +18,7 @@ public class PlayerAgent : PathCharacter
 	}
 	
 	
-	
-	void Awake()
-	{
-		main = this;
-	}
-	
-	
+
 	
 	protected void OnEnable()
 	{

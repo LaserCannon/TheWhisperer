@@ -1,0 +1,6 @@
+niabi frame cycles
+
+idle1		1-24		
+attack1		24-60
+walk1		61-84
+run1		85-98

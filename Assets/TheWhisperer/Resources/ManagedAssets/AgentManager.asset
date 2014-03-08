@@ -12,4 +12,4 @@ MonoBehaviour:
   m_Name: AgentManager
   m_EditorClassIdentifier: 
   Characters:
-  - {fileID: 11400000, guid: 5dd3bac629be149498ad4e123fd0dd59, type: 2}
+  - {fileID: 11400002, guid: 658f69e5f995848c3830bf7f57b65231, type: 2}

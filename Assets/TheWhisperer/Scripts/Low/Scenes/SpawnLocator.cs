@@ -26,6 +26,19 @@ public class SpawnLocator : MonoBehaviour
 		return Vector3.zero;
 	}
 	
+	public static Vector3 GetSpawnLocation(int index)
+	{
+		//TODO: Cache these instead, make this faster
+		SpawnLocator[] locs = (SpawnLocator[])GameObject.FindObjectsOfType(typeof(SpawnLocator));
+		
+		if(index>=0 && index<locs.Length)
+		{
+			return locs[index].transform.position;
+		}
+		
+		return Vector3.zero;
+	}
+	
 	public static void SpawnCharacterAtLocator(PathCharacter pc, string name)
 	{
 
@@ -38,7 +51,9 @@ public class SpawnLocator : MonoBehaviour
 
 				if(pc==null)
 				{
-					Instantiate(AgentManager.main.GetCharacter("TestPlayer"),locs[i].transform.position,Quaternion.LookRotation(locs[i].transform.forward));
+					//Instantiate(AgentManager.main.GetCharacter("TestPlayer"),locs[i].transform.position,Quaternion.LookRotation(locs[i].transform.forward));
+					GameController.main.Player.WarpTo(locs[i].transform.position);
+					GameController.main.Player.transform.rotation = Quaternion.LookRotation(locs[i].transform.forward);
 				}
 				else
 				{
