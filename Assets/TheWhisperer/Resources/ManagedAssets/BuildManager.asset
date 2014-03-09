@@ -1,0 +1,44 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b81462559cfb149718fca1c6654dba15, type: 3}
+  m_Name: BuildManager
+  m_EditorClassIdentifier: 
+  Packages:
+  - PackageName: Menu
+    Scenes:
+    - {fileID: 102900000, guid: 55787ee8497f24a5ba7c1ed7d8e8b401, type: 3}
+    - {fileID: 102900000, guid: fb3ddb123c9eb437180a8533bf34db37, type: 3}
+  - PackageName: Villiage
+    Scenes:
+    - {fileID: 102900000, guid: 6d517bcdc57064a989e6a0614ec35420, type: 3}
+    - {fileID: 102900000, guid: fb3ddb123c9eb437180a8533bf34db37, type: 3}
+    - {fileID: 102900000, guid: 55787ee8497f24a5ba7c1ed7d8e8b401, type: 3}
+  - PackageName: Desert
+    Scenes: []
+  Schemes:
+  - SchemeName: FullGame
+    StartingScene: 
+    Packages: []
+  - SchemeName: E3 2013 Demo
+    StartingScene: 
+    Packages:
+    - Menu
+    - Villiage
+  - SchemeName: PSN Demo
+    StartingScene: 
+    Packages: []
+  - SchemeName: WalMart Demo
+    StartingScene: 
+    Packages: []
+  - SchemeName: TestVillage
+    StartingScene: 
+    Packages:
+    - Villiage

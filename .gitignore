@@ -6,6 +6,7 @@
 *.csproj
 *.unityproj
 *.sln
-*Build*
+*Build.app*
+*Build/*
 *.userprefs
 *.pidb
