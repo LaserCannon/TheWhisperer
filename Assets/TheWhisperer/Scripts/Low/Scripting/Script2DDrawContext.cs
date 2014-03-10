@@ -151,6 +151,7 @@ public class Script2DDrawContext
 			if(GUILayout.Button("Save",GUILayout.Width(100)))
 			{
 				target.savedJson = target.ScriptTree.Serialize();
+				EditorUtility.SetDirty(target);
 			}
 			
 			
