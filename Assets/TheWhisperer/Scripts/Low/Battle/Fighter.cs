@@ -145,6 +145,10 @@ public abstract class Fighter : MonoBehaviour
 		//--Animate--//
 		else if(action.GetType() == typeof(AnimateBattleAction)) {
 			if(animation!=null) {
+				if(animation[((AnimateBattleAction)action).AnimString]!=null)
+				{
+					animation[((AnimateBattleAction)action).AnimString].speed = ((AnimateBattleAction)action).PlaybackSpeed;
+				}
 				animation.CrossFade( ((AnimateBattleAction)action).AnimString, 0.15f );
 			}
 		}

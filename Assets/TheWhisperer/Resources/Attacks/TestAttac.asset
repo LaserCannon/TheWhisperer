@@ -14,11 +14,11 @@ MonoBehaviour:
   Timeline:
   - {fileID: 11400016}
   - {fileID: 11400008}
+  - {fileID: 11400018}
   - {fileID: 11400006}
   - {fileID: 11400012}
   - {fileID: 11400002}
   - {fileID: 11400010}
-  - {fileID: 11400014}
   - {fileID: 11400004}
 --- !u!114 &11400002
 MonoBehaviour:
@@ -31,7 +31,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 913a73a888ebe483c8ffb97225c7e9ed, type: 3}
   m_Name: _DamageAction
   m_EditorClassIdentifier: 
-  Timecode: .749975145
+  Timecode: 1.64828122
   Duration: 1
   Damage:
     BaseDamage: 5
@@ -53,7 +53,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e83b4c07749954c2dad333617ba43bbe, type: 3}
   m_Name: _EmptyAction
   m_EditorClassIdentifier: 
-  Timecode: 1.12066555
+  Timecode: 2.00381398
   Duration: 1
 --- !u!114 &11400006
 MonoBehaviour:
@@ -66,10 +66,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 486174cac436b4bbc808aa0d640654d2, type: 3}
   m_Name: _AnimateAction
   m_EditorClassIdentifier: 
-  Timecode: .264775574
+  Timecode: .650669158
   Duration: 1
   AnimString: punch
-  PlaybackSpeed: 1
+  PlaybackSpeed: .5
 --- !u!114 &11400008
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -81,9 +81,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cc88c6d9020e04f589cfb276a4136c44, type: 3}
   m_Name: _MoveAction
   m_EditorClassIdentifier: 
-  Timecode: .0628041029
-  Duration: .200000003
-  TargetLocalPosition: {x: 0, y: 0, z: 1}
+  Timecode: .0153129306
+  Duration: .300000012
+  TargetLocalPosition: {x: 0, y: 0, z: 2}
 --- !u!114 &11400010
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -95,8 +95,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cc88c6d9020e04f589cfb276a4136c44, type: 3}
   m_Name: _MoveAction
   m_EditorClassIdentifier: 
-  Timecode: .874744534
-  Duration: .100000001
+  Timecode: 1.78679836
+  Duration: .200000003
   TargetLocalPosition: {x: 0, y: 0, z: 0}
 --- !u!114 &11400012
 MonoBehaviour:
@@ -109,30 +109,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3caef323e3ed748c09c8ede8ad28429f, type: 3}
   m_Name: _VulnerabilityAction
   m_EditorClassIdentifier: 
-  Timecode: .29440695
-  Duration: .449999988
+  Timecode: .75352186
+  Duration: .899999976
   DamageOffset: 0
   KnockbackOffset: 0
   BreakReq:
   - Type: 0
     Amount: 1
     DmgType: 0
---- !u!114 &11400014
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 53cf238b7d8eb4b10b9d9a1246412df9, type: 3}
-  m_Name: _BlockAction
-  m_EditorClassIdentifier: 
-  Timecode: .976693273
-  Duration: .140000001
-  DamageOffset: 0
-  KnockbackOffset: -3
-  BreakReq: []
 --- !u!114 &11400016
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -144,7 +128,22 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 486174cac436b4bbc808aa0d640654d2, type: 3}
   m_Name: _AnimateAction
   m_EditorClassIdentifier: 
-  Timecode: .0513340905
+  Timecode: 0
   Duration: 1
   AnimString: walk
+  PlaybackSpeed: 1
+--- !u!114 &11400018
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 486174cac436b4bbc808aa0d640654d2, type: 3}
+  m_Name: _AnimateAction
+  m_EditorClassIdentifier: 
+  Timecode: .325314522
+  Duration: 1
+  AnimString: idle
   PlaybackSpeed: 1

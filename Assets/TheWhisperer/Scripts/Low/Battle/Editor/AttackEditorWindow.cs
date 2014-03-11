@@ -170,6 +170,10 @@ public class AttackEditorWindow : EditorWindow{
 			BeginHorizontalWithLabel("Animation");
 			((AnimateBattleAction)action).AnimString = EditorGUILayout.TextField( ((AnimateBattleAction)action).AnimString );
 			EditorGUILayout.EndHorizontal();
+			
+			BeginHorizontalWithLabel("Playback Speed");
+			((AnimateBattleAction)action).PlaybackSpeed = EditorGUILayout.FloatField(((AnimateBattleAction)action).PlaybackSpeed);
+			EditorGUILayout.EndHorizontal();
 		}
 		
 		EditorGUILayout.EndVertical();

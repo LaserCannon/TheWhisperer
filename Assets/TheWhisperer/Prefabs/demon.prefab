@@ -1711,7 +1711,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   DeathAnimString: death
-  maxHp: 10
+  maxHp: 20
   AttackPattern:
     AttackOrder:
     - {fileID: 11400000, guid: 1784b2391822c4701a9d2d97023c1bcb, type: 2}
