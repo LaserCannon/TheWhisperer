@@ -125,7 +125,7 @@ public class GlobalVariableDatabaseEditor : EditorWindow
 			AssetDatabase.Refresh();
 		}
 		
-		StreamReader reader = new StreamReader(Application.dataPath + "/"+PlayerSettings.productName+"/Resources/ManagedAssets/GlobalVariables.txt");
+		StreamReader reader = new StreamReader(Application.dataPath + "/" + PlayerSettings.productName+"/Resources/ManagedAssets/GlobalVariables.txt");
 		
 		string line = reader.ReadLine();
 		

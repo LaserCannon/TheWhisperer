@@ -111,11 +111,11 @@ public class AttackEditor : Editor	//TODO: Consider calling all of these Editors
 			float dist = subRect.width;
 			
 			//TODO: Don't do this every frame!
-			Texture image = (Texture)Resources.LoadAssetAtPath("Assets/"+PlayerSettings.productName+"/Scripts/Low/Battle/Editor/attackbar.psd",typeof(Texture));
-			Texture attImage = (Texture)Resources.LoadAssetAtPath("Assets/"+PlayerSettings.productName+"/Scripts/Low/Battle/Editor/AttackButton.png",typeof(Texture));
-			Texture defImage = (Texture)Resources.LoadAssetAtPath("Assets/"+PlayerSettings.productName+"/Scripts/Low/Battle/Editor/DefendButton.png",typeof(Texture));
-			Texture vlnImage = (Texture)Resources.LoadAssetAtPath("Assets/"+PlayerSettings.productName+"/Scripts/Low/Battle/Editor/MagicButton2.png",typeof(Texture));
-			Texture anmImage = (Texture)Resources.LoadAssetAtPath("Assets/"+PlayerSettings.productName+"/Scripts/Low/Battle/Editor/RunButton.png",typeof(Texture));
+			Texture image = (Texture)Resources.LoadAssetAtPath("Assets/AdventureEngine/Scripts/Battle/Editor/attackbar.psd",typeof(Texture));
+			Texture attImage = (Texture)Resources.LoadAssetAtPath("Assets/AdventureEngine/Scripts/Battle/Editor/AttackButton.png",typeof(Texture));
+			Texture defImage = (Texture)Resources.LoadAssetAtPath("Assets/AdventureEngine/Scripts/Battle/Editor/DefendButton.png",typeof(Texture));
+			Texture vlnImage = (Texture)Resources.LoadAssetAtPath("Assets/AdventureEngine/Scripts/Battle/Editor/MagicButton2.png",typeof(Texture));
+			Texture anmImage = (Texture)Resources.LoadAssetAtPath("Assets/AdventureEngine/Scripts/Battle/Editor/RunButton.png",typeof(Texture));
 			Texture scpImage = (Texture)Resources.LoadAssetAtPath("Assets/Gizmos/gears.png",typeof(Texture));
 			Texture2D durationTex = new Texture2D(1,1);	//THIS IS GETTING LEAKED! again, dont do this every frame
 			durationTex.SetPixel(0,0,Color.green);

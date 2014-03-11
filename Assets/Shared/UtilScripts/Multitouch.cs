@@ -90,6 +90,37 @@ public struct GestureTouchData
 }
 
 
+//TODO: The multitouch script should be updated to use this for each gesture instead!
+//TODO: Also, diagram out how gesture priority works.
+public abstract class Gesture
+{
+	
+	//TODO: Consider having a "GestureInstance" and "GesturePrototype", so that we can keep track of things like touchPartCount per-touch
+	
+	private int touchStage = 0;
+	public int TouchStage { get { return touchStage; } }
+	
+	private float confidence = 0.5f;
+	protected float Confidence {
+		get { return confidence; }
+		set { confidence = Mathf.Clamp01(value); }
+	}
+	
+	public abstract GestureType Type { get; }
+	
+	public abstract int OnTouchStart(Vector2 pos);		//returns '1' if a gesture finished.
+	public abstract int OnTouchUpdate(Vector2 pos);
+	public abstract int OnTouchUp(Vector2 pos);
+	
+	
+	
+	protected virtual void AdvanceTouchCount()
+	{
+		touchStage++;
+	}
+}
+
+
 
 
 
@@ -150,6 +181,7 @@ public class Multitouch : MonoBehaviour {
 		}
 	}
 	
+	private List<Gesture> Gestures = new List<Gesture>();
 	
 	
 	private List<TouchTracker> touches = new List<TouchTracker>();
@@ -628,6 +660,37 @@ public class Multitouch : MonoBehaviour {
 			RenewTouch(index1);
 		
 	}
+
+
+	
+	
+	public void BeginGestureCull(GestureTouchData data)
+	{
+		for(int i=0;i<Gestures.Count;i++)
+		{
+			int code = Gestures[i].OnTouchStart(data.Current);
+			if(code==0)continue;
+		}
+	}
+	
+	public void GestureCull(GestureTouchData data)
+	{
+		for(int i=0;i<Gestures.Count;i++)
+		{
+			int code = Gestures[i].OnTouchUpdate(data.Current);
+			if(code==0)continue;
+		}
+	}
+	
+	public void EndGestureCull(GestureTouchData data)
+	{
+		for(int i=0;i<Gestures.Count;i++)
+		{
+			int code = Gestures[i].OnTouchUp(data.Current);
+			if(code==0)continue;
+		}
+	}
+
 	
 	
 	

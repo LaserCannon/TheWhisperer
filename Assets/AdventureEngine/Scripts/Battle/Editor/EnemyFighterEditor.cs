@@ -26,7 +26,7 @@ public class EnemyFighterEditor : Editor
 	
 	void EditAttackPattern(EnemyAttackPattern attPattern)
 	{
-		Texture arrowImage = (Texture)Resources.LoadAssetAtPath("Assets/"+PlayerSettings.productName+"/Scripts/Low/Battle/Editor/arrow_down.psd",typeof(Texture));
+		Texture arrowImage = (Texture)Resources.LoadAssetAtPath("Assets/AdventureEngine/Scripts/Battle/Editor/arrow_down.psd",typeof(Texture));
 		
 		for(int i=0;i<attPattern.AttackOrder.Count;i++)
 		{

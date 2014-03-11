@@ -13,7 +13,7 @@ using UnityEditor;
 public class Script2DDrawContext
 {
 	private Font font;
-	private GUIStyle textStyle;
+	//private GUIStyle textStyle;
 	
 	private Script2D target = null;
 	
@@ -45,10 +45,10 @@ public class Script2DDrawContext
 	
 	public Script2DDrawContext()
 	{
-		arrow_down = (Texture)Resources.LoadAssetAtPath("Assets/"+PlayerSettings.productName+"/Scripts/Low/Scripting/Editor/arrow_down.psd",typeof(Texture));
-		arrow_right = (Texture)Resources.LoadAssetAtPath("Assets/"+PlayerSettings.productName+"/Scripts/Low/Scripting/Editor/arrow_right.psd",typeof(Texture));
+		arrow_down = (Texture)Resources.LoadAssetAtPath("Assets/AdventureEngine/Scripts/Scripting/Editor/arrow_down.psd",typeof(Texture));
+		arrow_right = (Texture)Resources.LoadAssetAtPath("Assets/AdventureEngine/Scripts/Scripting/Editor/arrow_right.psd",typeof(Texture));
 
-		textStyle = new GUIStyle(EditorStyles.label);
+		//textStyle = new GUIStyle(EditorStyles.label);
 	}
 
 
@@ -101,7 +101,7 @@ public class Script2DDrawContext
 			}
 			
 			
-			int oldLabelSize = EditorStyles.label.fontSize;
+			//int oldLabelSize = EditorStyles.label.fontSize;
 			EditorStyles.label.fontSize = (int)(12f * zoom);
 			EditorStyles.miniButton.fontSize = (int)(12f * zoom);
 			
