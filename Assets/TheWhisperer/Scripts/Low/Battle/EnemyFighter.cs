@@ -46,7 +46,6 @@ public class EnemyFighter : Fighter
 				curAttackProgress = (curAttackProgress+1) % AttackPattern.AttackOrder.Count;
 			}
 		}
-		Debug.Log (gameObject.name + " died...");
 	}
 }
 

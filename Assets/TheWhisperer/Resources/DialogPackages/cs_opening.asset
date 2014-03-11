@@ -18,17 +18,11 @@ MonoBehaviour:
     - Language: 10
       Text: There it is, Keso!
       AudioResourcePath: 
-    - Language: 40
-      Text: 
-      AudioResourcePath: 
   - LineID: cs_opening_Niabi_0001
     Character: Niabi
     TranslatedText:
     - Language: 10
       Text: Stay close.
-      AudioResourcePath: 
-    - Language: 40
-      Text: 
       AudioResourcePath: 
   - LineID: cs_opening_Niabi_0002
     Character: Niabi
@@ -36,17 +30,11 @@ MonoBehaviour:
     - Language: 10
       Text: '...and be quiet!'
       AudioResourcePath: 
-    - Language: 40
-      Text: 
-      AudioResourcePath: 
   - LineID: cs_opening_Keso_0003
     Character: Keso
     TranslatedText:
     - Language: 10
       Text: <speed=5>NIABI!
-      AudioResourcePath: 
-    - Language: 40
-      Text: 
       AudioResourcePath: 
   - LineID: cs_opening_Niabi_0004
     Character: Niabi
@@ -54,17 +42,11 @@ MonoBehaviour:
     - Language: 10
       Text: Not now!
       AudioResourcePath: 
-    - Language: 40
-      Text: 
-      AudioResourcePath: 
   - LineID: cs_opening_Keso_0005
     Character: Keso
     TranslatedText:
     - Language: 10
       Text: <speed=5>NIABI... SPIDER...
-      AudioResourcePath: 
-    - Language: 40
-      Text: 
       AudioResourcePath: 
   - LineID: cs_opening_Niabi_0006
     Character: Niabi
@@ -72,17 +54,11 @@ MonoBehaviour:
     - Language: 10
       Text: What?
       AudioResourcePath: 
-    - Language: 40
-      Text: 
-      AudioResourcePath: 
   - LineID: cs_opening_Keso_0007
     Character: Keso
     TranslatedText:
     - Language: 10
       Text: <size=0.75>AAAAAGH!!!
-      AudioResourcePath: 
-    - Language: 40
-      Text: 
       AudioResourcePath: 
   - LineID: cs_opening_Niabi_0008
     Character: Niabi
@@ -90,15 +66,9 @@ MonoBehaviour:
     - Language: 10
       Text: Gah!
       AudioResourcePath: 
-    - Language: 40
-      Text: 
-      AudioResourcePath: 
   - LineID: cs_opening_Niabi_0009
     Character: Niabi
     TranslatedText:
     - Language: 10
       Text: Come on! After it!
-      AudioResourcePath: 
-    - Language: 40
-      Text: 
       AudioResourcePath: 

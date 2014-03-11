@@ -25,9 +25,6 @@ public abstract class Fighter : MonoBehaviour
 	//private bool inRange = false;
 	
 	
-	private Vector3 initPos = Vector3.zero;
-	
-	
 	//TODO: Instead, point to a "FighterStats" class of some sort
 	private int hp = 10;
 	[SerializeField]
@@ -60,8 +57,7 @@ public abstract class Fighter : MonoBehaviour
 	
 	protected virtual void Start()
 	{
-		initPos = transform.localPosition;
-		moveToPos = initPos;
+		moveToPos = transform.localPosition;
 		
 		hp = maxHp;
 	}

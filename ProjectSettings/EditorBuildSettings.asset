@@ -6,6 +6,8 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
+    path: Assets/TheWhisperer/Scenes/Forest3.unity
+  - enabled: 1
     path: Assets/TheWhisperer/Scenes/test_scene.unity
   - enabled: 1
     path: Assets/TheWhisperer/Scenes/NewTestScene.unity
@@ -19,7 +21,5 @@ EditorBuildSettings:
     path: Assets/TheWhisperer/Scenes/Forest.unity
   - enabled: 1
     path: Assets/TheWhisperer/Scenes/Forest2.unity
-  - enabled: 1
-    path: Assets/TheWhisperer/Scenes/Forest3.unity
   - enabled: 1
     path: Assets/TheWhisperer/BattleScenes/test_battlescene.unity

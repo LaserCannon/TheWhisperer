@@ -23,7 +23,8 @@ public class BuildScheme
 	public string SchemeName = "";
 	public string StartingScene = "";
 	public List<string> Packages = new List<string>();
-	
+
+#if UNITY_EDITOR
 	public List<string> SerializedLevelPaths
 	{
 		get  
@@ -51,6 +52,7 @@ public class BuildScheme
 			return paths;
 		}
 	}
+#endif
 }
 
 

@@ -1,9 +1,10 @@
 using UnityEngine;
-using UnityEditor;
 using System.Collections;
 using System.IO;
 
-
+#if UNITY_EDITOR
+using UnityEditor;
+#endif
 
 
 public static class ManagedAssets

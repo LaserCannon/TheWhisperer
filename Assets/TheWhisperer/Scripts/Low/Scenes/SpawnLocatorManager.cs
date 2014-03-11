@@ -6,7 +6,6 @@ using System.IO;
 
 #if UNITY_EDITOR
 using UnityEditor;
-#endif
 
 
 //SpawnLoacationManager automatically stores all of the spawn point info outside of each scene,
@@ -14,6 +13,8 @@ using UnityEditor;
 
 
 [InitializeOnLoad]
+#endif
+
 public class SpawnLocatorManager : SingletonAsset
 {
 	
@@ -122,6 +123,9 @@ public class SpawnLocatorManager : SingletonAsset
 		
 		EditorUtility.SetDirty(main);
 	}
+	
+	
+#endif
 
 	
 	private static SpawnLocatorInfo FindSceneInfo(string scene)
@@ -133,9 +137,6 @@ public class SpawnLocatorManager : SingletonAsset
 		}
 		return null;
 	}
-	
-#endif
-	
 	
 	
 	// -- PUBLIC FUNCTIONS -- //

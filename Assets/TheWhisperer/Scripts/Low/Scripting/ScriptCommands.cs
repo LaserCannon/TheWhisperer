@@ -314,7 +314,7 @@ public partial class ScriptCommands
 		try{
 			if(GameController.main != null)
 			{
-				BattleManager.LoadBattle(GameController.Profile.GetPartyMember(0),enemyID,new BattleScene("test_battlescene"));
+				BattleLoader.LoadBattle(GameController.Profile.GetPartyMember(0),enemyID,new BattleScene("test_battlescene"));
 			}
 		}
 		catch(System.Exception e)

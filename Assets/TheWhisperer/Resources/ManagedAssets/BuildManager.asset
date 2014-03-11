@@ -16,7 +16,7 @@ MonoBehaviour:
     Scenes:
     - {fileID: 102900000, guid: 55787ee8497f24a5ba7c1ed7d8e8b401, type: 3}
     - {fileID: 102900000, guid: fb3ddb123c9eb437180a8533bf34db37, type: 3}
-  - PackageName: Villiage
+  - PackageName: Village
     Scenes:
     - {fileID: 102900000, guid: 6d517bcdc57064a989e6a0614ec35420, type: 3}
     - {fileID: 102900000, guid: fb3ddb123c9eb437180a8533bf34db37, type: 3}
@@ -31,7 +31,7 @@ MonoBehaviour:
     StartingScene: 
     Packages:
     - Menu
-    - Villiage
+    - Village
   - SchemeName: PSN Demo
     StartingScene: 
     Packages: []

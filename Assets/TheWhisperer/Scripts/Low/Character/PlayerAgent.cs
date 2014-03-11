@@ -22,7 +22,7 @@ public class PlayerAgent : PathCharacter
 	
 	protected void OnEnable()
 	{
-		Multitouch.OnTouchHold += MoveTowardScreenPosition;
+		Multitouch.OnTouch += MoveTowardScreenPosition;
 		Multitouch.OnDrag += MoveTowardScreenPosition;
 		Multitouch.OnTouchEnd += Halt;
 		Multitouch.OnDragEnd += Halt;
@@ -32,7 +32,7 @@ public class PlayerAgent : PathCharacter
 	
 	protected void OnDisable()
 	{
-		Multitouch.OnTouchHold -= MoveTowardScreenPosition;
+		Multitouch.OnTouch -= MoveTowardScreenPosition;
 		Multitouch.OnDrag -= MoveTowardScreenPosition;
 		Multitouch.OnTouchEnd -= Halt;
 		Multitouch.OnDragEnd -= Halt;

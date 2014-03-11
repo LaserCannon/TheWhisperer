@@ -102,7 +102,7 @@ public class AttackEditorWindow : EditorWindow{
 		}
 		if(action.GetType()==typeof(VulnerabilityBattleAction) || action.GetType()==typeof(BlockBattleAction))
 		{
-			BeginHorizontalWithLabel("Position");
+			BeginHorizontalWithLabel("Duration");
 			((VulnerabilityBattleAction)action).Duration = EditorGUILayout.FloatField( ((VulnerabilityBattleAction)action).Duration );
 			EditorGUILayout.EndHorizontal();
 			
@@ -164,6 +164,12 @@ public class AttackEditorWindow : EditorWindow{
 					((ScriptBattleAction)action).BattleCommand = newCom;
 				}
 			}
+		}
+		if(action.GetType()==typeof(AnimateBattleAction))
+		{
+			BeginHorizontalWithLabel("Animation");
+			((AnimateBattleAction)action).AnimString = EditorGUILayout.TextField( ((AnimateBattleAction)action).AnimString );
+			EditorGUILayout.EndHorizontal();
 		}
 		
 		EditorGUILayout.EndVertical();

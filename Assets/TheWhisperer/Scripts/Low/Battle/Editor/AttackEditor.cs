@@ -237,7 +237,7 @@ public class AttackEditor : Editor	//TODO: Consider calling all of these Editors
 				if( GUILayout.Button ("X",GUILayout.Width(24)) )
 				{
 					ScriptableObject.DestroyImmediate(targetAttack.Timeline[i],true);
-					AssetDatabase.ImportAsset(AssetDatabase.GetAssetPath(targetAttack));
+					AssetDatabase.ImportAsset(AssetDatabase.GetAssetPath(targetAttack)); 
 					targetAttack.Timeline.RemoveAt(i);
 					i--;
 					continue;
