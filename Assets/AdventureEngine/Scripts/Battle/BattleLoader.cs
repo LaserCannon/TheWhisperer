@@ -44,9 +44,7 @@ public class BattleLoader
 		
 		bm.FighterA.transform.parent = bm.Field.PlayerMount;
 		bm.FighterB.transform.parent = bm.Field.EnemyMount;
-		
-		bm.Prepare();
-		
+
 		bm.Begin();
 	}
 

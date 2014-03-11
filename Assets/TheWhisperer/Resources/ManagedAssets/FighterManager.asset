@@ -13,5 +13,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Players:
   - {fileID: 11400000, guid: 8eb33e228c8e34850a06b9c86e6eba0a, type: 2}
+  - {fileID: 11400000, guid: 48dd7c8f62bad48da981527b40787703, type: 2}
   Enemies:
   - {fileID: 11400000, guid: 8efcc6ed1676f4f2aa0256bc1361f551, type: 2}

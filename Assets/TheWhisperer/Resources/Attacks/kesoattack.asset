@@ -1,0 +1,67 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f921c5fe8026c4ce78894ef7ee367a6a, type: 3}
+  m_Name: kesoattack
+  m_EditorClassIdentifier: 
+  Timeline:
+  - {fileID: 11400002}
+  - {fileID: 11400006}
+  - {fileID: 11400004}
+--- !u!114 &11400002
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 486174cac436b4bbc808aa0d640654d2, type: 3}
+  m_Name: _AnimateAction
+  m_EditorClassIdentifier: 
+  Timecode: 0
+  Duration: 1
+  AnimString: attack
+  PlaybackSpeed: 1
+--- !u!114 &11400004
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e83b4c07749954c2dad333617ba43bbe, type: 3}
+  m_Name: _EmptyAction
+  m_EditorClassIdentifier: 
+  Timecode: .752870142
+  Duration: 1
+--- !u!114 &11400006
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 913a73a888ebe483c8ffb97225c7e9ed, type: 3}
+  m_Name: _DamageAction
+  m_EditorClassIdentifier: 
+  Timecode: .102342099
+  Duration: 1
+  Damage:
+    BaseDamage: 5
+    Type: 2
+    Element: 0
+    KnockbackStrength: 3
+    Position: {x: 0, y: 0, z: 1}
+    Radius: 2
+  LocalPosition: {x: 0, y: 0, z: 1}
+  Radius: 3

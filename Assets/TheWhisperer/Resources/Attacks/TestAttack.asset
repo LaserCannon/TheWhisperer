@@ -65,7 +65,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Timecode: .00426435703
   Duration: 1
-  AnimString: hpunch
+  AnimString: attack
   PlaybackSpeed: 1
 --- !u!114 &11400008
 MonoBehaviour:

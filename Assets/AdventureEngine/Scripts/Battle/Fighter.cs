@@ -53,13 +53,13 @@ public abstract class Fighter : MonoBehaviour
 	
 	protected void Awake()
 	{
+		
+		hp = maxHp;
 	}
 	
 	protected virtual void Start()
 	{
 		moveToPos = transform.localPosition;
-		
-		hp = maxHp;
 	}
 	
 	public void Update()
@@ -115,8 +115,8 @@ public abstract class Fighter : MonoBehaviour
 			
 			DoBattleAction(att.Timeline[i]);
 		}
-		
-		animation.CrossFade("idle");
+
+		GetComponent<Animator>().CrossFade("idle",0.15f);
 		
 		attacking = false;
 	}
@@ -124,36 +124,37 @@ public abstract class Fighter : MonoBehaviour
 	protected void DoBattleAction(BaseBattleAction action)
 	{
 		//--Damage--//
-		if(action.GetType() == typeof(DamageBattleAction)) {
+		if(action.GetType() == typeof(DamageBattleAction))
+		{
 			DamageBattleAction dmg = (DamageBattleAction)action;
 			DoHit (dmg.Damage);
 		}
 		//--Block--//
-		else if(action.GetType() == typeof(BlockBattleAction)) {
+		else if(action.GetType() == typeof(BlockBattleAction))
+		{
 			currentVulnerability = Vulnerability.NewVulnerability((BlockBattleAction)action);
 			StartCoroutine(ResetVulnerability(action.Duration));
 		}
 		//--Vulnerability--//
-		else if(action.GetType() == typeof(VulnerabilityBattleAction)) {
+		else if(action.GetType() == typeof(VulnerabilityBattleAction))
+		{
 			currentVulnerability = Vulnerability.NewVulnerability((VulnerabilityBattleAction)action);
 			StartCoroutine(ResetVulnerability(action.Duration));
 		}
 		//--Script--//
-		else if(action.GetType() == typeof(ScriptBattleAction)) {
+		else if(action.GetType() == typeof(ScriptBattleAction))
+		{
 			((ScriptBattleAction)action).Execute();
 		}
 		//--Animate--//
-		else if(action.GetType() == typeof(AnimateBattleAction)) {
-			if(animation!=null) {
-				if(animation[((AnimateBattleAction)action).AnimString]!=null)
-				{
-					animation[((AnimateBattleAction)action).AnimString].speed = ((AnimateBattleAction)action).PlaybackSpeed;
-				}
-				animation.CrossFade( ((AnimateBattleAction)action).AnimString, 0.15f );
-			}
+		else if(action.GetType() == typeof(AnimateBattleAction))
+		{
+			GetComponent<Animator>().speed = ((AnimateBattleAction)action).PlaybackSpeed;
+			GetComponent<Animator>().CrossFade( ((AnimateBattleAction)action).AnimString, 0.05f );
 		}
 		//--Move--//
-		else if(action.GetType() == typeof(MoveBattleAction)) {
+		else if(action.GetType() == typeof(MoveBattleAction))
+		{
 			Move( ((MoveBattleAction)action).TargetLocalPosition, ((MoveBattleAction)action).Duration );
 		}
 	}
@@ -237,7 +238,7 @@ public abstract class Fighter : MonoBehaviour
 	
 	protected void Die()
 	{
-		animation.CrossFade(DeathAnimString,0.15f);
+		GetComponent<Animator>().CrossFade(DeathAnimString,0.15f);
 		
 		if(FighterDied!=null)
 		{

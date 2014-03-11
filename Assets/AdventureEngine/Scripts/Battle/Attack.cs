@@ -60,7 +60,7 @@ public class DamageInfo
 
 
 
-
+//TODO: Make a generic "Timeline" class that iterates and can be used for anything
 [System.Serializable]
 public class Attack : ScriptableObject
 {

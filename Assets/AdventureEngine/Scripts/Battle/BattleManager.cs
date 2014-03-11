@@ -44,8 +44,14 @@ public class BattleManager : ScriptableObject
 	}
 	
 	
+
 	
-	public void Prepare()
+	public void OnFighterDied(Fighter deadFighter)
+	{
+		End ();
+	}
+	
+	public void Begin()
 	{
 		FighterA.transform.position = Field.PlayerMount.transform.position;
 		FighterA.transform.rotation = Field.PlayerMount.transform.rotation;
@@ -55,17 +61,6 @@ public class BattleManager : ScriptableObject
 		
 		FighterA.FighterDied += OnFighterDied;
 		FighterB.FighterDied += OnFighterDied;
-	}
-	
-	
-	public void OnFighterDied(Fighter deadFighter)
-	{
-		End ();
-	}
-	
-	public void Begin()
-	{
-
 	}
 	
 	public void End()

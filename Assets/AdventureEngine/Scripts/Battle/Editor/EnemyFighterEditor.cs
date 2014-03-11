@@ -47,8 +47,8 @@ public class EnemyFighterEditor : Editor
 			attPattern.AttackOrder.Add (newAttack);
 		
 		
-		for(int i=0;i<attPattern.AttackOrder.Count;i++)
-			AttackEditor.DrawAttackUI(attPattern.AttackOrder[i]);
+		//for(int i=0;i<attPattern.AttackOrder.Count;i++)
+		//	AttackEditor.DrawAttackUI(attPattern.AttackOrder[i]);
 		
 		
 	}

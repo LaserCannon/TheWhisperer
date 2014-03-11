@@ -22,7 +22,11 @@ public class StateMachine
 			state.Update(delta);
 		}
 	}
-	
+
+
+	protected virtual void InitState(State state)
+	{
+	}
 	
 	
 	public void PushState(State newState)
@@ -31,6 +35,8 @@ public class StateMachine
 		{
 			TopState.Pause();
 		}
+
+		InitState(newState);
 		
 		newState.Enter();
 		newState.SetMachineReference(this);

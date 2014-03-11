@@ -68,7 +68,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Timecode: .650669158
   Duration: 1
-  AnimString: punch
+  AnimString: attack2
   PlaybackSpeed: .5
 --- !u!114 &11400008
 MonoBehaviour:
@@ -82,8 +82,8 @@ MonoBehaviour:
   m_Name: _MoveAction
   m_EditorClassIdentifier: 
   Timecode: .0153129306
-  Duration: .300000012
-  TargetLocalPosition: {x: 0, y: 0, z: 2}
+  Duration: .400000006
+  TargetLocalPosition: {x: 0, y: 0, z: 3}
 --- !u!114 &11400010
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -143,7 +143,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 486174cac436b4bbc808aa0d640654d2, type: 3}
   m_Name: _AnimateAction
   m_EditorClassIdentifier: 
-  Timecode: .325314522
+  Timecode: .413255364
   Duration: 1
   AnimString: idle
   PlaybackSpeed: 1

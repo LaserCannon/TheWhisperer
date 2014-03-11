@@ -166,7 +166,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 74153ad74338c4773999aa050b5dec17, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Player: playertest
+  Player: FIGHT_Keso
   Enemy: demon
 --- !u!1 &31534857
 GameObject:

@@ -38,6 +38,7 @@ public class State
 	
 	public void SetMachineReference(StateMachine machine)
 	{
+
 	}
 	
 }
