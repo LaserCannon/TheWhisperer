@@ -73,6 +73,59 @@ ModelImporter:
     100134: pPlane16
     100136: pPlane17
     100138: pPlane18
+    100140: pPlane19
+    100142: pPlane20
+    100144: pPlane21
+    100146: pPlane22
+    100148: pPlane23
+    100150: pPlane24
+    100152: pPlane25
+    100154: pPlane26
+    100156: pPlane27
+    100158: pPlane28
+    100160: pPlane29
+    100162: pPlane30
+    100164: pPlane31
+    100166: pPlane32
+    100168: pPlane33
+    100170: pPlane34
+    100172: pPlane35
+    100174: pPlane36
+    100176: pPlane37
+    100178: pPlane38
+    100180: pPlane39
+    100182: pPlane40
+    100184: pPlane41
+    100186: pPlane42
+    100188: pPlane43
+    100190: pPlane44
+    100192: pPlane45
+    100194: pPlane46
+    100196: pPlane47
+    100198: pPlane48
+    100200: pPlane49
+    100202: pPlane50
+    100204: pPlane51
+    100206: pPlane52
+    100208: pSphere14
+    100210: pPlane53
+    100212: pPlane54
+    100214: pPlane55
+    100216: pPlane57
+    100218: pPlane59
+    100220: pPlane60
+    100222: pPlane61
+    100224: pPlane62
+    100226: pPlane63
+    100228: pPlane64
+    100230: pPlane65
+    100232: pPlane66
+    100234: pPlane67
+    100236: pPlane68
+    100238: pPlane69
+    100240: pPlane70
+    100242: pSphere15
+    100244: pSphere16
     400000: Decor
     400002: //RootNode
     400004: WalkMesh
@@ -143,6 +196,59 @@ ModelImporter:
     400134: pPlane16
     400136: pPlane17
     400138: pPlane18
+    400140: pPlane19
+    400142: pPlane20
+    400144: pPlane21
+    400146: pPlane22
+    400148: pPlane23
+    400150: pPlane24
+    400152: pPlane25
+    400154: pPlane26
+    400156: pPlane27
+    400158: pPlane28
+    400160: pPlane29
+    400162: pPlane30
+    400164: pPlane31
+    400166: pPlane32
+    400168: pPlane33
+    400170: pPlane34
+    400172: pPlane35
+    400174: pPlane36
+    400176: pPlane37
+    400178: pPlane38
+    400180: pPlane39
+    400182: pPlane40
+    400184: pPlane41
+    400186: pPlane42
+    400188: pPlane43
+    400190: pPlane44
+    400192: pPlane45
+    400194: pPlane46
+    400196: pPlane47
+    400198: pPlane48
+    400200: pPlane49
+    400202: pPlane50
+    400204: pPlane51
+    400206: pPlane52
+    400208: pSphere14
+    400210: pPlane53
+    400212: pPlane54
+    400214: pPlane55
+    400216: pPlane57
+    400218: pPlane59
+    400220: pPlane60
+    400222: pPlane61
+    400224: pPlane62
+    400226: pPlane63
+    400228: pPlane64
+    400230: pPlane65
+    400232: pPlane66
+    400234: pPlane67
+    400236: pPlane68
+    400238: pPlane69
+    400240: pPlane70
+    400242: pSphere15
+    400244: pSphere16
     2300000: Decor
     2300002: WalkMesh
     2300004: pCylinder1
@@ -212,6 +318,59 @@ ModelImporter:
     2300132: pPlane16
     2300134: pPlane17
     2300136: pPlane18
+    2300138: pPlane19
+    2300140: pPlane20
+    2300142: pPlane21
+    2300144: pPlane22
+    2300146: pPlane23
+    2300148: pPlane24
+    2300150: pPlane25
+    2300152: pPlane26
+    2300154: pPlane27
+    2300156: pPlane28
+    2300158: pPlane29
+    2300160: pPlane30
+    2300162: pPlane31
+    2300164: pPlane32
+    2300166: pPlane33
+    2300168: pPlane34
+    2300170: pPlane35
+    2300172: pPlane36
+    2300174: pPlane37
+    2300176: pPlane38
+    2300178: pPlane39
+    2300180: pPlane40
+    2300182: pPlane41
+    2300184: pPlane42
+    2300186: pPlane43
+    2300188: pPlane44
+    2300190: pPlane45
+    2300192: pPlane46
+    2300194: pPlane47
+    2300196: pPlane48
+    2300198: pPlane49
+    2300200: pPlane50
+    2300202: pPlane51
+    2300204: pPlane52
+    2300206: pSphere14
+    2300208: pPlane53
+    2300210: pPlane54
+    2300212: pPlane55
+    2300214: pPlane57
+    2300216: pPlane59
+    2300218: pPlane60
+    2300220: pPlane61
+    2300222: pPlane62
+    2300224: pPlane63
+    2300226: pPlane64
+    2300228: pPlane65
+    2300230: pPlane66
+    2300232: pPlane67
+    2300234: pPlane68
+    2300236: pPlane69
+    2300238: pPlane70
+    2300240: pSphere15
+    2300242: pSphere16
     3300000: Decor
     3300002: WalkMesh
     3300004: pCylinder1
@@ -281,6 +440,59 @@ ModelImporter:
     3300132: pPlane16
     3300134: pPlane17
     3300136: pPlane18
+    3300138: pPlane19
+    3300140: pPlane20
+    3300142: pPlane21
+    3300144: pPlane22
+    3300146: pPlane23
+    3300148: pPlane24
+    3300150: pPlane25
+    3300152: pPlane26
+    3300154: pPlane27
+    3300156: pPlane28
+    3300158: pPlane29
+    3300160: pPlane30
+    3300162: pPlane31
+    3300164: pPlane32
+    3300166: pPlane33
+    3300168: pPlane34
+    3300170: pPlane35
+    3300172: pPlane36
+    3300174: pPlane37
+    3300176: pPlane38
+    3300178: pPlane39
+    3300180: pPlane40
+    3300182: pPlane41
+    3300184: pPlane42
+    3300186: pPlane43
+    3300188: pPlane44
+    3300190: pPlane45
+    3300192: pPlane46
+    3300194: pPlane47
+    3300196: pPlane48
+    3300198: pPlane49
+    3300200: pPlane50
+    3300202: pPlane51
+    3300204: pPlane52
+    3300206: pSphere14
+    3300208: pPlane53
+    3300210: pPlane54
+    3300212: pPlane55
+    3300214: pPlane57
+    3300216: pPlane59
+    3300218: pPlane60
+    3300220: pPlane61
+    3300222: pPlane62
+    3300224: pPlane63
+    3300226: pPlane64
+    3300228: pPlane65
+    3300230: pPlane66
+    3300232: pPlane67
+    3300234: pPlane68
+    3300236: pPlane69
+    3300238: pPlane70
+    3300240: pSphere15
+    3300242: pSphere16
     4300000: Decor
     4300002: WalkMesh
     4300004: pCylinder1
@@ -350,6 +562,59 @@ ModelImporter:
     4300132: pPlane16
     4300134: pPlane17
     4300136: pPlane18
+    4300138: pPlane19
+    4300140: pPlane20
+    4300142: pPlane21
+    4300144: pPlane22
+    4300146: pSphere14
+    4300148: pPlane23
+    4300150: pPlane24
+    4300152: pPlane25
+    4300154: pPlane26
+    4300156: pPlane27
+    4300158: pPlane28
+    4300160: pPlane29
+    4300162: pPlane30
+    4300164: pPlane31
+    4300166: pPlane32
+    4300168: pPlane33
+    4300170: pPlane34
+    4300172: pPlane35
+    4300174: pPlane36
+    4300176: pPlane37
+    4300178: pPlane38
+    4300180: pPlane39
+    4300182: pPlane40
+    4300184: pPlane41
+    4300186: pPlane42
+    4300188: pPlane43
+    4300190: pPlane44
+    4300192: pPlane45
+    4300194: pPlane46
+    4300196: pPlane47
+    4300198: pPlane48
+    4300200: pPlane49
+    4300202: pPlane50
+    4300204: pPlane51
+    4300206: pPlane52
+    4300208: pSphere15
+    4300210: pPlane53
+    4300212: pPlane54
+    4300214: pPlane55
+    4300216: pSphere16
+    4300218: pPlane57
+    4300220: pPlane59
+    4300222: pPlane60
+    4300224: pPlane61
+    4300226: pPlane62
+    4300228: pPlane63
+    4300230: pPlane64
+    4300232: pPlane65
+    4300234: pPlane66
+    4300236: pPlane67
+    4300238: pPlane68
+    4300240: pPlane69
+    4300242: pPlane70
     9500000: //RootNode
   materials:
     importMaterials: 1
