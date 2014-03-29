@@ -5,7 +5,7 @@ using System.Collections.Generic;
 using System.Reflection;
 
 public class Script2DEditorWindow : EditorWindow
-{
+{ 
 
 	private Script2DDrawContext context = null;
 	
@@ -13,7 +13,7 @@ public class Script2DEditorWindow : EditorWindow
 	public static void OpenEditor()
 	{
 		Script2DEditorWindow window = EditorWindow.GetWindow<Script2DEditorWindow>(false,"Script2D Editor");
-		window.minSize = new Vector2(300,200);
+		window.minSize = new Vector2(300,200); 
 	}
 	
 	void Update()

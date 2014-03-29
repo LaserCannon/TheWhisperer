@@ -8,8 +8,8 @@ public class ScriptBattleAction : BaseBattleAction
 {
 	public Command BattleCommand;
 	
-	public void Execute()
+	public override void Execute(FighterController controller)
 	{
-		BattleCommand.Execute();
+		AsyncServices.RunCoroutine( BattleCommand.Execute() );
 	}
 }

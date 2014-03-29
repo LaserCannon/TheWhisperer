@@ -151,7 +151,7 @@ Animator:
   m_GameObject: {fileID: 100006}
   m_Enabled: 1
   m_Avatar: {fileID: 9000000, guid: 504ada826994945d281f07954a55950e, type: 3}
-  m_Controller: {fileID: 9100000, guid: 093cdeea30b3547069dade4f42201855, type: 2}
+  m_Controller: {fileID: 9100000, guid: 746d1564d649e4ec09729bc27c8f974a, type: 2}
   m_CullingMode: 1
   m_ApplyRootMotion: 0
   m_AnimatePhysics: 0
@@ -164,20 +164,19 @@ MonoBehaviour:
   m_GameObject: {fileID: 100006}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0facaadc0b83a4f508805cb11effa402, type: 3}
+  m_Script: {fileID: 11500000, guid: 0968e611ca0cf45d0845efeef2fd3a0a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  DeathAnimString: die
-  maxHp: 10
+  maxHP: 0
+  defaultVulnerability:
+    damageOffset: 0
+    canBeKnockedDown: 1
+    breakReq: []
   Attacks:
-  - AttackInfo: {fileID: 11400000, guid: f4a386165ced847a0ad3ff99dd7f539f, type: 2}
+  - AttackInfo: {fileID: 11400000, guid: 83f9174394fce48c1b4fd81747d25316, type: 2}
+    UseGesture: 3
+  - AttackInfo: {fileID: 11400000, guid: 8b12460920fe546f8a59d970cb2f2f54, type: 2}
     UseGesture: 5
-  BlockVulnerability:
-    DamageOffset: -1
-    KnockbackOffset: -1
-    BreakReq: []
-  BlockAnimString: block
-  BlockMeter: {fileID: 0}
 --- !u!136 &13600000
 CapsuleCollider:
   m_ObjectHideFlags: 1

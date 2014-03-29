@@ -1,4 +1,4 @@
-using UnityEngine;
+﻿using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
 
@@ -11,41 +11,23 @@ public class EnemyAttackPattern
 }
 
 
-//TODO: Make an "Enemy Fighter" and an "Enemy Fighter Profile"? Might want to seperate the physical fighter from the attack lists, etc.
 
 public class EnemyFighter : Fighter
 {
+	
 	public EnemyAttackPattern AttackPattern;
-	
-	public int speed = 5;
-	
-	
-	protected override void Start()
-	{
-		StartCoroutine(BattleLoop());
-	}
-	
-	
-	public IEnumerator BattleLoop()
-	{
-		int curAttackProgress = 0;
-		
-		if(AttackPattern.AttackOrder.Count==0)
-		{
-			Debug.LogError("Error! Enemy "+gameObject.name+"does not have any attacks in his attack pattern!");
-		}
-		
-		while(!IsDead)
-		{
-			yield return new WaitForSeconds(5f - (float)speed/5f);
-			
-			if(!IsDead)
-			{
-				yield return StartCoroutine(DoAttack(AttackPattern.AttackOrder[curAttackProgress]));
-				
-				curAttackProgress = (curAttackProgress+1) % AttackPattern.AttackOrder.Count;
-			}
-		}
-	}
-}
 
+	public override Attack GetAttackForIndex (int index)
+	{
+		return AttackPattern.AttackOrder[index];
+	}
+	
+	public override int AttackCount
+	{
+		get
+		{
+			return AttackPattern.AttackOrder.Count;
+		}
+	}
+
+}

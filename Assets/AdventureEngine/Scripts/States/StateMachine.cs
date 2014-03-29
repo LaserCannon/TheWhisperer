@@ -5,21 +5,21 @@ using System.Collections.Generic;
 public class StateMachine
 {
 
-	protected Stack<State> stateStack = null;
+	protected Stack<State> stateStack = new Stack<State>();
 	
 	
 	public State TopState
 	{
-		get { return stateStack.Peek(); }
+		get { return stateStack.Count==0 ? null : stateStack.Peek(); }
 	}
 	
 	
 	
 	public void Update(float delta)
 	{
-		foreach(State state in stateStack)
+		if(TopState !=null)
 		{
-			state.Update(delta);
+			TopState.Update(delta);
 		}
 	}
 
@@ -37,9 +37,9 @@ public class StateMachine
 		}
 
 		InitState(newState);
-		
-		newState.Enter();
+
 		newState.SetMachineReference(this);
+		newState.Enter();
 		
 		stateStack.Push(newState);
 	}

@@ -37,9 +37,10 @@ MonoBehaviour:
     BaseDamage: 5
     Type: 0
     Element: 0
-    KnockbackStrength: 3
+    DoesKnockback: 1
     Position: {x: 0, y: 0, z: 1}
     Radius: 2
+    Dodgeable: 1
   LocalPosition: {x: 0, y: 0, z: 1}
   Radius: 3
 --- !u!114 &11400004
@@ -111,12 +112,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Timecode: .75352186
   Duration: .899999976
-  DamageOffset: 0
-  KnockbackOffset: 0
-  BreakReq:
-  - Type: 0
-    Amount: 1
-    DmgType: 0
+  vulnerability:
+    damageOffset: 0
+    canBeKnockedDown: 1
+    breakReq: []
 --- !u!114 &11400016
 MonoBehaviour:
   m_ObjectHideFlags: 0

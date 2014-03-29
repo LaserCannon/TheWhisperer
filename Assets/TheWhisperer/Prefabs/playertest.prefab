@@ -264,7 +264,7 @@ GameObject:
   m_Component:
   - 4: {fileID: 400034}
   - 111: {fileID: 11100000}
-  - 114: {fileID: 11400000}
+  - 114: {fileID: 0}
   - 136: {fileID: 13600000}
   m_Layer: 0
   m_Name: playertest
@@ -1328,33 +1328,6 @@ Animation:
   m_PlayAutomatically: 1
   m_AnimatePhysics: 0
   m_CullingType: 0
---- !u!114 &11400000
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 100034}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0facaadc0b83a4f508805cb11effa402, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  DeathAnimString: run
-  maxHp: 10
-  Attacks:
-  - AttackInfo: {fileID: 11400000, guid: 8b12460920fe546f8a59d970cb2f2f54, type: 2}
-    UseGesture: 5
-  - AttackInfo: {fileID: 11400000, guid: 83f9174394fce48c1b4fd81747d25316, type: 2}
-    UseGesture: 1
-  BlockVulnerability:
-    DamageOffset: -.899999976
-    KnockbackOffset: -1
-    BreakReq:
-    - Type: 0
-      Amount: 1
-      DmgType: 0
-  BlockAnimString: block
-  BlockMeter: {fileID: 0}
 --- !u!136 &13600000
 CapsuleCollider:
   m_ObjectHideFlags: 1

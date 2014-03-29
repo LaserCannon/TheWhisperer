@@ -5,12 +5,12 @@ using System.Collections.Generic;
 
 
 
-[CustomEditor(typeof(EnemyFighter))]
+//[CustomEditor(typeof(EnemyFighter))]
 public class EnemyFighterEditor : Editor
 {
 
 	
-	public override void OnInspectorGUI()
+/*	public override void OnInspectorGUI()
 	{
 		EnemyFighter Target = (EnemyFighter)target;
 		
@@ -51,7 +51,7 @@ public class EnemyFighterEditor : Editor
 		//	AttackEditor.DrawAttackUI(attPattern.AttackOrder[i]);
 		
 		
-	}
+	}*/
 	
 	
 }

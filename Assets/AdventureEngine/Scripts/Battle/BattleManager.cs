@@ -2,80 +2,33 @@ using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
 
-public class BattleManager : ScriptableObject
+public class BattleManager : MonoBehaviour
 {
+	 
+	private BattleStateMachine stateMachine = null;
 
-	
-	
-	public Camera BattleCam;
-	
-	
-	public Fighter FighterA;
-	public Fighter FighterB;
-	public Battlefield Field;
-	
-	
-	private static BattleManager current;
-	public static BattleManager Current { get { return current; } }
+	private BattleCoordinator coordinator = null;
 
 
-	public BattleManager()
+
+
+	public void Begin(string playerID, string enemyID)
 	{
-		current = this;
-	}
-	
-	
-	public Fighter GetOpponentFor(Fighter fighter)
-	{
-		if(fighter==FighterA)
-			return FighterB;
-		if(fighter==FighterB)
-			return FighterA;
-		return null;
-	}
+		PlayerFighter player = FighterManager.main.SpawnPlayer(playerID);
+		EnemyFighter enemy = FighterManager.main.SpawnEnemy(enemyID);
 
-
-	//non-static version
-	public BattleManager LoadBattle()
-	{
-		current = this;
+		coordinator = new BattleCoordinator(player,enemy);
 		
-		return current;
-	}
-	
-	
+		stateMachine = new BattleStateMachine(coordinator);
 
-	
-	public void OnFighterDied(Fighter deadFighter)
-	{
-		End ();
+		stateMachine.SetState(new BattleStateStart());
 	}
-	
-	public void Begin()
-	{
-		FighterA.transform.position = Field.PlayerMount.transform.position;
-		FighterA.transform.rotation = Field.PlayerMount.transform.rotation;
-		
-		FighterB.transform.position = Field.EnemyMount.transform.position;
-		FighterB.transform.rotation = Field.EnemyMount.transform.rotation;
-		
-		FighterA.FighterDied += OnFighterDied;
-		FighterB.FighterDied += OnFighterDied;
-	}
-	
-	public void End()
-	{
-		FighterA.FighterDied -= OnFighterDied;
-		FighterB.FighterDied -= OnFighterDied;
 
-		current = null;
-	}
-	
-	
-	
-	private void UpdatePlayerState()
+
+
+	void Update()
 	{
+		stateMachine.Update(Time.deltaTime);
 	}
-	
-	
+
 }

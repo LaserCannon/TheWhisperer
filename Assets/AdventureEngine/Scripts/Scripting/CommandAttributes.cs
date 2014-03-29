@@ -48,6 +48,7 @@ public class CommandGUIFunctionAttribute : Attribute
 	}
 	
 #if UNITY_EDITOR
+
 	public static bool CallGUIFunction(Command cmd, int prmIndex, object input, out object outval)
 	{
 		MethodInfo info = cmd.Method;
@@ -65,6 +66,9 @@ public class CommandGUIFunctionAttribute : Attribute
 					if(pindex==prmIndex)
 					{
 						System.Type type = System.Type.GetType("ScriptCommandsUI");
+
+						if(type==null)
+							Debug.Log("Type is null");
 					
 						MethodInfo guiMethod = type.GetMethod( ((CommandGUIFunctionAttribute)atts[i]).GUIMethods[pr]);
 						

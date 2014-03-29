@@ -1699,18 +1699,19 @@ MonoBehaviour:
   m_GameObject: {fileID: 100110}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 62aa4c4e7fafd405887b57c0cecf21bf, type: 3}
+  m_Script: {fileID: 11500000, guid: 55932f770678c43bb91b51c6d372f51a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  DeathAnimString: death
-  maxHp: 20
+  maxHP: 10
+  defaultVulnerability:
+    damageOffset: 0
+    canBeKnockedDown: 0
+    breakReq: []
   AttackPattern:
     AttackOrder:
     - {fileID: 11400000, guid: 1784b2391822c4701a9d2d97023c1bcb, type: 2}
     - {fileID: 11400000, guid: 1784b2391822c4701a9d2d97023c1bcb, type: 2}
     - {fileID: 11400000, guid: e45d01f16b4ed431387748d88c52cc06, type: 2}
-    - {fileID: 11400000, guid: 1784b2391822c4701a9d2d97023c1bcb, type: 2}
-  speed: 5
 --- !u!136 &13600000
 CapsuleCollider:
   m_ObjectHideFlags: 1

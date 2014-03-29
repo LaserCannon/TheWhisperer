@@ -577,67 +577,6 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
---- !u!1 &253251649
-GameObject:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  serializedVersion: 4
-  m_Component:
-  - 4: {fileID: 253251651}
-  - 114: {fileID: 253251650}
-  m_Layer: 0
-  m_Name: GameObject
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!114 &253251650
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 253251649}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: edc7bd713259f44aeb58431f4773daa3, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Cooldown: 0
-  PlayLimit: 0
-  PlayLimitSaveString: 
-  savedJson: '{"nodes":[{"id":1, "type":"Script2DEntryNode", "next":1, "nextLink":10,
-    "posy":287.299468994141, "posx":-53.1627998352051}, {"type":"Script2DCommandNode",
-    "posy":758.869995117188, "command":{"params":[{"value":-1, "type":1}, {"value":"",
-    "type":4}], "doesWaitForFinish":false, "commandName":"SendMessage", "enabled":false},
-    "last":3, "inputs":[{"inputLinkID":-1, "inputID":5}, {"inputLinkID":-1, "inputID":6}],
-    "id":2, "return":4, "posx":212.910797119141, "next":2, "nextLink":-1}, {"type":"Script2DCommandNode",
-    "posy":299.877563476563, "command":{"params":[{"value":1, "type":2}], "doesWaitForFinish":true,
-    "commandName":"Wait", "enabled":true}, "last":12, "inputs":[{"inputLinkID":-1,
-    "inputID":14}], "id":4, "return":13, "posx":408.149566650391, "next":11, "nextLink":16},
-    {"type":"Script2DIfNode", "inputLink":-1, "last":10, "falseNext":9, "id":3, "posx":201.07145690918,
-    "next":8, "input":7, "falseNextLink":3, "nextLink":12, "posy":381.672241210938},
-    {"type":"Script2DCommandNode", "posy":460.677734375, "command":{"params":[{"value":"cs_opening_Niabi_0000",
-    "type":4}], "doesWaitForFinish":true, "commandName":"PlayDialog", "enabled":true},
-    "last":16, "inputs":[{"inputLinkID":-1, "inputID":18}], "id":5, "return":17, "posx":686.648376464844,
-    "next":15, "nextLink":-1}, {"type":"Script2DCommandNode", "posy":772.988708496094,
-    "command":{"params":[{"value":-1, "type":1}, {"value":"", "type":4}, {"value":0,
-    "type":6}], "doesWaitForFinish":true, "commandName":"Animate", "enabled":true},
-    "last":20, "inputs":[{"inputLinkID":-1, "inputID":22}, {"inputLinkID":-1, "inputID":23},
-    {"inputLinkID":-1, "inputID":24}], "id":6, "return":21, "posx":636.773620605469,
-    "next":19, "nextLink":-1}]}'
---- !u!4 &253251651
-Transform:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 253251649}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -2.40844464, y: -2.89391446, z: -10.6621447}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 0}
 --- !u!1 &309788827
 GameObject:
   m_ObjectHideFlags: 0
@@ -1366,7 +1305,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5aaf80c642f9f43bfa01cc34554bfb7f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ScriptOnTalk: {fileID: 0}
+  TriggerOnTalk: {fileID: 0}
 --- !u!195 &879293086
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -2272,49 +2211,6 @@ Prefab:
   m_RootGameObject: {fileID: 930654513}
   m_IsPrefabParent: 0
   m_IsExploded: 1
---- !u!1 &1287693525
-GameObject:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  serializedVersion: 4
-  m_Component:
-  - 4: {fileID: 1287693527}
-  - 114: {fileID: 1287693526}
-  m_Layer: 0
-  m_Name: GameObject
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!114 &1287693526
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1287693525}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: edc7bd713259f44aeb58431f4773daa3, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Cooldown: 0
-  PlayLimit: 0
-  PlayLimitSaveString: 
-  savedJson: '{"nodes":[{"id":1, "type":"Script2DEntryNode", "next":1, "nextLink":-1,
-    "posy":218.558334350586, "posx":143.878677368164}]}'
---- !u!4 &1287693527
-Transform:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1287693525}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -2.40844464, y: -2.89391446, z: -10.6621447}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 0}
 --- !u!1 &1297545948
 GameObject:
   m_ObjectHideFlags: 0
@@ -2605,6 +2501,48 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1562958302}
+--- !u!1 &1514869126
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 1514869128}
+  - 114: {fileID: 1514869127}
+  m_Layer: 0
+  m_Name: GameObject
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1514869127
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1514869126}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: edc7bd713259f44aeb58431f4773daa3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Cooldown: 0
+  PlayLimit: 0
+  PlayLimitSaveString: 
+  savedJson: 
+--- !u!4 &1514869128
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1514869126}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -1.95305896, y: -10.05721, z: -4.10840416}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
 --- !u!1 &1562958300
 GameObject:
   m_ObjectHideFlags: 0

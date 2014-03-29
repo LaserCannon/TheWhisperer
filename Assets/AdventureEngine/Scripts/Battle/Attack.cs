@@ -3,60 +3,8 @@ using System.Collections;
 using System.Collections.Generic;
 
 
-public enum AttackEventType {
-	None,
-	Hit,
-	Block,
-	Vulnerable,
-	InRange,
-	
-	Animate,
-}
 
-public enum DamageType {
-	None,
-	Blunt,
-	Piercing,
-	Magic,
-}
-
-public enum DamageElement {
-	None,
-	Fire,
-	Water,
-	Earth,
-	Thunder,
-}
-
-public enum Knockback
-{
-	None,
-	VeryLow,
-	Low,
-	Medium,
-	High,
-	VeryHigh,
-	Impossible,
-}
-
-
-
-
-public enum BreakType { AttackCount, Damage, DamageType, Element }
-
-
-
-[System.Serializable]
-public class DamageInfo
-{
-	public float BaseDamage;
-	public DamageType Type;
-	public DamageElement Element;
-	public Knockback KnockbackStrength = Knockback.Medium;
-	
-	public Vector3 Position = Vector3.forward;
-	public float Radius = 2f;
-}
+public enum BreakType { Attack, Damage, DamageType, Element }
 
 
 

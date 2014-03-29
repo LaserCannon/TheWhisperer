@@ -5,8 +5,10 @@ public class BattleLoader
 {
 	private static string savedPlayer = "";
 	private static string savedEnemy = "";
+
+	private static BattleManager currentBM = null;
 	
-	//static version
+	// -- Loads battle from FIELD
 	public static void LoadBattle(string player, string enemy, BattleScene scene)
 	{
 		GameController.Profile.RecordPlayerLocation(GameController.main.Player);
@@ -18,7 +20,8 @@ public class BattleLoader
 		
 		LevelLoader.LevelLoaded += OnBattleLevelLoaded;
 	}
-	
+
+	// -- Initiates battle from EMPTY BATTLE SCENE
 	public static void ManualSetupBattle(string player, string enemy)
 	{
 		savedPlayer = player;
@@ -29,36 +32,19 @@ public class BattleLoader
 	
 	private static void  OnBattleLevelLoaded()
 	{
-		if (BattleManager.Current != null)
-			return;
-		
-		//NEW SCENE//
 		LevelLoader.LevelLoaded -= OnBattleLevelLoaded;
-		
-		BattleManager bm = ScriptableObject.CreateInstance<BattleManager>();
-		
-		bm.Field = (Battlefield)GameObject.FindObjectOfType(typeof(Battlefield));
-		
-		bm.FighterA = FighterManager.main.SpawnPlayer(savedPlayer);
-		bm.FighterB = FighterManager.main.SpawnEnemy(savedEnemy);
-		
-		bm.FighterA.transform.parent = bm.Field.PlayerMount;
-		bm.FighterB.transform.parent = bm.Field.EnemyMount;
 
-		bm.Begin();
+		GameObject go = new GameObject("BattleManager");
+		currentBM = go.AddComponent<BattleManager>();
+
+		currentBM.Begin(savedPlayer,savedEnemy);
 	}
 
 	public static void UnloadBattle()
 	{
-		LevelLoader.LevelLoaded -= OnBattleLevelLoaded;
-		
-		((PlayerFighter)BattleManager.Current.FighterA).Disconnect();
-		
-		BattleManager.Current.End();
-		
-		GameController.Profile.RestorePlayerLocation();
+		currentBM = null;
 
-		ScriptableObject.DestroyObject(BattleManager.Current);
+		GameController.Profile.RestorePlayerLocation();
 	}
 
 }

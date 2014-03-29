@@ -122,9 +122,8 @@ public abstract class Gesture
 
 
 
-
-
-public class Multitouch : MonoBehaviour {
+public class Multitouch : MonoBehaviour
+{
 
 	public enum TouchState { Unclaimed, Claimed, Locked }
 	
@@ -159,7 +158,8 @@ public class Multitouch : MonoBehaviour {
 	
 	static Multitouch()
 	{
-		if(_main==null && Application.isPlaying) {
+		if(_main==null && Application.isPlaying)
+		{
 			GameObject go = new GameObject("Multitouch_Singleton");
 			_main = go.AddComponent<Multitouch>();
 			DontDestroyOnLoad(go);

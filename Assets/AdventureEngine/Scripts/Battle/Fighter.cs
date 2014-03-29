@@ -1,250 +1,115 @@
 using UnityEngine;
+using System.Reflection;
 using System.Collections;
 using System.Collections.Generic;
 
 
 
-
-
-
-
-
-
 public abstract class Fighter : MonoBehaviour
 {
-	
-	public string DeathAnimString = "die";
-	
-	
-	//private bool blocking = false;
-	private bool attacking = false;
-	//private bool vulnerable = false;
-	
-	protected Vulnerability currentVulnerability;
-	
-	//private bool inRange = false;
-	
-	
-	//TODO: Instead, point to a "FighterStats" class of some sort
-	private int hp = 10;
+
+	private Animator animator = null; 
+
+	private Vector3 targetPosition = Vector3.zero;
+	private float movingSpeed = 0f;
+
 	[SerializeField]
-	private int maxHp = 10;
-	
-	
-	public delegate void OnDeathDelegate(Fighter deadFighter);
-	public event OnDeathDelegate FighterDied = null;
-	
-	
-	//Properties
-	public bool IsAttacking { get { return attacking; } }
-	
-	public bool IsDead { get { return hp<=0; } }
-	
-	public Fighter Opponent
+	private int maxHP = 0;
+	public int MaxHP
 	{
-		get { 
-			if(BattleManager.Current==null)
-				return null;
-			return BattleManager.Current.GetOpponentFor(this);
-		}
+		get { return maxHP; }
 	}
-	
-	//Functions
-	
-	protected void Awake()
+
+	[SerializeField]
+	private Vulnerability defaultVulnerability = null;
+	public Vulnerability DefaultVulnerability
 	{
-		
-		hp = maxHp;
+		get { return defaultVulnerability; }
 	}
-	
-	protected virtual void Start()
+
+
+	public delegate void DamageDelegate(DamageInfo damage);
+	public event DamageDelegate hit = null;
+
+
+
+	void Awake()
 	{
-		moveToPos = transform.localPosition;
+		animator = GetComponent<Animator>();
 	}
-	
-	public void Update()
+
+
+	void Update()
 	{
-		if(transform.localPosition!=moveToPos)
-			transform.localPosition = Vector3.MoveTowards(transform.localPosition,moveToPos,Time.deltaTime * curSpeed);
-	}
-	
-	
-	private Vector3 moveToPos = Vector3.zero;
-	private float curSpeed = 0f;
-	private void Move(Vector3 toPos, float time)
-	{	
-		moveToPos = toPos;
-		curSpeed = (transform.localPosition-toPos).magnitude / time;
-	}
-	
-	
-	
-	
-	
-	public void AddHP(int amt)
-	{
-		hp = Mathf.Clamp (hp + amt,0,maxHp);
-		
-		DamageText.ThrowTextFromPoint(amt.ToString(),collider.bounds.center);
-	}
-	
-	public void SetHP(int amt)
-	{
-		hp = Mathf.Clamp (amt,0,maxHp);
-	}
-	
-	
-	protected IEnumerator DoAttack(Attack att)
-	{
-		attacking = true;
-		
-		float start = Time.time;
-		
-		for(int i=0;i<att.Timeline.Count;i++)
+		if(transform.localPosition != targetPosition)
 		{
-			while(Time.time-start < att.Timeline[i].Timecode)
+			transform.localPosition = Vector3.MoveTowards(transform.localPosition,targetPosition,Time.deltaTime*movingSpeed);
+
+			if(transform.localPosition == targetPosition)
 			{
-				if(IsDead)
-				{
-					attacking = false;
-					yield break;
-				}
-				
-				yield return null;
-			}
-			
-			DoBattleAction(att.Timeline[i]);
-		}
-
-		GetComponent<Animator>().CrossFade("idle",0.15f);
-		
-		attacking = false;
-	}
-	
-	protected void DoBattleAction(BaseBattleAction action)
-	{
-		//--Damage--//
-		if(action.GetType() == typeof(DamageBattleAction))
-		{
-			DamageBattleAction dmg = (DamageBattleAction)action;
-			DoHit (dmg.Damage);
-		}
-		//--Block--//
-		else if(action.GetType() == typeof(BlockBattleAction))
-		{
-			currentVulnerability = Vulnerability.NewVulnerability((BlockBattleAction)action);
-			StartCoroutine(ResetVulnerability(action.Duration));
-		}
-		//--Vulnerability--//
-		else if(action.GetType() == typeof(VulnerabilityBattleAction))
-		{
-			currentVulnerability = Vulnerability.NewVulnerability((VulnerabilityBattleAction)action);
-			StartCoroutine(ResetVulnerability(action.Duration));
-		}
-		//--Script--//
-		else if(action.GetType() == typeof(ScriptBattleAction))
-		{
-			((ScriptBattleAction)action).Execute();
-		}
-		//--Animate--//
-		else if(action.GetType() == typeof(AnimateBattleAction))
-		{
-			GetComponent<Animator>().speed = ((AnimateBattleAction)action).PlaybackSpeed;
-			GetComponent<Animator>().CrossFade( ((AnimateBattleAction)action).AnimString, 0.05f );
-		}
-		//--Move--//
-		else if(action.GetType() == typeof(MoveBattleAction))
-		{
-			Move( ((MoveBattleAction)action).TargetLocalPosition, ((MoveBattleAction)action).Duration );
-		}
-	}
-	
-	
-	
-	protected IEnumerator ResetVulnerability(float delay)
-	{
-		yield return new WaitForSeconds(delay);
-		
-		currentVulnerability = null;
-	}
-		
-	
-
-	
-	protected void DoHit(DamageInfo damage)
-	{
-		Fighter opp = Opponent;
-
-		if(opp == null)
-			return;
-
-		attacking = true;
-		
-		Collider[] hits = Physics.OverlapSphere(transform.TransformPoint(damage.Position),damage.Radius);
-		for(int i=0;i<hits.Length;i++)
-		{
-			if(hits[i]==opp.collider)
-				opp.OnWasHit(damage);
-		}
-	}
-	
-	
-	//TODO: Separate this into other functions, such as a "CalculateDamage" pipeline
-	public void OnWasHit(DamageInfo damage)
-	{
-	//	Debug.Log ("Fighter "+gameObject.name+" is is hit!");
-		
-		float totalDamage = damage.BaseDamage;
-		
-		if(currentVulnerability!=null)
-		{
-			totalDamage *= (1f + currentVulnerability.DamageOffset);
-			
-			BreakRequirement req;
-			for(int i=0;i<currentVulnerability.BreakReq.Count;i++)
-			{
-				req = currentVulnerability.BreakReq[i];
-				req.HitWith(damage.Type,(int)damage.BaseDamage);
-			}
-		
-			if(currentVulnerability.IsBroken())
-			{
-				Knockback kb = damage.KnockbackStrength + currentVulnerability.KnockbackOffset;
-				
-				Break();
-				
-				totalDamage *= (float)((int)kb) / 2f + 1f;
+				Animate ("idle");
 			}
 		}
-		
-		
-			
-		AddHP(-(int)totalDamage);
-			
-		
-		
-			
-		if(hp<=0)
-		{
-			Die ();
-		}
-		
 	}
-	
-	protected void Break()
+
+	public abstract Attack GetAttackForIndex(int index);
+	public abstract int AttackCount { get; }
+
+
+	public List<Fighter> GetFightersInRange(Vector3 localPos, float radius)
 	{
-		StopAllCoroutines();	//TODO: Find a better way
-	}
-	
-	protected void Die()
-	{
-		GetComponent<Animator>().CrossFade(DeathAnimString,0.15f);
+		Collider[] hitColliders = Physics.OverlapSphere(transform.TransformPoint(localPos), radius);
+		List<Fighter> fightersFound = new List<Fighter>();
 		
-		if(FighterDied!=null)
+		foreach(Collider col in hitColliders)
 		{
-			FighterDied(this);
+			Fighter hitFighter = col.GetComponent<Fighter>();
+			if(hitFighter!=null && hitFighter!=this)
+			{
+				fightersFound.Add(hitFighter);
+			}
+		}
+		return fightersFound;
+	}
+
+
+	public void MoveTo(Vector3 localPosition, float duration)
+	{
+		Animate ("run",0.1f);
+		movingSpeed = (transform.localPosition-localPosition).magnitude / duration;
+		targetPosition = localPosition;
+
+		if(transform.localPosition == targetPosition)
+		{
+			Animate ("idle",0.1f);
 		}
 	}
+
+
+	public void Hit(DamageInfo damage)
+	{
+		if(hit!=null)
+		{
+			hit(damage);
+		}
+	}
+
+
+	public void SetLocalPosition(Vector3 localPosition)
+	{
+		transform.localPosition = localPosition;
+		targetPosition = localPosition;
+	}
+
+
+	public void Animate(string animState, float fadeTime = 0.25f, float playbackSpeed = 1f)
+	{
+		animator.speed = playbackSpeed;
+
+		animator.Play(animState);
+	}
+
+	
 	
 	
 }

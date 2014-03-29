@@ -4,14 +4,14 @@ using System.Collections;
 public class NonPlayerCharacter : PathCharacter
 {
 	
-	public Script ScriptOnTalk;
+	public Triggerable TriggerOnTalk;
 	
 	
 	public void OnInteract()
 	{
-		if(ScriptOnTalk!=null)
+		if(TriggerOnTalk!=null)
 		{
-			ScriptOnTalk.OnTriggered(TriggerEventType.Enter);
+			TriggerOnTalk.OnTriggered(TriggerEventType.Enter);
 		}
 	}
 	

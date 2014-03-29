@@ -107,16 +107,16 @@ public class AttackEditorWindow : EditorWindow{
 			EditorGUILayout.EndHorizontal();
 			
 			BeginHorizontalWithLabel("Damage Offset");
-			((VulnerabilityBattleAction)action).DamageOffset = EditorGUILayout.FloatField(((VulnerabilityBattleAction)action).DamageOffset);
+			((VulnerabilityBattleAction)action).Vulnerability.DamageOffset = EditorGUILayout.IntField(((VulnerabilityBattleAction)action).Vulnerability.DamageOffset);
 			EditorGUILayout.EndHorizontal();
 			
-			BeginHorizontalWithLabel("Knockback Offset");
-			((VulnerabilityBattleAction)action).KnockbackOffset = EditorGUILayout.IntField(((VulnerabilityBattleAction)action).KnockbackOffset);
+			BeginHorizontalWithLabel("Can Be Knocked Down");
+			((VulnerabilityBattleAction)action).Vulnerability.CanBeKnockedDown = EditorGUILayout.Toggle(((VulnerabilityBattleAction)action).Vulnerability.CanBeKnockedDown);
 			EditorGUILayout.EndHorizontal();
 			
 			GUILayout.Label ("Break Conditions:");
-			if(((VulnerabilityBattleAction)action).BreakReq==null)	((VulnerabilityBattleAction)action).BreakReq = new List<BreakRequirement>();
-			List<BreakRequirement> breaks = ((VulnerabilityBattleAction)action).BreakReq;
+			//if(((VulnerabilityBattleAction)action).Vulnerability.BreakReq==null)	((VulnerabilityBattleAction)action).Vulnerability.BreakReq = new List<BreakRequirement>();
+			List<BreakRequirement> breaks = ((VulnerabilityBattleAction)action).Vulnerability.BreakReq;
 			for(int i=0;i<breaks.Count;i++)
 			{
 				BreakRequirement req = breaks[i];
@@ -135,12 +135,12 @@ public class AttackEditorWindow : EditorWindow{
 				EditorGUILayout.EndHorizontal();
 				
 				BeginHorizontalWithLabel("  DamageType");
-				req.DmgType = (DamageType)EditorGUILayout.EnumPopup(req.DmgType);
+				req.DamageType = (DamageType)EditorGUILayout.EnumPopup(req.DamageType);
 				EditorGUILayout.EndHorizontal();
 			}
 			
 			if(GUILayout.Button("Add Break Condition",GUILayout.Width(140)))
-				breaks.Add(new BreakRequirement());
+				breaks.Add(new BreakRequirement());  
 			
 		}
 		if(action.GetType()==typeof(MoveBattleAction))
