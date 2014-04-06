@@ -4,11 +4,6 @@ using System.Collections.Generic;
 
 
 
-#if UNITY_EDITOR
-using UnityEditor;
-#endif
-
-
 public class Script2DEntryNode : Script2DNode
 {
 	private Script2DPort next = null;
@@ -78,22 +73,5 @@ public class Script2DEntryNode : Script2DNode
 		next.ConnectedPort = tree.GetPort( (int)(double)data["nextLink"] );
 	}
 
-
-#if UNITY_EDITOR
-	
-	public override bool DrawContents(Script2DDrawContext context)
-	{		
-		context.BeginNode(this, new Vector2(100,50));
-
-		GUI.Label (context.zoomed_rect(15,15,100,20),"BEGIN",EditorStyles.label);
-
-		context.EndNode();
-		
-		context.DrawPort(next);
-		
-		return true;
-	}
-
-#endif
 
 }

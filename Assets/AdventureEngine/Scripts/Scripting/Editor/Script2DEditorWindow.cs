@@ -15,6 +15,13 @@ public class Script2DEditorWindow : EditorWindow
 		Script2DEditorWindow window = EditorWindow.GetWindow<Script2DEditorWindow>(false,"Script2D Editor");
 		window.minSize = new Vector2(300,200); 
 	}
+
+	void OnEnable()
+	{
+		autoRepaintOnSceneChange = true;
+		wantsMouseMove = true;
+	}
+
 	
 	void Update()
 	{
@@ -30,6 +37,7 @@ public class Script2DEditorWindow : EditorWindow
 	
 	void OnGUI()
 	{
+
 		if(context==null)
 		{
 			context = new Script2DDrawContext();

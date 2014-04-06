@@ -8,9 +8,9 @@ public class Script2DTree
 
 
 
-	private Script2DEntryNode entryNode = null;
-	private List<Script2DNode> nodeList = new List<Script2DNode>();
-	private List<Script2DPort> portList = new List<Script2DPort>();
+	protected Script2DEntryNode entryNode = null;
+	protected List<Script2DNode> nodeList = new List<Script2DNode>();
+	protected List<Script2DPort> portList = new List<Script2DPort>();
 
 
 	public Script2DNode EntryNode
@@ -34,7 +34,7 @@ public class Script2DTree
 	{
 	}
 
-	public void Init()
+	public virtual void Init()
 	{
 		entryNode = new Script2DEntryNode(this);
 	}
@@ -135,6 +135,31 @@ public class Script2DTree
 	}
 
 
+	protected virtual Script2DNode CreateNodeFromData(Hashtable nodeHash)
+	{
+		Script2DNode newNode = null;
+		if((string)nodeHash["type"]=="Script2DCommandNode") 
+		{
+			newNode = new Script2DCommandNode(nodeHash,this);
+		}
+		if((string)nodeHash["type"]=="Script2DIfNode")
+		{
+			newNode = new Script2DIfNode(this);
+		}
+		if((string)nodeHash["type"]=="Script2DEntryNode") 
+		{
+			if(entryNode!=null)
+			{
+				Debug.LogError ("More than one entry node!");
+			}
+			
+			newNode = new Script2DEntryNode(this);
+			entryNode = (Script2DEntryNode)newNode;
+		}
+
+		return newNode;
+		//TODO: Make a Script2DUnknown class so that we can still store data for nodes with invalid types
+	}
 
 	public string Serialize()
 	{
@@ -157,33 +182,22 @@ public class Script2DTree
 		ArrayList nodesData = (ArrayList)hash["nodes"]; 
 		foreach(object node in nodesData)
 		{
-			Script2DNode newNode = null;
 			Hashtable nodeHash = (Hashtable)node;
-			if((string)nodeHash["type"]=="Script2DCommandNode") 
-			{
-				newNode = new Script2DCommandNode(nodeHash,this);
-			}
-			if((string)nodeHash["type"]=="Script2DIfNode")
-			{
-				newNode = new Script2DIfNode(this);
-			}
-			if((string)nodeHash["type"]=="Script2DEntryNode") 
-			{
-				if(entryNode!=null)
-				{
-					Debug.LogError ("More than one entry node!");
-				}
 
-				newNode = new Script2DEntryNode(this);
-				entryNode = (Script2DEntryNode)newNode;
-			}
-			//TODO: Make a Script2DUnknown class so that we can still store data for nodes with invalid types
+			Script2DNode newNode = CreateNodeFromData(nodeHash);
 
-			newNode.Deserialize(nodeHash);
+			if(newNode!=null)
+			{
+				newNode.Deserialize(nodeHash);
+			}
+			else
+			{
+				Debug.Log ("Script node '" + (string)nodeHash["type"] + "' could not be created by '" + this.GetType().ToString() + "'");
+			}
 		}
 
 		if(entryNode==null)
-		{
+		{ 
 			entryNode = new Script2DEntryNode(this);
 		}
 

@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Reflection;
 
-[ExecuteInEditMode]
+
 public class Script2D  : Triggerable
 {
 
@@ -30,18 +30,16 @@ public class Script2D  : Triggerable
 	private Script2DNode currentNode = null;
 
 
-	public Script2DTree ScriptTree
+	void Awake()
 	{
-		get { return tree; }
+		Init();
 	}
 
 
-	void Update()
+	public void Init()
 	{
-		if(tree==null)
+		if(tree!=null)
 		{
-			tree = new Script2DTree();
-
 			if(savedJson!="")
 			{
 				tree.Deserialize(savedJson);
@@ -52,8 +50,6 @@ public class Script2D  : Triggerable
 			}
 		}
 	}
-
-
 
 
 	public override void OnTriggered(TriggerEventType triggerType)

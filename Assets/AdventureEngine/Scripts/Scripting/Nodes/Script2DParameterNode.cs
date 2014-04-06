@@ -60,12 +60,5 @@ public class Script2DParameterNode : Script2DNode
 	}
 
 
-#if UNITY_EDITOR
-	
-	public override bool DrawContents(Script2DDrawContext context)
-	{	
-		return true;
-	}
-#endif
 
 }

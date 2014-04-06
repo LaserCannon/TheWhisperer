@@ -3,10 +3,8 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Reflection;
 
-#if UNITY_EDITOR
-using UnityEditor;
-#endif
 
+public abstract class Script2DDrawContextBase {};
 
 public abstract class Script2DNode
 {
@@ -18,6 +16,10 @@ public abstract class Script2DNode
 
 	protected Script2DTree tree = null;
 
+	protected virtual string OverriddenClassName
+	{
+		get { return ""; }
+	}
 
 
 	public Vector2 Position
@@ -55,7 +57,15 @@ public abstract class Script2DNode
 		Hashtable hash = new Hashtable();
 
 		hash.Add("id",id);
-		hash.Add("type",GetType().ToString());
+
+		if(OverriddenClassName!="")
+		{
+			hash.Add("type",OverriddenClassName);
+		}
+		else
+		{
+			hash.Add("type",GetType().ToString());
+		}
 
 		hash.Add("posx",position.x);
 		hash.Add("posy",position.y);
@@ -108,9 +118,10 @@ public abstract class Script2DNode
 		}
 	}
 
-#if UNITY_EDITOR
-	public abstract bool DrawContents(Script2DDrawContext context);
-#endif
+	public virtual bool DrawContents(Script2DDrawContextBase context)
+	{
+		return true;
+	}
 
 
 

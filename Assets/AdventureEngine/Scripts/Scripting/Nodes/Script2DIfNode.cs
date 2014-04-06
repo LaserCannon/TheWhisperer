@@ -4,11 +4,6 @@ using System.Collections.Generic;
 
 
 
-#if UNITY_EDITOR
-using UnityEditor;
-#endif
-
-
 public class Script2DIfNode : Script2DNode
 {
 	private Script2DPort input = null;
@@ -18,7 +13,10 @@ public class Script2DIfNode : Script2DNode
 	private Script2DPort last = null;
 
 
-
+	public Script2DPort InputPort
+	{
+		get { return input; }
+	}
 
 	public Script2DPort NextPort
 	{
@@ -126,30 +124,5 @@ public class Script2DIfNode : Script2DNode
 	}
 
 
-#if UNITY_EDITOR
-	
-	public override bool DrawContents(Script2DDrawContext context)
-	{		
-		
-		context.BeginNode(this, new Vector2(100,50));
-
-		GUI.Label (context.zoomed_rect(15,15,20,20),"IF",EditorStyles.label);
-		if(GUI.Button(context.zoomed_rect(70,0,20,20),"X",EditorStyles.miniButton))
-		{
-			return false;
-		}
-		
-		context.EndNode();
-		
-		context.DrawPort(input);
-		
-		context.DrawPort(next);
-		context.DrawPort(falseNext);
-		context.DrawPort(last);
-		
-		return true;
-	}
-
-#endif
 
 }

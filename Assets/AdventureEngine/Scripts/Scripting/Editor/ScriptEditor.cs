@@ -322,7 +322,7 @@ public class ScriptEditor : Editor
 					object outval;
 					
 					//First, see if this paramter has an alternate GUI
-					bool customFound = CommandGUIFunctionAttribute.CallGUIFunction(cmd,j,p.Value, out outval);
+					bool customFound = CommandAttributesEditorExtension.CallGUIFunctionForCommand(cmd,j,p.Value, out outval);
 					
 					//If we didn't find a GUI function, do the default UI
 					if(!customFound)

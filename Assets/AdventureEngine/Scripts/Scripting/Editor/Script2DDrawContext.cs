@@ -2,20 +2,20 @@
 using System.Collections;
 using System.Collections.Generic;
 
+using UnityEditor;
+
 
 //TODO: To avoid the UNITY_EDITOR command, make an interface for the Script2D to interact with
 
 
-#if UNITY_EDITOR
 
-using UnityEditor;
-
-public class Script2DDrawContext
+public class Script2DDrawContext : Script2DDrawContextBase
 {
 	private Font font;
 	//private GUIStyle textStyle;
-	
-	private Script2D target = null;
+
+	private Script2D targetScript = null;
+	private Script2DTree targetTree = null;
 	
 	private Rect bounds = new Rect(0,0,1,1);
 	private Vector2 cameraPos = Vector2.zero;
@@ -53,9 +53,26 @@ public class Script2DDrawContext
 
 
 
-	public void SetTargetScript(Script2D targetScript)
+	public void SetTargetScript(Script2D script)
 	{
-		target = targetScript;
+		if(targetScript != script)
+		{
+			targetScript = script;
+
+			targetTree = new Script2DEditorTree();
+			
+			if(targetTree!=null)
+			{
+				if(script.savedJson!="" && script.savedJson!=null)
+				{
+					targetTree.Deserialize(targetScript.savedJson);
+				} 
+				else
+				{
+					targetTree.Init(); 
+				}
+			}
+		}
 	}
 
 
@@ -70,21 +87,21 @@ public class Script2DDrawContext
 	
 	public void Draw()
 	{
-		if(target!=null)
+		if(targetTree!=null)
 		{
 			DrawGrid ();
 
 			bounds = new Rect(0,0,1,1);
 
 			//TODO: Make the bounds extensions a variable
-			foreach(Script2DNode node in target.ScriptTree.NodeList)
+			foreach(Script2DNode node in targetTree.NodeList)
 			{
 				if(node.Position.x < bounds.x)
 					bounds.x = node.Position.x;
 				if(node.Position.y < bounds.y)
 					bounds.y = node.Position.y;
 			}
-			foreach(Script2DNode node in target.ScriptTree.NodeList)
+			foreach(Script2DNode node in targetTree.NodeList)
 			{
 				if(node.Position.x+300f > bounds.x+bounds.width)
 					bounds.width = node.Position.x+300f - bounds.x;
@@ -105,7 +122,7 @@ public class Script2DDrawContext
 			EditorStyles.label.fontSize = (int)(12f * zoom);
 			EditorStyles.miniButton.fontSize = (int)(12f * zoom);
 			
-			foreach(Script2DNode node in target.ScriptTree.NodeList)
+			foreach(Script2DNode node in targetTree.NodeList)
 			{
 				if(!node.DrawContents(this))
 				{
@@ -125,7 +142,7 @@ public class Script2DDrawContext
 			
 			if(GUILayout.Button("if",GUILayout.Width(40)))
 			{
-				Script2DNode newNode = new Script2DIfNode(target.ScriptTree);
+				Script2DNode newNode = new Script2DIfEditorNode(targetTree);
 				newNode.Position = cameraPos + Vector2.one*200f;
 			}
 			if(GUILayout.Button("while",GUILayout.Width(40)))
@@ -138,7 +155,7 @@ public class Script2DDrawContext
 			Command c = NewCommandDropDown();
 			if(c!=null)
 			{
-				Script2DNode newNode = new Script2DCommandNode(c,target.ScriptTree);
+				Script2DNode newNode = new Script2DCommandEditorNode(c,targetTree);
 				newNode.Position = cameraPos + Vector2.one*200f;
 			}
 
@@ -148,8 +165,8 @@ public class Script2DDrawContext
 
 			if(GUILayout.Button("Save",GUILayout.Width(100)))
 			{
-				target.savedJson = target.ScriptTree.Serialize();
-				EditorUtility.SetDirty(target);
+				targetScript.savedJson = targetTree.Serialize();
+				EditorUtility.SetDirty(targetScript);
 			}
 			
 			
@@ -220,7 +237,7 @@ public class Script2DDrawContext
 		Script2DPort closePort = null;
 		float closest = 20f;
 
-		foreach(Script2DPort port in target.ScriptTree.PortList)
+		foreach(Script2DPort port in targetTree.PortList)
 		{
 			if(fromPort.IsCompatibleWith(port))
 			{
@@ -487,4 +504,3 @@ public class Drawing
 	}
 }
 
-#endif
