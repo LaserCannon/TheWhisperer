@@ -38,6 +38,8 @@ public class Script2D  : Triggerable
 
 	public void Init()
 	{
+		tree = new Script2DTree();
+
 		if(tree!=null)
 		{
 			if(savedJson!="")
