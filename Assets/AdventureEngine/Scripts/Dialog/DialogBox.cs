@@ -11,247 +11,295 @@ public enum DialogBoxStyle
 	kMessage,
 }
 
-public enum MarkupType { None, Delay, Speed, Size, Color, Style, }
-public class Markup
-{
-	public MarkupType Type;
-	public string Value;
-	
-	public float FloatValue
-	{
-		get { return float.Parse(Value); }
-	}
-	public string[] StringsValue
-	{
-		get
-		{
-			return new string[1]{""};
-		}
-	}
-	public  Color ColorValue
-	{
-		get
-		{
-			return Color.white;
-		}
-	}
-	
-	
-	public Markup(string markupText)
-	{
-		Type = MarkupType.None;
-		
-		string[] segments = markupText.Split(new char[]{'='});
-		
-		if(segments.Length!=2)	{ Debug.LogError ("DialogBox.cs: Wrong number of '=' in text markup"); return;}
-		
-		switch(segments[0])
-		{
-		case "delay":
-			Type = MarkupType.Delay;
-			break;
-		case "speed":
-			Type = MarkupType.Speed;
-			break;
-		case "size":
-			Type = MarkupType.Size;
-			break;
-		case "color":
-			Type = MarkupType.Color;
-			break;
-		case "style":
-			Type = MarkupType.Style;
-			break;
-		default:
-			Debug.LogError("DialogBox.cs: Unidentified Markup Type '" + segments[0] + "'.");
-			break;
-		}
-		
-		Value = segments[1];
-	}
-}
-
-
 
 public class DialogBox : MonoBehaviour
 {
-	
-	
-	private string text = "";
-	public string Text
+
+	[SerializeField]
+	protected float defaultInterval = 0.05f;
+
+
+	private string currentText = "";
+	private string targetText = "";
+
+	protected UIPanel panel = null;
+	protected UILabel textLabel = null;
+
+
+	private int textIndex = 0;
+
+	protected float currentInterval = 0f;
+	protected float iterator = 0f;
+	protected float delay = 0f;
+
+	private bool rushing = false;
+
+
+	public event MessageDelegate onFinished = null;
+	public event MessageDelegate onClosed = null;
+
+
+	public virtual bool CanShareScreen
 	{
-		get { return text; }
-		set {
-			text = value;
-			textMesh.text = text;
-		}
+		get { return false; }
 	}
-	
-	
-	
-	private TextMesh textMesh;
-	
-	public Renderer background;
-	
+
+	public bool IsFinished
+	{
+		get { return textIndex>=targetText.Length; }
+	}
 	
 	// CALLBACKS //
 	
 	void Awake()
 	{
-		textMesh = GetComponentInChildren<TextMesh>();
-		if(textMesh==null)	textMesh = gameObject.AddComponent<TextMesh>();
-		
-		//Make certain we set the text correctly
-		Text = text;
+		textLabel = GetComponentInChildren<UILabel>();
+		panel = GetComponentInChildren<UIPanel>();
+
+		currentInterval = defaultInterval;
+	}
+
+	void Start()
+	{
+		OnStart();
+	}
+
+	void Update()
+	{
+		UpdateIterator(Time.deltaTime);
+
+		UpdateText();
+	}
+
+
+
+	protected virtual void OnStart()
+	{
+		Multitouch.OnTap += OnTap;
+	}
+
+	protected virtual void OnFinished()
+	{
 	}
 	
-	
-	
-	
-	// CLASS FUNCTIONS //
-	
-	public static DialogBox NewDialogBox(DialogBoxStyle style, string text)
+	protected virtual void OnClose()
 	{
-		
-		DialogBox box = null;
-		MeshRenderer mr = null;
-		
-		GameObject go = (GameObject) Resources.Load ("Prefabs/DialogBox");
-		if(go!=null)
+		Multitouch.OnTap -= OnTap;
+	}
+
+	protected virtual void OnTap(Vector2 position)
+	{
+		if(IsFinished)
 		{
-			go = (GameObject) Instantiate(go);
-			box = go.GetComponentInChildren<DialogBox>();
-			mr = go.GetComponentInChildren<MeshRenderer>();
+			Close ();
 		}
-		
-		if(box==null || mr==null)
+		else
 		{
-			//Create a new dialog box from scratch
-			go = new GameObject("DialogBox_");
-			box = go.AddComponent<DialogBox>();
-			go.AddComponent<MeshRenderer>();
-			mr = go.AddComponent<MeshRenderer>();
+			Rush();
 		}
-		
-		//Start the box at the given color, and fade in
-		box.SetTextAlpha(0f);
-		box.StartCoroutine(box.FadeTo(1f,2f));
-		
-		box.StartCoroutine(box.SetText(text,0.25f));
-		
-		return box;
 	}
 	
-	public static bool EndDialog(DialogBox dialog)
+
+
+	public void SetText(string text)
 	{
-		if(dialog==null)	return false;
+		currentText = "";
+		textLabel.text = "";
+		targetText = "";
+		textIndex = 0;
+		iterator = 0f;
+		rushing = false;
 		
-		dialog.StartCoroutine(dialog.End());
-		
-		return true;
+		textLabel.Wrap(text,out targetText);
 	}
-	
-	
-	
-	
-	// INTERNAL FUNCTIONS //
-	
-	private void SetTextAlpha(float alpha)
+
+	public void Rush()
 	{
-		Color c = textMesh.renderer.material.color;
-		c.a = alpha;
-		textMesh.renderer.material.color = c;
-		
-		if(background!=null)	background.material.color = c;
+		currentInterval = 0f;
+		rushing = true;
 	}
-	
-	
-	
-	private IEnumerator SetText(string text, float waitTime = 0f)
+
+	public void Close()
 	{
-		yield return new WaitForSeconds(waitTime);
-		
-		float charInterval = 0.02f;
-		float passedTime = 0f;
-		
-		string curDisplayed = "";
-		int index = 0;
-		
-		while(index < text.Length)
+		if(onClosed!=null)
 		{
-			passedTime+=Time.deltaTime;
+			onClosed();
+		}
+
+		Destroy (gameObject, 2f);
+
+		OnClose();
+	}
+	
+
+	protected void UpdateIterator(float delta)
+	{
+		if(delay > 0f && !rushing)
+		{
+			delay -= delta;
 			
-			while(passedTime>charInterval && index<text.Length)
+			if(delay <= 0f)
 			{
-				if(text[index] == '<')
+				iterator -= delay;
+				delay = 0f;
+			}
+		}
+		else
+		{
+			iterator += delta;
+		}
+	}
+
+	protected void UpdateText()
+	{
+		if(textIndex<targetText.Length)
+		{
+			while(iterator >= currentInterval && textIndex<targetText.Length && delay <= 0f)
+			{
+				if(TryParseMarkup() || TrySkipNGUIMarkup())
 				{
-					index++;
-					int endindex = text.IndexOf('>',index);
-					
-					if(endindex<0)
-						Debug.LogError("DialogBox.cs: End-markup character '>' not found for markup at position "+index+".");
+					continue;
+				}
+
+				char newChar = targetText[textIndex];
+
+				currentText += newChar;
+
+				textIndex++;
+
+				if(newChar!=' ' && newChar!='\n')
+				{
+					iterator -= currentInterval;
+				}
+			}
+
+			textLabel.text = currentText;
+
+			AddNewlineSpace();
+			
+			if(textIndex>=targetText.Length)
+			{
+				OnFinished ();
+
+				if(onFinished!=null)
+				{
+					onFinished();
+				}
+			}
+		}
+	}
+
+	protected static int CountNewlines(string str)
+	{
+		int index = str.IndexOf('\n',0);
+		int count = 0;
+		while(index!=-1)
+		{
+			count++;
+			index = str.IndexOf('\n',index+1);
+		}
+
+		return count;
+	}
+
+	protected void AddNewlineSpace()
+	{
+		for(int i=0;i<CountNewlines(targetText)-CountNewlines(currentText);i++)
+		{
+			textLabel.text += '\n';
+		}
+	}
+
+	protected bool TrySkipNGUIMarkup()
+	{
+		if(targetText[textIndex] == '[')
+		{
+			textIndex++;
+
+			while(textIndex<targetText.Length && targetText[textIndex]!=']')
+			{
+				textIndex++;
+			}
+
+			textIndex++;
+
+			return true;
+		}
+
+		return false;
+	}
+
+	protected bool TryParseMarkup()
+	{
+		if(targetText[textIndex] == '<')
+		{
+			int startindex = textIndex + 1;
+			int endindex = targetText.IndexOf('>',textIndex);
+			
+			if(endindex<0)
+			{
+				Debug.LogError("DialogBox.cs: End-markup character '>' not found for markup at position "+textIndex+".");
+			}
+			else
+			{
+				string mutext = targetText.Substring(startindex,endindex-startindex);
+				
+				Markup markup = new Markup(mutext);
+				
+				if(markup.Type==MarkupType.Delay)
+				{
+					delay = markup.FloatValue;
+				}
+				else if(markup.Type==MarkupType.Speed)
+				{
+					if(markup.IsEnd)
+					{
+						currentInterval = defaultInterval;
+					}
 					else
 					{
-						string mutext = text.Substring(index,endindex-index);
-						
-						Markup markup = new Markup(mutext);
-						
-						if(markup.Type==MarkupType.Delay)
-							yield return new WaitForSeconds(markup.FloatValue);
-						else if(markup.Type==MarkupType.Speed)
-							charInterval = markup.FloatValue <= 0.01f ? 10f : 1f/markup.FloatValue;
-						else if(markup.Type==MarkupType.Size)
-							textMesh.characterSize = markup.FloatValue;
-						else
-							Debug.LogWarning("Markup type '"+markup.Type+"' is unsupported.");
-						
-						index += mutext.Length+1;
+						currentInterval = markup.FloatValue <= 0.1f ? 10f : 1f/markup.FloatValue;
 					}
 				}
+				else if(markup.Type==MarkupType.Size)
+				{
+					//currentText += "[size=" + (int)markup.FloatValue + "]";
+					textLabel.fontSize = (int)markup.FloatValue;
+				}
+				else if(markup.Type==MarkupType.Color)
+				{
+					if(markup.IsEnd)
+					{
+						currentText += "[-]";
+					}
+					else
+					{
+						currentText += "[" + markup.Value + "]";
+					}
+				}
+				else if(markup.Type==MarkupType.Style)
+				{
+					if(markup.IsEnd)
+					{
+						currentText += "[/" + markup.Value + "]";
+					}
+					else
+					{
+						currentText += "[" + markup.Value + "]";
+					}
+				}
+				else
+				{
+					Debug.LogWarning("Markup type '"+markup.Type+"' is currently unsupported.");
+				}
 				
-				curDisplayed += text[index];
-				index++;
-				passedTime -= charInterval;
-				Text = curDisplayed;
+				textIndex += mutext.Length + 2;
 			}
-				
-			yield return null;
+			return true;
 		}
-		
-		//TODO: Markup!
-		// delay:				<delay=1.0>
-		// change type speed:	<speed=2.0> (in letters per second)
-		// font size:			<size=1.5> (in multiple of default size)
-		// font color:			<color=1,0,0>
-		// font style:			<style=italic,bold>
-		
+
+		return false;
 	}
-	
-	private IEnumerator FadeTo(float toOpacity, float speed)
-	{
-		if(speed==0f)	yield break;
-		
-		float curAlpha = textMesh.renderer.material.color.a;
-		
-		//Fade box to the target opacity
-		while(curAlpha != toOpacity)
-		{
-			curAlpha = Mathf.MoveTowards(curAlpha, toOpacity, speed*Time.deltaTime);
-			SetTextAlpha(curAlpha);
-			yield return null;
-		}
-	}
-	
-	private IEnumerator End()
-	{
-		//Fade out, and destroy.
-		yield return StartCoroutine(FadeTo (0f,2f));
-		Destroy (gameObject);
-	}
-	
-	
-	
-	
-	
+
 	
 }

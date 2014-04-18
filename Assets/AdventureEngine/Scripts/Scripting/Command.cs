@@ -229,7 +229,7 @@ public class Command
 		}
 		catch (Exception e)
 		{
-			Debug.LogError("Could not call function: " + Method.Name + "(" + ParamsAsObjects.ToString() + ")\nError: " + e.Message);
+			Debug.LogError("Could not call function: " + Method.Name + "(" + ParamsAsObjects.ToString() + ")\nCallstack: "+e.StackTrace+"\nError: " + e.Message);
 		}
 
 		return null;

@@ -105,15 +105,19 @@ public partial class ScriptCommands
 	[SimpleCommandGUIFunctionAttribute(0, "PlayDialog_GUI")]
 	public static IEnumerator PlayDialog(string dialog_id)
 	{
-		Dialog.PlayDialog(dialog_id);
+		DialogLine line = Dialog.GetLine(dialog_id);
+
+		AudioManager.main.PlayVoice(line.Clip);
+		DialogBoxManager.main.OpenDialogBox(DialogBoxManager.main.standardDialogPrefab,line.Text);
 		
-		return (Dialog.WaitForDialog());
+		return DialogBoxManager.main.WaitForStaticDialog();
 	}
 	
 	[CommandCategory("Dialog")]
 	public static void SkipDialog()
 	{
-		Dialog.SkipDialog();
+		DialogBoxManager.main.CloseCurrentStaticDialogBox();
+		AudioManager.main.CutOffVoice();
 	}
 	
 	

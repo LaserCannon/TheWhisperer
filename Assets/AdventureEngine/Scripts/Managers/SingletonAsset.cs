@@ -16,7 +16,7 @@ public class SingletonAsset : ScriptableObject
 #if UNITY_EDITOR
 		if(retmain==null) {
 			SingletonAsset singleton = ScriptableObject.CreateInstance<T>();
-			ManagedAssets.CreateAsset(singleton, typeof(T).ToString() + ".asset");
+			ManagedAssets.CreateAsset(singleton, typeof(T).ToString());
 			retmain = singleton;
 			
 			AssetDatabase.Refresh();

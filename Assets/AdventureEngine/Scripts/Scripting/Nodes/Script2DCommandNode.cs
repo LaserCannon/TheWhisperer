@@ -3,11 +3,8 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Reflection;
 
-#if UNITY_EDITOR
-using UnityEditor;
-#endif
 
-public partial class Script2DCommandNode : Script2DNode
+public class Script2DCommandNode : Script2DNode
 {
 
 	private Command command;

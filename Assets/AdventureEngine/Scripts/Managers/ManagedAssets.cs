@@ -30,7 +30,7 @@ public static class ManagedAssets
 	public static void CreateAsset(Object obj, string name)
 	{
 		if(obj==null)Debug.Log ("problem");
-		AssetDatabase.CreateAsset(obj, AssetsPath + "/" + name);
+		AssetDatabase.CreateAsset(obj, AssetsPath + "/" + name + ".asset");
 	}
 #endif
 	

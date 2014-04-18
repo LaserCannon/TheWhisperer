@@ -29,10 +29,13 @@ public class GameController : MonoBehaviour
 		get { return profile; }
 	}
 
+	public UIRoot uiRoot = null;
+
 	
 	void Awake()
 	{
 		_main = this;
+
 
 		if(profile==null)
 		{
@@ -41,7 +44,8 @@ public class GameController : MonoBehaviour
 			profile.AddPartyMember(FighterManager.main.Players[0].name);
 		}
 
-		if(player==null)
+		//Spawn a player agent only if there is a navmesh
+		if(player==null && NavMesh.CalculateTriangulation().vertices.Length > 0)
 		{
 			PathCharacter ch = AgentManager.main.Characters[0];
 			player = (PlayerAgent)Instantiate(ch);
