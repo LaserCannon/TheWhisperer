@@ -108,6 +108,7 @@ public partial class ScriptCommands
 	}
 	
 	[CommandCategory("Dialog")]
+	[CommandGUISizeAttribute(400,250)]
 	[SimpleCommandGUIFunctionAttribute(0, "PlayDialog_GUI")]
 	public static IEnumerator PlayDialog(string dialog_id)
 	{

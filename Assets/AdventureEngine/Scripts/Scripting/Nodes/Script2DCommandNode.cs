@@ -62,14 +62,14 @@ public class Script2DCommandNode : Script2DNode
 
 	private void SetupWithCommand(Command c)
 	{
-		int height = 30 + 24 * c.ParamCount;
+		Vector2 size = GetGUISizeForCommand(c, new Vector2(250,30 + 24 * c.ParamCount));
 
-		next = new Script2DPort(new Vector2(250,height/2),ParamType.Void,this,Script2DPortDirection.HorizontalOut);
-		last = new Script2DPort(new Vector2(0,height/2),ParamType.Void,this,Script2DPortDirection.HorizontalIn);
+		next = new Script2DPort(new Vector2(size.x,size.y/2),ParamType.Void,this,Script2DPortDirection.HorizontalOut);
+		last = new Script2DPort(new Vector2(0,size.y/2),ParamType.Void,this,Script2DPortDirection.HorizontalIn);
 		
 		command = c;
 		
-		returnPort = new Script2DPort(new Vector2(50,height),command.ReturnType,this,Script2DPortDirection.VerticalOut);
+		returnPort = new Script2DPort(new Vector2(50,size.y),command.ReturnType,this,Script2DPortDirection.VerticalOut);
 		
 		RegisterPort(next);
 		RegisterPort(last);
@@ -201,6 +201,24 @@ public class Script2DCommandNode : Script2DNode
 			Hashtable element = (Hashtable)inputList[i];
 			inputs[i].ConnectedPort = tree.GetPort( (int)(double)element["inputLinkID"] );
 		}
+	}
 
+	
+	
+	public static Vector2 GetGUISizeForCommand(Command cmd, Vector2 defaultSize)
+	{
+		MethodInfo info = cmd.Method;
+		
+		object[] atts = info.GetCustomAttributes(false);
+		
+		for(int i=0;i<atts.Length;i++)
+		{
+			if(atts[i] is CommandGUISizeAttribute)
+			{
+				return ((CommandGUISizeAttribute)atts[i]).size;
+			}
+		}
+		
+		return defaultSize;
 	}
 }

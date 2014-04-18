@@ -24,6 +24,23 @@ public class SimpleCommandGUIFunctionAttribute : CommandGUIFunctionAttribute
 }
 
 [AttributeUsage(AttributeTargets.Method)]
+public class CommandGUISizeAttribute : Attribute
+{
+	public Vector2 size = Vector2.one;
+
+
+	public CommandGUISizeAttribute(Vector2 pixelSize)
+	{
+		size = pixelSize;
+	}
+
+	public CommandGUISizeAttribute(float x, float y)
+	{
+		size = new Vector2(x,y);
+	}
+}
+
+[AttributeUsage(AttributeTargets.Method)]
 public class CommandGUIFunctionAttribute : Attribute
 {
 	protected int[] paramIndices;

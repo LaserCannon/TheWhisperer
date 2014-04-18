@@ -320,9 +320,9 @@ public class ScriptEditor : Editor
 					string pName = cmd.GetParamName(j);
 					
 					object outval;
-					
+
 					//First, see if this paramter has an alternate GUI
-					bool customFound = CommandAttributesEditorExtension.CallGUIFunctionForCommand(cmd,j,p.Value, out outval);
+					bool customFound = Script2DCommandEditorNode.CallGUIFunctionForCommand(cmd,j,p.Value, out outval);
 					
 					//If we didn't find a GUI function, do the default UI
 					if(!customFound)

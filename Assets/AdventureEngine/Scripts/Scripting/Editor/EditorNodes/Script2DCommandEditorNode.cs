@@ -24,9 +24,10 @@ public class Script2DCommandEditorNode : Script2DCommandNode
 		Command cmd = ScriptCommand;
 		
 		int height = 30 + 24 * cmd.ParamCount;
+		Vector2 size = GetGUISizeForCommand(cmd, new Vector2(250,height));
 		
 		//--
-		context.BeginNode(this,new Vector2(250,height));
+		context.BeginNode(this,size);
 		//++
 		
 		if(cmd!=null)
@@ -108,7 +109,7 @@ public class Script2DCommandEditorNode : Script2DCommandNode
 					object outval = null;
 					
 					//First, see if this paramter has an alternate GUI
-					bool customFound = CommandAttributesEditorExtension.CallGUIFunctionForCommand(ScriptCommand,j,p.Value, out outval);
+					bool customFound = CallGUIFunctionForCommand(ScriptCommand,j,p.Value, out outval);
 					
 					//If we didn't find a GUI function, do the default UI
 					if(!customFound)
@@ -146,7 +147,50 @@ public class Script2DCommandEditorNode : Script2DCommandNode
 		
 		return ScriptCommand!=null && ScriptCommand.Method!=null;
 	}
-	
+
+	public static bool CallGUIFunctionForCommand(Command cmd, int prmIndex, object input, out object outval)
+	{
+		MethodInfo info = cmd.Method;
+		
+		object[] atts = info.GetCustomAttributes(false);
+		
+		for(int i=0;i<atts.Length;i++)
+		{
+			if(atts[i] is CommandGUIFunctionAttribute)
+			{
+				for(int pr=0; pr<((CommandGUIFunctionAttribute)atts[i]).ParamIndices.Length; pr++)
+				{
+					int pindex = ((CommandGUIFunctionAttribute)atts[i]).ParamIndices[pr];
+					
+					if(pindex==prmIndex)
+					{
+						System.Type type = System.Type.GetType("ScriptCommandsUI");
+						
+						if(type==null)
+							Debug.Log("Type is null");
+						
+						MethodInfo guiMethod = type.GetMethod( ((CommandGUIFunctionAttribute)atts[i]).GUIMethods[pr]);
+						
+						if(guiMethod!=null)
+						{
+							if(guiMethod.GetParameters().Length==3)
+							{
+								object[] prms = new object[3] { cmd, prmIndex, input };
+								outval = guiMethod.Invoke(null,prms);
+								return true;
+							}
+							else
+								Debug.LogWarning("Parameters for '" + cmd.MethodName + "' are incorrect!");
+						}
+					}
+				}
+			}
+		}
+		
+		outval = null;
+		
+		return false;
+	}
 	
 	
 	public object DrawParamGUI(Script2DDrawContext context, string pName, Param p)

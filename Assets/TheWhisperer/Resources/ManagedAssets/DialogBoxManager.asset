@@ -13,5 +13,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   subtitleDialogPrefab: {fileID: 11400002, guid: 54f6d4dbb3c8f4fa7a1a17a059980be3,
     type: 2}
-  standardDialogPrefab: {fileID: 0}
+  standardDialogPrefab: {fileID: 11400004, guid: 49381dfdf91d24b068b04a522a17db27,
+    type: 2}
   customDialogPrefabs: []

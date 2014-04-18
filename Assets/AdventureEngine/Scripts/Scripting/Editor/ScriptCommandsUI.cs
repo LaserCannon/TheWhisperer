@@ -113,10 +113,10 @@ public static class ScriptCommandUIUtilities
 						//--String entry UI--//
 						string outstring = EditorGUILayout.TextField(input);
 						//Find lines that match the currently entered text
-						List<string> similar = autoCompleteFunction(outstring,10);
+						List<string> similar = autoCompleteFunction(outstring,6);
 						List<string> similarText = new List<string>();
 						if(autoCompleteText!=null)
-							similarText = autoCompleteText(outstring,10);
+							similarText = autoCompleteText(outstring,6);
 		
 						//Is it an exact match?
 						bool isMatch = similar.Contains(outstring);
@@ -132,7 +132,7 @@ public static class ScriptCommandUIUtilities
 					{
 						GUILayout.Label ("Autocomplete:");
 			
-						EditorGUILayout.BeginVertical(EditorStyles.objectFieldThumb);
+						EditorGUILayout.BeginVertical(EditorStyles.objectFieldThumb,GUILayout.Width(150));
 					
 						for(int i=0;i<similar.Count && i<10;i++)
 						{
@@ -140,7 +140,7 @@ public static class ScriptCommandUIUtilities
 							if(similarText.Count > i)
 								smlr += " : " + similarText[i];
 				
-							if(GUILayout.Button( smlr ))
+							if(GUILayout.Button( smlr , GUILayout.Width(200) ))
 							{
 								outstring = similar[i];
 								EditorGUIUtility.hotControl = 0;

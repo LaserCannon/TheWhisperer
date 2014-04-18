@@ -27,18 +27,8 @@ MonoBehaviour:
   - SchemeName: FullGame
     StartingScene: 
     Packages: []
-  - SchemeName: E3 2013 Demo
+  - SchemeName: E3 2018 Demo
     StartingScene: 
     Packages:
     - Menu
     - Village
-  - SchemeName: PSN Demo
-    StartingScene: 
-    Packages: []
-  - SchemeName: WalMart Demo
-    StartingScene: 
-    Packages: []
-  - SchemeName: TestVillage
-    StartingScene: 
-    Packages:
-    - Villiage
