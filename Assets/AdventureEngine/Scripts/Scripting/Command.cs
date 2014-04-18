@@ -176,47 +176,21 @@ public class Command
 	
 	public IEnumerator Execute()
 	{
-		if(Method==null)	yield break;
-		
-		if(!enabled)		yield break;
-		
-		isRunning = true;
-		
-		if(onExecuteCommand!=null)
-			onExecuteCommand();
-		
-		//Execute the method!!	Yield if this command returns an IEnumerator.
-		if(Method.ReturnType==typeof(IEnumerator))
+		object ret = DirectInvoke();
+
+		if(ret!=null && ret.GetType()==typeof(IEnumerator))
 		{
-			IEnumerator coroutine = null;
-			try
-			{
-				coroutine = (IEnumerator)Method.Invoke(null,ParamsAsObjects);
-			}
-			catch (Exception e)
-			{
-				Debug.LogError("Could not call function: " + Method.Name + "(" + ParamsAsObjects.ToString() + ")\nError: " + e.Message);
-			}
-			yield return AsyncServices.RunCoroutine(coroutine);
+			yield return (IEnumerator)ret;
 		}
-		else
-		{
-			try
-			{
-				Method.Invoke(null,ParamsAsObjects);
-			}
-			catch (Exception e)
-			{
-				Debug.LogError("Could not call function: " + Method.Name + "(" + ParamsAsObjects.ToString() + ")\nError: " + e.Message);
-			}
-		}
-		
-		isRunning = false;
+
+		yield break;
 	}
 
 	public object DirectInvoke()
 	{
 		if(Method==null)	return null;
+		
+		if(!enabled)		return null;
 
 		isRunning = true;
 		
@@ -229,7 +203,7 @@ public class Command
 		}
 		catch (Exception e)
 		{
-			Debug.LogError("Could not call function: " + Method.Name + "(" + ParamsAsObjects.ToString() + ")\nCallstack: "+e.StackTrace+"\nError: " + e.Message);
+			Debug.LogError("Could not call function: " + Method.Name + "(" + ParamsAsObjects.ToString() + ")\n\nCallstack: "+e.StackTrace+"\n\nError: " + e.Message);
 		}
 
 		return null;

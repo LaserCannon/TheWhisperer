@@ -41,7 +41,13 @@ public partial class ScriptCommands
 	
 	//TODO: Consider making each command a class instead? Though perhaps we can do all the same things with metadata.
 	//EXAMPLES: Shows up differently in the script editor, etc.
-	
+
+	[CommandCategory("Global")]
+	public static PlayerAgent GetPlayerCharacter()
+	{
+		return GameController.main.Player;
+	}
+
 	[CommandCategory("Global")]
 	public static void EnableCharacterControl(bool on)
 	{
@@ -314,16 +320,9 @@ public partial class ScriptCommands
 	[CommandCategory("Battle")]
 	public static void SpawnEnemyBeginBattle(string enemyID)
 	{
-		//EnemyFighter enemy = 
-		try{
-			if(GameController.main != null)
-			{
-				BattleLoader.LoadBattle(GameController.Profile.GetPartyMember(0),enemyID,new BattleScene("test_battlescene"));
-			}
-		}
-		catch(System.Exception e)
+		if(GameController.main != null)
 		{
-			Debug.Log (e);
+			BattleLoader.LoadBattle(GameController.Profile.GetPartyMember(0),enemyID,new BattleScene("test_battlescene"));
 		}
 	}
 	
