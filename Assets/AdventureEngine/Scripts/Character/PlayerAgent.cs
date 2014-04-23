@@ -16,28 +16,41 @@ public class PlayerAgent : PathCharacter
 			isEnabled = value;
 		}
 	}
+
+	public MovementReticle reticlePrefab = null;
+
+	private MovementReticle _reticle = null;
 	
-	
+
+	protected override void Start()
+	{
+		base.Start();
+
+		_reticle = (MovementReticle)Instantiate(reticlePrefab);
+
+		_reticle.Deactivate();
+	}
+
 
 	
 	protected void OnEnable()
 	{
-		Multitouch.OnTouch += MoveTowardScreenPosition;
-		Multitouch.OnDrag += MoveTowardScreenPosition;
-		Multitouch.OnTouchEnd += Halt;
-		Multitouch.OnDragEnd += Halt;
-		Multitouch.OnDoubleTap += MoveTowardScreenPosition;
-		Multitouch.OnDoubleTap += CheckForInteraction;
+//		Multitouch.OnTouch += MoveTowardScreenPosition;
+//		Multitouch.OnDrag += MoveTowardScreenPosition;
+//		Multitouch.OnTouchEnd += Halt;
+//		Multitouch.OnDragEnd += Halt;
+		Multitouch.OnTap += MoveTowardScreenPosition;
+		Multitouch.OnTap += CheckForInteraction;
 	}
 	
 	protected void OnDisable()
 	{
-		Multitouch.OnTouch -= MoveTowardScreenPosition;
-		Multitouch.OnDrag -= MoveTowardScreenPosition;
-		Multitouch.OnTouchEnd -= Halt;
-		Multitouch.OnDragEnd -= Halt;
-		Multitouch.OnDoubleTap -= MoveTowardScreenPosition;
-		Multitouch.OnDoubleTap -= CheckForInteraction;
+//		Multitouch.OnTouch -= MoveTowardScreenPosition;
+//		Multitouch.OnDrag -= MoveTowardScreenPosition;
+//		Multitouch.OnTouchEnd -= Halt;
+//		Multitouch.OnDragEnd -= Halt;
+		Multitouch.OnTap -= MoveTowardScreenPosition;
+		Multitouch.OnTap -= CheckForInteraction;
 	}
 	
 	
@@ -54,7 +67,13 @@ public class PlayerAgent : PathCharacter
 		if(Physics.Raycast(r,out hit))
 		{
 			if(hit.collider.gameObject!=gameObject)
-				Interact(hit.collider.gameObject);
+			{
+				if(hit.collider.gameObject.GetComponent<TappableTrigger
+				   >())
+				{
+					Interact(hit.collider.gameObject);
+				}
+			}
 		}
 	}
 	
@@ -93,10 +112,13 @@ public class PlayerAgent : PathCharacter
 	{
 		if(Enabled)
 		{
+			_reticle.Activate();
+			_reticle.PlaceByScreenPos(screenpos);
+
 			//TODO: Consider layers
 			//Cast a ray from the screen...
-			Vector3 pos = transform.position;
-			Ray r = Camera.main.ScreenPointToRay(screenpos);
+			//Vector3 pos = transform.position;
+			//Ray r = Camera.main.ScreenPointToRay(screenpos);
 			
 			//RaycastHit hit = new RaycastHit();	
 			//if(Physics.Raycast(r,out hit,touchMovementLayerMask))
@@ -109,15 +131,32 @@ public class PlayerAgent : PathCharacter
 			//else
 			//{
 				//If we don't hit anything, find a point roughly the same distance away from the camera that the player is
-				Plane p = new Plane(Vector3.up,transform.position);
-				float dist;
+			//	Plane p = new Plane(Vector3.up,transform.position);
+			//	float dist;
 				
-				if(!p.Raycast(r,out dist))
-					dist = (Camera.main.transform.position-transform.position).magnitude;
+			//	if(!p.Raycast(r,out dist))
+			//		dist = (Camera.main.transform.position-transform.position).magnitude;
 				
-				pos = r.GetPoint(dist);
+			//	pos = r.GetPoint(dist);
 			//}
+			Ray ray = Camera.main.ScreenPointToRay(screenpos);
+			RaycastHit hit = new RaycastHit();
+			Vector3 pos = Vector3.zero;
 			
+			if(Physics.Raycast(ray,out hit))
+			{
+				pos = hit.point;
+			}
+			else
+			{
+				Plane plane = new Plane(Vector3.up,transform.position);
+				float dist = 0f;
+				if(plane.Raycast(ray,out dist))
+				{
+					pos = ray.GetPoint(dist);
+				}
+			}
+
 			//...and set a destination for the point that we hit.
 			if(pos!=transform.position)
 			{

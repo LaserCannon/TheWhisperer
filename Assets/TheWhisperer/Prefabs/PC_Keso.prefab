@@ -184,6 +184,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ebf07629f16684d3db667dfddd8bd0cc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  reticlePrefab: {fileID: 11400000, guid: ddf239a588009474cb3dcc574101ac69, type: 2}
 --- !u!136 &13600000
 CapsuleCollider:
   m_ObjectHideFlags: 1

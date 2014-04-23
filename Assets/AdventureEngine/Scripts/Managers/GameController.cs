@@ -48,7 +48,7 @@ public class GameController : MonoBehaviour
 		if(player==null && NavMesh.CalculateTriangulation().vertices.Length > 0)
 		{
 			PathCharacter ch = AgentManager.main.Characters[0];
-			player = (PlayerAgent)Instantiate(ch);
+			player = (PlayerAgent)Instantiate(ch,Vector3.zero,Quaternion.identity);
 			player.WarpTo(SpawnLocator.GetSpawnLocation(0));
 		}
 	}

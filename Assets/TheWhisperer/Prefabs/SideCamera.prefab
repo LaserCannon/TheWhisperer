@@ -27,7 +27,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 100000}
   m_LocalRotation: {x: .0633565709, y: 0, z: 0, w: .997990966}
-  m_LocalPosition: {x: 0, y: 6.5, z: -59.8100014}
+  m_LocalPosition: {x: -5.94211006, y: -.857656479, z: -32.3764343}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -86,9 +86,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Tag: Main
-  InnerSquareRatioVector: {x: .0500000007, y: 1}
-  MinCameraPos: -13
-  MaxCameraPos: 13
+  InnerSquareRatioVector: {x: .200000003, y: 1}
+  MinCameraPos: -12
+  MaxCameraPos: 10
 --- !u!124 &12400000
 Behaviour:
   m_ObjectHideFlags: 1
