@@ -4,7 +4,10 @@ using System.Collections;
 
 public class Script2DEntryEditorNode : Script2DEntryNode
 {
-	public Script2DEntryEditorNode(Script2DTree tree) : base(tree) {}
+	public Script2DEntryEditorNode(Script2DTree tree) : base(tree)
+	{
+		Position = new Vector2(100,100);
+	}
 	
 	
 	protected override string OverriddenClassName

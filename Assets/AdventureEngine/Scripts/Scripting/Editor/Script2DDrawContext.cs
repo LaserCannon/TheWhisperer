@@ -199,6 +199,9 @@ public class Script2DDrawContext : Script2DDrawContextBase
 		}
 	}
 
+
+	private static int currentCategoryIndex = 0;
+
 	public static Command NewCommandDropDown()
 	{
 		//TODO: Optimize this (cache the method names in the dictionary)
@@ -207,27 +210,48 @@ public class Script2DDrawContext : Script2DDrawContextBase
 		
 		//Build an array of method names, by category
 		//TODO: Alphabetize these
+		List<string> categorynames = new List<string>();
 		List<string> methodnames = new List<string>();
-		
+
+
+		EditorGUILayout.BeginHorizontal();
+
+		categorynames.Add("Select Command Category...");
 		methodnames.Add("Add Command...");	//This is our "default" for the drop-down below
 		
 		foreach(string key in methodCategories.Keys)
 		{
-			methodnames.Add("--- "+key);
-			
-			foreach(string val in methodCategories[key])
+			categorynames.Add(key);
+		}
+		
+		currentCategoryIndex = EditorGUILayout.Popup(currentCategoryIndex,categorynames.ToArray(),GUILayout.Width(180));
+
+		if(currentCategoryIndex > 0)
+		{
+			foreach(string val in methodCategories[categorynames[currentCategoryIndex]])
 			{
 				methodnames.Add(val);
 			}
 		}
-		
+		else
+		{
+			GUI.enabled = false;
+		}
+
 		//Now do the drop-down
 		int commind = 0;
 		commind = EditorGUILayout.Popup(commind,methodnames.ToArray(),GUILayout.Width(250));
+
+		EditorGUILayout.EndHorizontal();
+
 		if(commind!=0 && !methodnames[commind].Contains("-"))
 		{
+			currentCategoryIndex = 0;
 			return new Command(methodnames[commind]);
 		}
+
+		GUI.enabled = true;
+
 		return null;
 	}
 
