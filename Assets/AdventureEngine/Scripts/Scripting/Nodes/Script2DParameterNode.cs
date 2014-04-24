@@ -39,26 +39,6 @@ public class Script2DParameterNode : Script2DNode
 		return paramOutput.Value;
 	}
 
-	
-	
-	public override Hashtable Serialize ()
-	{
-		return null;
-	}
-	
-	public override void Deserialize (Hashtable data)
-	{
-		//node id
-		//class name
-		//nextPort ID
-		//inputPort IDs
-		//nextPort Connection ID
-		//inputPort Connection IDs
-		
-		//Command Name
-		//Parameters
-	}
-
 
 
 }

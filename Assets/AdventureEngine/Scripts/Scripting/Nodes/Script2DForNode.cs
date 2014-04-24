@@ -1,31 +1,34 @@
 ﻿using UnityEngine;
 using System.Collections;
-using System.Collections.Generic;
 
-
-
-public class Script2DIfNode : Script2DNode
+public class Script2DForNode : Script2DNode
 {
-	private Script2DPort input = null;
 
+	private Script2DPort input = null;
+	
 	private Script2DPort next = null;
-	private Script2DPort falseNext = null;
+	private Script2DPort repeat = null;
 	private Script2DPort last = null;
 
+	private Script2DPort index = null;
 
+
+	private int i = -1;
+
+	
 	public Script2DPort InputPort
 	{
 		get { return input; }
 	}
-
+	
 	public Script2DPort NextPort
 	{
 		get { return next; }
 	}
-
-	public Script2DPort FalseNextPort
+	
+	public Script2DPort RepeatPort
 	{
-		get { return falseNext; }
+		get { return repeat; }
 	}
 	
 	public Script2DPort LastPort
@@ -33,63 +36,61 @@ public class Script2DIfNode : Script2DNode
 		get { return last; }
 	}
 
-
-
-	public Script2DIfNode(Script2DTree tree) : base(tree)
+	public Script2DPort IndexPort
+	{
+		get { return index; }
+	}
+	
+	public Script2DForNode(Script2DTree tree) : base(tree)
 	{
 		input = new Script2DPort(new Vector2(25,0),ParamType.Bool,this,Script2DPortDirection.VerticalIn);
 		
 		next = new Script2DPort(new Vector2(100,10),ParamType.Void,this,Script2DPortDirection.HorizontalOut);
-		falseNext = new Script2DPort(new Vector2(100,40),ParamType.Void,this,Script2DPortDirection.HorizontalOut);
+		repeat = new Script2DPort(new Vector2(100,50),ParamType.Void,this,Script2DPortDirection.HorizontalOut);
 		last = new Script2DPort(new Vector2(0,25),ParamType.Void,this,Script2DPortDirection.HorizontalIn);
+
+		index = new Script2DPort(new Vector2(50,50),ParamType.Int,this,Script2DPortDirection.VerticalOut);
 		
 		RegisterPort("input",input);
 		RegisterPort("next",next);
-		RegisterPort("falseNext",falseNext);
+		RegisterPort("repeat",repeat);
 		RegisterPort("last",last);
+		RegisterPort("index",index);
 	}
-
+	
 	protected override void DestroyPorts()
 	{
 		DeregisterPort("input");
 		DeregisterPort("next");
-		DeregisterPort("falseNext");
+		DeregisterPort("repeat");
 		DeregisterPort("last");
+		DeregisterPort("index");
 	}
-
-
+	
+	
 	public override Script2DNode GetMoveNext()
 	{
 		bool isTrue = (bool)Get();
 		
 		if(isTrue)
 		{
-			return NextPort.ConnectedPort.MyNode;
+			i++;
+			return RepeatPort.ConnectedPort.MyNode;
 		}
 		else
 		{
-			return FalseNextPort.ConnectedPort.MyNode;
+			return NextPort.ConnectedPort.MyNode;
 		}
 	}
 
-
-	
 	public override IEnumerator Run()
 	{
 		yield break;
 	}
-
+	
 	public override object Get()
 	{
-		if(input.ConnectedPort!=null)
-		{
-			return input.ConnectedPort.MyNode.Get();
-		}
-		return false;
+		return i;
 	}
-	
-
-
-
 
 }

@@ -1199,19 +1199,18 @@ MonoBehaviour:
   Cooldown: 0
   PlayLimit: 0
   PlayLimitSaveString: 
-  savedJson: '{"nodes":[{"id":1, "type":"Script2DEntryNode", "next":1, "nextLink":3,
-    "posy":228.20166015625, "posx":73.3949737548828}, {"type":"Script2DCommandNode",
-    "posy":346.355346679688, "command":{"params":[{"value":"Hey, Keso!", "type":4}],
-    "doesWaitForFinish":true, "commandName":"PlayDialog", "enabled":true}, "last":3,
-    "inputs":[{"inputLinkID":-1, "inputID":5}], "id":2, "return":4, "posx":47.4052276611328,
-    "next":2, "nextLink":11}, {"type":"Script2DCommandNode", "posy":388.032379150391,
-    "command":{"params":[{"value":"Come with me!", "type":4}], "doesWaitForFinish":true,
-    "commandName":"PlayDialog", "enabled":true}, "last":7, "inputs":[{"inputLinkID":-1,
-    "inputID":9}], "id":3, "return":8, "posx":642.338500976563, "next":6, "nextLink":-1},
-    {"type":"Script2DCommandNode", "posy":192, "command":{"params":[{"value":0.100000001490116,
-    "type":2}], "doesWaitForFinish":true, "commandName":"Wait", "enabled":true}, "last":11,
-    "inputs":[{"inputLinkID":-1, "inputID":13}], "id":4, "return":12, "posx":432,
-    "next":10, "nextLink":7}]}'
+  savedJson: '{"nodes":[{"id":1, "type":"Script2DEntryNode", "next":1, "next__Link":13,
+    "posy":228.20166015625, "posx":73.3949737548828}, {"port0":5, "type":"Script2DCommandNode",
+    "command":{"params":[{"value":"Hey, Keso!", "type":4}], "doesWaitForFinish":true,
+    "commandName":"PlayDialog", "enabled":true}, "port0__Link":-1, "last":3, "return__Link":-1,
+    "last__Link":-1, "next__Link":7, "id":2, "return":4, "posx":319.944763183594,
+    "next":2, "posy":482.765747070313}, {"port0":9, "type":"Script2DCommandNode",
+    "command":{"params":[{"value":1, "type":2}], "doesWaitForFinish":true, "commandName":"Wait",
+    "enabled":true}, "port0__Link":-1, "last":7, "return__Link":-1, "last__Link":-1,
+    "next__Link":-1, "id":3, "return":8, "posx":644.869262695313, "next":6, "posy":290.111785888672},
+    {"type":"Script2DIfNode", "input__Link":-1, "falseNext__Link":3, "last":13, "last__Link":-1,
+    "next__Link":7, "falseNext":12, "id":4, "posx":230.747802734375, "next":11, "input":10,
+    "posy":301.211334228516}]}'
 --- !u!4 &1852953658
 Transform:
   m_ObjectHideFlags: 0

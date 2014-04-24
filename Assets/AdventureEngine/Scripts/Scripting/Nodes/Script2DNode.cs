@@ -14,6 +14,8 @@ public abstract class Script2DNode
 
 	private Vector2 position = Vector2.zero;
 
+	private Dictionary<string, Script2DPort> ports = new Dictionary<string,Script2DPort>();
+
 	protected Script2DTree tree = null;
 
 	protected virtual string OverriddenClassName
@@ -73,6 +75,12 @@ public abstract class Script2DNode
 
 		hash.Add("posx",position.x);
 		hash.Add("posy",position.y);
+		
+		foreach(string portName in ports.Keys)
+		{
+			hash.Add(portName,ports[portName].ID);
+			hash.Add(portName+"__Link",ports[portName].ConnectedPortID);
+		}
 
 		return hash;
 	}
@@ -82,10 +90,18 @@ public abstract class Script2DNode
 
 		position.x = (float)(double)data["posx"];
 		position.y = (float)(double)data["posy"];
+
+		foreach(string portName in ports.Keys)
+		{
+			ports[portName].AssignID( (int)(double)data[portName] );
+		}
 	}
 	public virtual void DeserializeConnections(Hashtable data)
 	{
-
+		foreach(string portName in ports.Keys)
+		{
+			ports[portName].ConnectedPort = tree.GetPort( (int)(double)data[portName+"__Link"] );
+		}
 	}
 
 
@@ -106,19 +122,29 @@ public abstract class Script2DNode
 		return null;
 	}
 
-	protected void RegisterPort(Script2DPort port)
+	protected void RegisterPort(string portName, Script2DPort port)
 	{
 		if(!tree.PortList.Contains(port))
 		{
 			tree.AddPort(port);
 		}
+
+		if(!ports.ContainsKey(portName))
+		{
+			ports.Add(portName,port);
+		}
 	}
 
-	protected void DeregisterPort(Script2DPort port)
+	protected void DeregisterPort(string portName)
 	{
-		if(tree.PortList.Contains(port))
+		if(ports.ContainsKey(portName))
 		{
-			tree.RemovePort(port);
+			if(tree.PortList.Contains(ports[portName]))
+			{
+				tree.RemovePort(ports[portName]);
+			}
+
+			ports.Remove(portName);
 		}
 	}
 
