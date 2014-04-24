@@ -66,13 +66,19 @@ public class Script2D  : Triggerable
 		if(isCooling)	yield break;
 		if(disabled)	yield break;
 		
-		//TODO: Allow a script to update its coroutines on deltatime, fixeddeltatime, etc.?
+		//TODO: Allow a script to update its coroutines on deltatime, fixeddeltatime, etc.? implies custom handling of coroutines
 		isRunning = true;
 
 		currentNode = tree.EntryNode;
 		while(currentNode!=null)
 		{
-			yield return StartCoroutine( currentNode.Run() );
+			Coroutine cor = StartCoroutine( currentNode.Run() );
+
+			if(currentNode.DoesWaitForFinish)
+			{
+				yield return cor;
+			}
+
 			currentNode = currentNode.GetMoveNext();
 		}
 		isRunning = false;

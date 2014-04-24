@@ -84,17 +84,17 @@ public class PathCharacter : MonoBehaviour
 		Halt ();
 	}
 	
-	public IEnumerator WaitForDestinationOrChanged()
+	public IEnumerator WaitForDestinationOrChanged(float distanceAway = 0f)
 	{
 		Vector3 curDest = agentRef.destination;
-		
-		while(agentRef.destination==curDest && (agentRef.hasPath || agentRef.pathPending))
+
+		while((transform.position-curDest).sqrMagnitude>distanceAway*distanceAway)
 		{	
 			yield return null;
 		}
 		
 		if(agentRef.destination==curDest)
-			navState = PathCharacterNavigationState.Stopped;
+			Halt ();
 		
 		
 	}

@@ -16,6 +16,12 @@ public class Script2DCommandNode : Script2DNode
 	protected List<Script2DPort> inputs = new List<Script2DPort>();
 
 
+	public override bool DoesWaitForFinish
+	{
+		get { return command.DoesWaitForFinish; }
+	}
+
+
 	public Command ScriptCommand
 	{
 		get { return command; }
@@ -112,7 +118,7 @@ public class Script2DCommandNode : Script2DNode
 	{
 		if(!command.enabled)
 		{
-			yield break;
+			return null;
 		}
 
 		for(int i=0;i<command.ParamCount;i++)
@@ -125,11 +131,7 @@ public class Script2DCommandNode : Script2DNode
 
 		object retVal = command.DirectInvoke();
 
-		if(retVal!=null && retVal.GetType()==typeof(IEnumerator) && command.DoesWaitForFinish)
-		{
-			yield return (IEnumerator)retVal;
-		}
-		yield break;
+		return (IEnumerator)retVal;
 	}
 
 	public override object Get()

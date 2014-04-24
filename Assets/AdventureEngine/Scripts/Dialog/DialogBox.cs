@@ -126,10 +126,11 @@ public class DialogBox : MonoBehaviour
 			onClosed();
 		}
 
-		Destroy (gameObject, 2f);
+		Destroy (gameObject, 1f);
 
 		OnClose();
 	}
+
 	
 
 	protected void UpdateIterator(float delta)

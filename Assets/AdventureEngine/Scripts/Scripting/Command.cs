@@ -180,10 +180,10 @@ public class Command
 
 		if(ret!=null && ret.GetType()==typeof(IEnumerator))
 		{
-			yield return (IEnumerator)ret;
+			return (IEnumerator)ret;
 		}
 
-		yield break;
+		return null;
 	}
 
 	public object DirectInvoke()

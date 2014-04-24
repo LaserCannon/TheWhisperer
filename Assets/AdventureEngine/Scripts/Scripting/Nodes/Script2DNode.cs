@@ -21,6 +21,10 @@ public abstract class Script2DNode
 		get { return ""; }
 	}
 
+	public virtual bool DoesWaitForFinish
+	{
+		get { return false; }
+	}
 
 	public Vector2 Position
 	{

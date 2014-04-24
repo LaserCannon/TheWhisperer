@@ -34,6 +34,7 @@ public class DialogBoxManager : SingletonAsset
 	{
 		get { return _currentStaticDialog; }
 	}
+	
 
 
 	public DialogBox OpenDialogBox(DialogBox dialogPrefab, string text)
@@ -48,6 +49,8 @@ public class DialogBoxManager : SingletonAsset
 			}
 
 			newBox = _currentStaticDialog;
+
+			_currentStaticDialog.onClosed += ClearCurrentStaticDialogBox;
 		}
 		else
 		{
@@ -64,11 +67,17 @@ public class DialogBoxManager : SingletonAsset
 		return OpenDialogBox(GetCustomDialogPrefab(type),text);
 	}
 
+	public void ClearCurrentStaticDialogBox()
+	{
+		_currentStaticDialog = null;
+	}
+
 	public void CloseCurrentStaticDialogBox()
 	{
 		if(_currentStaticDialog!=null)
 		{
 			_currentStaticDialog.Close();
+			_currentStaticDialog = null;
 		}
 	}
 	

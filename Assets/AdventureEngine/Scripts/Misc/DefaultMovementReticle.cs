@@ -17,9 +17,6 @@ public class DefaultMovementReticle : MovementReticle
 		{
 			_t += Time.deltaTime;
 
-			float cur = Mathf.PingPong(_t,1f);
-
-			//Vector3 pos = Vector3.Lerp(Vector3.forward*0.35f,Vector3.forward*0.6f,(Mathf.Cos(_t*Mathf.PI*2f+Mathf.PI/2f) + 1f)/2f);
 			Vector3 pos = Vector3.Lerp(Vector3.forward*1.35f,Vector3.forward*1.6f,(Mathf.Cos(_t*Mathf.PI*2f+Mathf.PI/2f) + 1f)/2f);
 
 			reticle.transform.localPosition = pos;

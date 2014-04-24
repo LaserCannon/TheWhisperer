@@ -39,7 +39,7 @@ public class PlayerAgent : PathCharacter
 //		Multitouch.OnDrag += MoveTowardScreenPosition;
 //		Multitouch.OnTouchEnd += Halt;
 //		Multitouch.OnDragEnd += Halt;
-		Multitouch.OnTap += MoveTowardScreenPosition;
+		//Multitouch.OnTap += MoveTowardScreenPosition;
 		Multitouch.OnTap += CheckForInteraction;
 	}
 	
@@ -49,7 +49,7 @@ public class PlayerAgent : PathCharacter
 //		Multitouch.OnDrag -= MoveTowardScreenPosition;
 //		Multitouch.OnTouchEnd -= Halt;
 //		Multitouch.OnDragEnd -= Halt;
-		Multitouch.OnTap -= MoveTowardScreenPosition;
+		//Multitouch.OnTap -= MoveTowardScreenPosition;
 		Multitouch.OnTap -= CheckForInteraction;
 	}
 	
@@ -68,8 +68,7 @@ public class PlayerAgent : PathCharacter
 		{
 			if(hit.collider.gameObject!=gameObject)
 			{
-				if(hit.collider.gameObject.GetComponent<TappableTrigger
-				   >())
+				if(hit.collider.gameObject.GetComponent<TappableTrigger>() || hit.collider.gameObject.GetComponent<PathCharacter>())
 				{
 					Interact(hit.collider.gameObject);
 				}
@@ -92,14 +91,16 @@ public class PlayerAgent : PathCharacter
 			Vector3 pos = obj.transform.position;
 			
 			SetDestination(pos);
-			
-			yield return WaitForDestinationOrChanged();
+
+			yield return StartCoroutine(WaitForDestinationOrChanged(1f));
 
 			if(!Enabled)
 				yield break;
 			
-			if(agentRef.destination==pos && obj!=null)	//TODO: This is crude; we should keep an ID of this movement rather than comparing positions
+			if(obj!=null)	//TODO: This is crude; we should keep an ID of this movement rather than comparing positions
+			{
 				obj.SendMessage("OnInteract",SendMessageOptions.DontRequireReceiver);
+			}
 		}
 	}
 	

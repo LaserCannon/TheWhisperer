@@ -117,7 +117,7 @@ public partial class ScriptCommands
 		AudioManager.main.PlayVoice(line.Clip);
 		DialogBoxManager.main.OpenDialogBox(DialogBoxManager.main.standardDialogPrefab,line.Text);
 		
-		return DialogBoxManager.main.WaitForStaticDialog();
+		yield return AsyncServices.RunCoroutine(DialogBoxManager.main.WaitForStaticDialog());
 	}
 	
 	[CommandCategory("Dialog")]
