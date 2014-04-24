@@ -56,11 +56,64 @@ public class Script2D  : Triggerable
 
 	public override void OnTriggered(TriggerEventType triggerType)
 	{
-		StartCoroutine(RunScript());
+		RunScript();
 	}
 
-	private IEnumerator RunScript()
+	private List<Script2DThread> threads = new List<Script2DThread>();
+
+	private void RunScript()
 	{
+		if(isRunning)	return;
+		if(isCooling)	return;
+		if(disabled)	return;
+		
+		//TODO: Allow a script to update its coroutines on deltatime, fixeddeltatime, etc.? implies custom handling of coroutines
+		isRunning = true;
+
+		RunNewThread(tree.EntryNode);
+	}
+
+	private void OnThreadComplete(Script2DThread thread)
+	{
+		threads.Remove(thread);
+		
+		RunNewThread(thread.Node.GetMoveNext());
+		
+		if(threads.Count == 0)
+		{
+			isRunning = false;
+			
+			switch(PlayLimit)
+			{
+			case TriggerPlayLimit.None:
+				StartCoroutine(DoCooldown(Cooldown));
+				break;
+			case TriggerPlayLimit.OnceInScene:
+				disabled = true;
+				break;
+			case TriggerPlayLimit.OnceAlways:
+				disabled = true;
+				GlobalVariableDatabase.SetBool(PlayLimitSaveString,true);
+				break;
+			}
+		}
+	}
+
+	private void RunNewThread(Script2DNode node)
+	{
+		if(node!=null)
+		{
+			Script2DThread thread = new Script2DThread(this,node);
+			thread.onThreadComplete += OnThreadComplete;
+			threads.Add(thread);
+			thread.Run();
+		}
+	}
+
+
+	/*private IEnumerator RunScript()
+	{
+		//TODO: Create a "thread" system so we can have more than one "next step"
 		
 		if(isRunning)	yield break;
 		if(isCooling)	yield break;
@@ -70,6 +123,7 @@ public class Script2D  : Triggerable
 		isRunning = true;
 
 		currentNode = tree.EntryNode;
+
 		while(currentNode!=null)
 		{
 			Coroutine cor = StartCoroutine( currentNode.Run() );
@@ -81,6 +135,7 @@ public class Script2D  : Triggerable
 
 			currentNode = currentNode.GetMoveNext();
 		}
+
 		isRunning = false;
 		
 		switch(PlayLimit)
@@ -96,7 +151,7 @@ public class Script2D  : Triggerable
 			GlobalVariableDatabase.SetBool(PlayLimitSaveString,true);
 			break;
 		}
-	}
+	}*/
 	
 	
 	private IEnumerator DoCooldown(float time)
