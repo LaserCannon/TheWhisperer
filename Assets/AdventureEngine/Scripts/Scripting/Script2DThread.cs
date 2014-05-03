@@ -29,9 +29,15 @@ public class Script2DThread
 
 	private IEnumerator _Run()
 	{
-		Coroutine cor = scriptRef.StartCoroutine( node.Run() );
+		IEnumerator enu = node.Run();
+		Coroutine cor = null;
+
+		if(enu!=null)
+		{
+			cor = scriptRef.StartCoroutine( enu );
+		}
 		
-		if(node.DoesWaitForFinish)
+		if(node.DoesWaitForFinish && cor!=null)
 		{
 			yield return cor;
 		}

@@ -305,7 +305,7 @@ public partial class ScriptCommands
 	[CommandCategory("Object-Based")]
 	public static void NPCRotateTowardsPlayer(NonPlayerCharacter character)
 	{
-		Vector3 towardsPlayer = character.transform.position - GameController.main.Player.transform.position;
+		Vector3 towardsPlayer = GameController.main.Player.transform.position - character.transform.position;
 		character.LookInDirection(towardsPlayer);
 	}
 	

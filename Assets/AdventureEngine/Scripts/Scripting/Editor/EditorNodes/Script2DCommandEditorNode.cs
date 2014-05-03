@@ -19,6 +19,7 @@ public class Script2DCommandEditorNode : Script2DCommandNode
 
 	public override bool DrawContents(Script2DDrawContextBase contextbase)
 	{		
+
 		Script2DDrawContext context = (Script2DDrawContext)contextbase;
 
 		Command cmd = ScriptCommand;
@@ -195,16 +196,26 @@ public class Script2DCommandEditorNode : Script2DCommandNode
 	
 	public object DrawParamGUI(Script2DDrawContext context, string pName, Param p)
 	{
-		if(p.IsInt)		return EditorGUILayout.IntField(pName + " (Integer):",p.Int,GUILayout.Height((float)(18f*context.Zoom)));
-		if(p.IsFloat)	return EditorGUILayout.FloatField(pName + " (Float):",p.Float,GUILayout.Height((float)(18f*context.Zoom)));
-		if(p.IsObject)	return EditorGUILayout.ObjectField(pName + " (Object):",p.Object,p.TypeRecord,true,GUILayout.Height((float)(18f*context.Zoom)));
-		if(p.IsString)	return EditorGUILayout.TextField(pName + " (String):",p.String,GUILayout.Height((float)(18f*context.Zoom)));
-		if(p.IsBool)	return EditorGUILayout.Toggle(pName + " (Bool):",p.Bool,GUILayout.Height((float)(18f*context.Zoom)));
+		EditorGUILayout.BeginHorizontal();
+
+		object output = null;
+
+		EditorGUILayout.LabelField(pName + " (" + p.Type.ToString() + "):",GUILayout.Width(100f*context.Zoom),GUILayout.Height(18f*context.Zoom));
+
+		if(p.IsInt)		output = EditorGUILayout.IntField(p.Int,GUILayout.Height((float)(18f*context.Zoom)));
+		if(p.IsFloat)	output = EditorGUILayout.FloatField(p.Float,GUILayout.Height((float)(18f*context.Zoom)));
+		if(p.IsObject)	output = EditorGUILayout.ObjectField(p.Object,p.TypeRecord,true,GUILayout.Height((float)(18f*context.Zoom)));
+		if(p.IsString)	output = EditorGUILayout.TextField(p.String,GUILayout.Height((float)(18f*context.Zoom)));
+		if(p.IsBool)	output = EditorGUILayout.Toggle(p.Bool,GUILayout.Height((float)(18f*context.Zoom)));
 		if(p.IsEnum)	{
 			string[] strs = System.Enum.GetNames(p.TypeRecord);
-			return EditorGUILayout.Popup(pName + " (Enum):",p.Int,strs,GUILayout.Height((float)(18f*context.Zoom)));
+			output = EditorGUILayout.Popup(p.Int,strs,GUILayout.Height((float)(18f*context.Zoom)));
 		}
-		return null;
+
+		EditorGUILayout.EndHorizontal();
+
+		return output;
+
 	}
 
 }

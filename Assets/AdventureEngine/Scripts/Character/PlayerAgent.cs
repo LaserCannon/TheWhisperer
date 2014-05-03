@@ -39,7 +39,7 @@ public class PlayerAgent : PathCharacter
 //		Multitouch.OnDrag += MoveTowardScreenPosition;
 //		Multitouch.OnTouchEnd += Halt;
 //		Multitouch.OnDragEnd += Halt;
-		//Multitouch.OnTap += MoveTowardScreenPosition;
+		Multitouch.OnTap += MoveTowardScreenPosition;
 		Multitouch.OnTap += CheckForInteraction;
 	}
 	
@@ -49,7 +49,7 @@ public class PlayerAgent : PathCharacter
 //		Multitouch.OnDrag -= MoveTowardScreenPosition;
 //		Multitouch.OnTouchEnd -= Halt;
 //		Multitouch.OnDragEnd -= Halt;
-		//Multitouch.OnTap -= MoveTowardScreenPosition;
+		Multitouch.OnTap -= MoveTowardScreenPosition;
 		Multitouch.OnTap -= CheckForInteraction;
 	}
 	
