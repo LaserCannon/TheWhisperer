@@ -16,7 +16,7 @@ MonoBehaviour:
     Character: Niabi
     TranslatedText:
     - Language: 10
-      Text: There it is, Keso!
+      Text: 
       AudioResourcePath: 
   - LineID: cs_opening_Niabi_0001
     Character: Niabi

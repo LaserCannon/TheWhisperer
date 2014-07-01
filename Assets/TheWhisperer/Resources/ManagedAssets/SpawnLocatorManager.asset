@@ -31,3 +31,6 @@ MonoBehaviour:
   - Scene: Forest3
     Ids:
     - west
+  - Scene: test_scene
+    Ids:
+    - from_village

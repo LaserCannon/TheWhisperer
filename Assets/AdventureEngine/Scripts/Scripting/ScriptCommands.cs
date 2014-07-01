@@ -91,8 +91,6 @@ public partial class ScriptCommands
 		LevelLoader.LoadLevel(sceneName, spawnLocation);
 	}
 	
-	
-	
 	[CommandCategory("Dialog")]
 	[SimpleCommandGUIFunctionAttribute(0, "LoadDialog_GUI")]
 	public static void LoadDialogPack(string dialog_package)
